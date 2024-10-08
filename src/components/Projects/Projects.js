@@ -30,7 +30,18 @@ function Projects() {
               ghLink=""
               demoLink="https://srdeveloppement.fr/"
             />
+
+                <ProjectCard
+              imgPath={chatify}
+              isBlog={false}
+              title="Projet Cube"
+              description="C'est un site qui présente le cubes, permet au utilisateurs de se chronometrer et de stocker leurs temps."
+              ghLink=""
+              demoLink="https://srdeveloppement.fr/"
+            />
           </Col>
+
+                
           
 
          
