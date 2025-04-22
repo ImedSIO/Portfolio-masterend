@@ -34,8 +34,21 @@ function Projects() {
                 <ProjectCard
               imgPath={chatify}
               isBlog={false}
-              title="Projet Cube"
-              description="C'est un site qui présente le cubes, permet au utilisateurs de se chronometrer et de stocker leurs temps."
+              title="France Mobilier"
+              description=" Techno : PHP, MySQL, MVC, HTML/CSS
+
+                            Développement d’un site vitrine structuré en architecture MVC pour France Mobilier, spécialiste du mobilier d’intérieur.
+                            Fonctionnalités :
+
+                            Page d’accueil de présentation
+
+                            Recherche de meubles par catégorie
+
+                            Liste des magasins en France
+
+                            Intégration base de données + design responsive
+
+🔧 Extension prévue : panneau admin pour gérer les meubles et magasins."
               ghLink=""
               demoLink="https://srdeveloppement.fr/"
             />
