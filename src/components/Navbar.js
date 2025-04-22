@@ -82,6 +82,16 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
+                  <Nav.Item>
+                  <Nav.Link
+    href="/tableau-synthese.xlsx"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    📊 Synthèse
+  </Nav.Link>
+</Nav.Item>
+
             <Nav.Item>
               <Nav.Link
                 as={Link}
