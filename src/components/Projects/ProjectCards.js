@@ -1,8 +1,11 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+// Modification du composant ProjectCards pour ajouter le bouton de détails
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
+import { FaInfoCircle } from "react-icons/fa";
+
 
 function ProjectCards(props) {
   return (
