@@ -55,9 +55,7 @@ function VeilleTechnologique() {
       textShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
     },
     purple: {
-      background: "linear-gradient(90deg, #cd5ff8, #a64dff)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
+      color: "#cd5ff8",
     },
     veilleCardView: {
       backgroundColor: "rgba(30, 30, 40, 0.7)",
@@ -68,12 +66,6 @@ function VeilleTechnologique() {
       transition: "all 0.4s ease-in-out",
       height: "100%",
       backdropFilter: "blur(5px)",
-      transform: "translateZ(0)",
-      "&:hover": {
-        transform: "translateY(-5px)",
-        boxShadow: "0 15px 35px rgba(0, 0, 0, 0.6)",
-        border: "1px solid rgba(200, 137, 230, 0.6)",
-      },
     },
     veilleHeaderCard: {
       marginBottom: "30px",
@@ -104,9 +96,7 @@ function VeilleTechnologique() {
     cardTitle: {
       fontSize: "1.5rem",
       fontWeight: "600",
-      background: "linear-gradient(90deg, #cd5ff8, #a64dff)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
+      color: "#cd5ff8",
       marginBottom: "20px",
     },
     cardText: {
@@ -125,9 +115,7 @@ function VeilleTechnologique() {
       fontSize: "1.8rem",
       fontWeight: "600",
       marginBottom: "20px",
-      background: "linear-gradient(90deg, #cd5ff8, #a64dff)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
+      color: "#cd5ff8",
     },
     sourcesList: {
       listStyleType: "none",
@@ -137,24 +125,11 @@ function VeilleTechnologique() {
       color: "#e0e0e0",
       textDecoration: "none",
       transition: "color 0.3s",
-      "&:hover": {
-        color: "#cd5ff8",
-      },
     },
     sourceItem: {
       marginBottom: "15px",
       position: "relative",
       paddingLeft: "25px",
-      "&:before": {
-        content: "''",
-        position: "absolute",
-        left: "0",
-        top: "8px",
-        width: "8px",
-        height: "8px",
-        borderRadius: "50%",
-        background: "linear-gradient(90deg, #cd5ff8, #a64dff)",
-      },
     },
     listHeading: {
       fontSize: "1.3rem",
@@ -199,43 +174,45 @@ function VeilleTechnologique() {
       position: "relative",
       maxWidth: "1200px",
       margin: "0 auto",
-      "&:before": {
-        content: "''",
-        position: "absolute",
-        width: "4px",
-        backgroundColor: "rgba(205, 95, 248, 0.5)",
-        top: "0",
-        bottom: "0",
-        left: "50%",
-        marginLeft: "-2px",
-      },
+    },
+    timelineCenterLine: {
+      position: "absolute",
+      width: "4px",
+      backgroundColor: "rgba(205, 95, 248, 0.5)",
+      top: "0",
+      bottom: "0",
+      left: "50%",
+      marginLeft: "-2px",
     },
     timelineItem: {
       padding: "10px 40px",
       position: "relative",
       backgroundColor: "inherit",
       width: "50%",
-      "&:after": {
-        content: "''",
-        position: "absolute",
-        width: "20px",
-        height: "20px",
-        right: "-10px",
-        backgroundColor: "#cd5ff8",
-        border: "4px solid #a64dff",
-        top: "15px",
-        borderRadius: "50%",
-        zIndex: "1",
-      },
+      boxSizing: "border-box",
+      marginBottom: "20px",
+    },
+    timelineCircle: {
+      position: "absolute",
+      width: "20px",
+      height: "20px",
+      backgroundColor: "#cd5ff8",
+      border: "4px solid #a64dff",
+      borderRadius: "50%",
+      zIndex: "1",
+      top: "15px",
     },
     timelineLeft: {
       left: "0",
     },
     timelineRight: {
       left: "50%",
-      "&:after": {
-        left: "-10px",
-      },
+    },
+    timelineLeftCircle: {
+      right: "-14px",
+    },
+    timelineRightCircle: {
+      left: "-14px",
     },
     timelineContent: {
       padding: "20px 30px",
@@ -257,10 +234,6 @@ function VeilleTechnologique() {
       border: "none",
       cursor: "pointer",
       marginTop: "20px",
-      "&:hover": {
-        transform: "translateY(-3px)",
-        boxShadow: "0 7px 20px rgba(205, 95, 248, 0.6)",
-      },
     },
     statsContainer: {
       display: "flex",
@@ -289,6 +262,28 @@ function VeilleTechnologique() {
     },
   };
 
+  // Images locales (remplacez par vos propres chemins d'accès)
+  const images = {
+    blockchain: "/images/blockchain-main.jpg",
+    ethereum: "/images/ethereum.jpg",
+    nft: "/images/nft.jpg",
+    defi: "/images/defi.jpg",
+    cbdc: "/images/cbdc.jpg",
+    challenges: "/images/blockchain-challenges.jpg",
+    healthIcon: "/images/health-icon.png",
+    supplyChainIcon: "/images/supply-chain-icon.png",
+    energyIcon: "/images/energy-icon.png",
+    greenBlockchainIcon: "/images/green-blockchain-icon.png",
+    interoperabilityIcon: "/images/interoperability-icon.png",
+    zkProofsIcon: "/images/zk-proofs-icon.png",
+  };
+
+  // Fonction pour gérer le téléchargement du rapport
+  const handleDownloadReport = () => {
+    alert("Le téléchargement du rapport commencera bientôt...");
+    // Ici, vous pourriez implémenter la logique réelle de téléchargement
+  };
+
   return (
     <div style={styles.veilleSection}>
       <Particle />
@@ -301,8 +296,9 @@ function VeilleTechnologique() {
           <div style={styles.veilleHeaderCard}>
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
+                {/* Utilisez une image de secours si l'image locale n'est pas disponible */}
                 <img 
-                  src="https://cdn.pixabay.com/photo/2018/05/17/20/56/blockchain-3409806_1280.jpg" 
+                  src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
                   alt="Blockchain Technology" 
                   style={styles.cardImage}
                 />
@@ -352,7 +348,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://ethereum.org/static/28214bb68eb5445dcb063a72535bc90c/9019e/hero.webp" 
+                  src="https://images.unsplash.com/photo-1622630998477-20aa696ecb05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1746&q=80" 
                   alt="Ethereum" 
                   style={styles.cardImage}
                 />
@@ -386,7 +382,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://cdn.pixabay.com/photo/2022/03/01/09/35/nft-7040293_1280.jpg" 
+                  src="https://images.unsplash.com/photo-1646483236848-4cae8a5e8bbc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
                   alt="NFT Artwork" 
                   style={styles.cardImage}
                 />
@@ -421,7 +417,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://cdn.pixabay.com/photo/2021/05/24/09/15/ethereum-6278328_1280.jpg" 
+                  src="https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1797&q=80" 
                   alt="DeFi Concept" 
                   style={styles.cardImage}
                 />
@@ -457,7 +453,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://cdn.pixabay.com/photo/2017/12/12/12/20/bitcoin-3014614_1280.jpg" 
+                  src="https://images.unsplash.com/photo-1591994843349-f415893b3a6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
                   alt="Central Bank Digital Currency" 
                   style={styles.cardImage}
                 />
@@ -496,7 +492,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={{textAlign: "center"}}>
                 <img 
-                  src="https://cdn-icons-png.flaticon.com/512/6295/6295417.png" 
+                  src="https://img.icons8.com/fluency/96/ecology.png" 
                   alt="Blockchain Sustainability" 
                   style={styles.iconImage}
                 />
@@ -521,7 +517,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={{textAlign: "center"}}>
                 <img 
-                  src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
+                  src="https://img.icons8.com/fluency/96/link.png" 
                   alt="Blockchain Interoperability" 
                   style={styles.iconImage}
                 />
@@ -545,7 +541,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={{textAlign: "center"}}>
                 <img 
-                  src="https://cdn-icons-png.flaticon.com/512/2422/2422746.png" 
+                  src="https://img.icons8.com/fluency/96/privacy.png" 
                   alt="Zero-Knowledge Proofs" 
                   style={styles.iconImage}
                 />
@@ -573,7 +569,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://cdn.pixabay.com/photo/2018/01/18/07/31/bitcoin-3089728_1280.jpg" 
+                  src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" 
                   alt="Blockchain Challenges" 
                   style={styles.cardImage}
                 />
@@ -622,56 +618,74 @@ function VeilleTechnologique() {
           </div>
         </div>
 
-        {/* Timeline section */}
+        {/* Timeline section - Corrigée */}
         <h2 style={styles.veilleSubheading}>Chronologie des innovations blockchain</h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
           <div style={styles.column}>
             <div style={styles.veilleCardView}>
               <div style={styles.timeline}>
+                {/* Ligne centrale visible */}
+                <div style={styles.timelineCenterLine}></div>
+                
                 <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                  <div style={styles.timelineCircle, styles.timelineLeftCircle}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2008-2009</h3>
                     <p style={styles.cardText}>Publication du whitepaper Bitcoin par Satoshi Nakamoto et lancement du réseau Bitcoin, première application de la technologie blockchain.</p>
                   </div>
                 </div>
+                
                 <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                  <div style={styles.timelineCircle, styles.timelineRightCircle}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2015</h3>
                     <p style={styles.cardText}>Lancement d'Ethereum, introduisant les smart contracts et ouvrant la voie aux applications décentralisées (DApps).</p>
                   </div>
                 </div>
+                
                 <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                  <div style={styles.timelineCircle, styles.timelineLeftCircle}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2017</h3>
                     <p style={styles.cardText}>Premier boom des ICO (Initial Coin Offerings) et popularisation des tokens ERC-20 sur Ethereum.</p>
                   </div>
                 </div>
+                
                 <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                  <div style={styles.timelineCircle, styles.timelineRightCircle}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2020</h3>
                     <p style={styles.cardText}>Explosion de la DeFi (Finance Décentralisée) avec des protocoles comme Uniswap, Aave et Compound.</p>
                   </div>
                 </div>
+                
                 <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                  <div style={styles.timelineCircle, styles.timelineLeftCircle}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2021</h3>
                     <p style={styles.cardText}>Adoption massive des NFTs dans l'art, le divertissement et le sport, avec des ventes record.</p>
                   </div>
                 </div>
+                
                 <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                  <div style={styles.timelineCircle, styles.timelineRightCircle}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2022</h3>
                     <p style={styles.cardText}>The Merge : Ethereum passe au Proof of Stake, réduisant sa consommation énergétique de 99,95%.</p>
                   </div>
                 </div>
+                
                 <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                  <div style={styles.timelineCircle, styles.timelineLeftCircle}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2023</h3>
                     <p style={styles.cardText}>Adoption institutionnelle accélérée et développement des CBDCs par les banques centrales.</p>
                   </div>
                 </div>
+                
                 <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                  <div style={styles.timelineCircle, styles.timelineRightCircle}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2024-2025</h3>
                     <p style={styles.cardText}>Maturité des solutions d'interopérabilité et intégration de la blockchain dans les infrastructures critiques.</p>
@@ -690,7 +704,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={{textAlign: "center"}}>
                 <img 
-                  src="https://cdn-icons-png.flaticon.com/512/2332/2332039.png" 
+                  src="https://img.icons8.com/fluency/96/health-data.png" 
                   alt="Healthcare" 
                   style={styles.iconImage}
                 />
@@ -715,7 +729,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={{textAlign: "center"}}>
                 <img 
-                  src="https://cdn-icons-png.flaticon.com/512/2271/2271113.png" 
+                  src="https://img.icons8.com/fluency/96/supply-chain.png" 
                   alt="Supply Chain" 
                   style={styles.iconImage}
                 />
@@ -739,7 +753,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={{textAlign: "center"}}>
                 <img 
-                  src="https://cdn-icons-png.flaticon.com/512/1728/1728946.png" 
+                  src="https://img.icons8.com/fluency/96/electric-power.png" 
                   alt="Energy" 
                   style={styles.iconImage}
                 />
@@ -808,9 +822,12 @@ function VeilleTechnologique() {
               </ul>
               
               <div style={{textAlign: "center", marginTop: "30px"}}>
-                <a href="#" style={styles.gradientButton}>
+                <button 
+                  onClick={handleDownloadReport} 
+                  style={styles.gradientButton}
+                >
                   Télécharger le rapport complet (PDF)
-                </a>
+                </button>
               </div>
             </div>
           </div>
