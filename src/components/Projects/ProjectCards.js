@@ -1,7 +1,6 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
-// Modification du composant ProjectCards pour ajouter le bouton de détails
-import Button from "react-bootstrap/Button";
+mport React, { useState } from "react";
+import { Container, Row, Col, Modal, Button, Card } from "react-bootstrap";
+import Particle from "../Particle";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
 import { FaInfoCircle } from "react-icons/fa";
