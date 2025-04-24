@@ -1,4 +1,4 @@
-mport React, { useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Modal, Button, Card } from "react-bootstrap";
 import Particle from "../Particle";
 import { CgWebsite } from "react-icons/cg";
