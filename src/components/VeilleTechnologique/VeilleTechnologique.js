@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import Particle from "../Particle";
-import blockchainImg from "../Assets/blockchain-header.jpg"; // Ajoutez cette image à votre dossier Assets
-import ethereumImg from "../Assets/ethereum.jpg";
-import nftImg from "../Assets/nft.jpg";
-import defiImg from "../Assets/defi.jpg";
-import cbdcImg from "../Assets/cbdc.jpg";
+// Supprimez temporairement les imports d'images qui causent l'erreur
+// import blockchainImg from "../Assets/blockchain-header.jpg";
+// import ethereumImg from "../Assets/ethereum.jpg";
+// import nftImg from "../Assets/nft.jpg";
+// import defiImg from "../Assets/defi.jpg";
+// import cbdcImg from "../Assets/cbdc.jpg";
 
 function VeilleTechnologique() {
   return (
@@ -19,7 +20,8 @@ function VeilleTechnologique() {
         <Row style={{ justifyContent: "center", padding: "10px" }}>
           <Col md={12} className="veille-header-card">
             <Card className="veille-card-view">
-              <Card.Img variant="top" src={blockchainImg} alt="Blockchain" className="veille-header-img" />
+              {/* Supprimez temporairement l'image */}
+              {/* <Card.Img variant="top" src={blockchainImg} alt="Blockchain" className="veille-header-img" /> */}
               <Card.Body>
                 <Card.Title>La Blockchain : Une Révolution Technologique</Card.Title>
                 <Card.Text>
@@ -37,7 +39,7 @@ function VeilleTechnologique() {
         <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
           <Col md={6} className="veille-card">
             <Card className="veille-card-view">
-              <Card.Img variant="top" src={ethereumImg} alt="Ethereum" />
+              {/* <Card.Img variant="top" src={ethereumImg} alt="Ethereum" /> */}
               <Card.Body>
                 <Card.Title>Ethereum et Smart Contracts</Card.Title>
                 <Card.Text>
@@ -60,7 +62,7 @@ function VeilleTechnologique() {
 
           <Col md={6} className="veille-card">
             <Card className="veille-card-view">
-              <Card.Img variant="top" src={nftImg} alt="NFT" />
+              {/* <Card.Img variant="top" src={nftImg} alt="NFT" /> */}
               <Card.Body>
                 <Card.Title>NFTs (Non-Fungible Tokens)</Card.Title>
                 <Card.Text>
@@ -84,7 +86,7 @@ function VeilleTechnologique() {
 
           <Col md={6} className="veille-card">
             <Card className="veille-card-view">
-              <Card.Img variant="top" src={defiImg} alt="DeFi" />
+              {/* <Card.Img variant="top" src={defiImg} alt="DeFi" /> */}
               <Card.Body>
                 <Card.Title>Finance Décentralisée (DeFi)</Card.Title>
                 <Card.Text>
@@ -108,7 +110,7 @@ function VeilleTechnologique() {
 
           <Col md={6} className="veille-card">
             <Card className="veille-card-view">
-              <Card.Img variant="top" src={cbdcImg} alt="CBDC" />
+              {/* <Card.Img variant="top" src={cbdcImg} alt="CBDC" /> */}
               <Card.Body>
                 <Card.Title>CBDCs et Adoption Institutionnelle</Card.Title>
                 <Card.Text>
