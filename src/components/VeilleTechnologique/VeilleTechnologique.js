@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Particle from "../Particle";
 
 function VeilleTechnologique() {
+  // État pour gérer la largeur de l'écran
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+
+  // Effet pour mettre à jour la largeur de l'écran lors du redimensionnement
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // CSS intégré dans le composant
   const styles = {
     veilleSection: {
@@ -66,7 +83,7 @@ function VeilleTechnologique() {
     columnHalf: {
       padding: "0 15px",
       marginBottom: "30px",
-      width: "100%",
+      width: windowWidth >= 768 ? "50%" : "100%",
     },
     cardTitle: {
       fontSize: "1.3rem",
@@ -129,14 +146,6 @@ function VeilleTechnologique() {
       padding: "10px",
     }
   };
-
-  // Media query en JavaScript pour les écrans de taille moyenne et plus
-  if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-    styles.columnHalf = {
-      ...styles.columnHalf,
-      width: "50%",
-    };
-  }
 
   return (
     <div style={styles.veilleSection}>
