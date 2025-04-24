@@ -73,7 +73,7 @@ function VeilleTechnologique() {
       padding: "25px",
       border: "1px solid rgba(200, 137, 230, 0.3)",
       transition: "all 0.4s ease-in-out",
-      height: "100%",
+      height: "25%",
       backdropFilter: "blur(5px)",
       transform: "translateZ(0)",
     },
