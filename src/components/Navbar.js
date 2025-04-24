@@ -13,13 +13,12 @@ import {
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
 } from "react-icons/ai";
-
 import { CgFileDocument } from "react-icons/cg";
+import { BsTable } from "react-icons/bs"; // Icon for Synthèse
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
-
   function scrollHandler() {
     if (window.scrollY >= 20) {
       updateNavbar(true);
@@ -27,9 +26,7 @@ function NavBar() {
       updateNavbar(false);
     }
   }
-
   window.addEventListener("scroll", scrollHandler);
-
   return (
     <Navbar
       expanded={expand}
@@ -58,7 +55,6 @@ function NavBar() {
                 <AiOutlineHome style={{ marginBottom: "2px" }} /> Accueil
               </Nav.Link>
             </Nav.Item>
-
             <Nav.Item>
               <Nav.Link
                 as={Link}
@@ -68,7 +64,6 @@ function NavBar() {
                 <AiOutlineUser style={{ marginBottom: "2px" }} /> A propos
               </Nav.Link>
             </Nav.Item>
-
             <Nav.Item>
               <Nav.Link
                 as={Link}
@@ -81,17 +76,15 @@ function NavBar() {
                 Projets
               </Nav.Link>
             </Nav.Item>
-
-                  <Nav.Item>
-                  <Nav.Link
-    href="/tableau-synthese.xlsx"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    📊 Synthèse
-  </Nav.Link>
-</Nav.Item>
-
+            <Nav.Item>
+              <Nav.Link
+                as={Link}
+                to="/synthese"
+                onClick={() => updateExpanded(false)}
+              >
+                <BsTable style={{ marginBottom: "2px" }} /> Synthèse
+              </Nav.Link>
+            </Nav.Item>
             <Nav.Item>
               <Nav.Link
                 as={Link}
@@ -101,7 +94,6 @@ function NavBar() {
                 <CgFileDocument style={{ marginBottom: "2px" }} /> CV
               </Nav.Link>
             </Nav.Item>
-
             <Nav.Item>
               <Nav.Link
                 href=""
@@ -111,13 +103,10 @@ function NavBar() {
                 <ImBlog style={{ marginBottom: "2px" }} /> Blog
               </Nav.Link>
             </Nav.Item>
-
-            
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
-
 export default NavBar;
