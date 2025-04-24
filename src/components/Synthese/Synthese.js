@@ -6,11 +6,17 @@ function Synthese() {
   const [zoom, setZoom] = useState(1);
   const containerRef = useRef(null);
   const iframeRef = useRef(null);
-  const [konami, setKonami] = useState([]);
-  const [easterEggActivated, setEasterEggActivated] = useState(false);
+  const [keysPressed, setKeysPressed] = useState([]);
+  const [easterEggActive, setEasterEggActive] = useState(false);
 
   // Konami Code: up, up, down, down, left, right, left, right, b, a
-  const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+  const konamiCode = [
+    "ArrowUp", "ArrowUp",
+    "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight",
+    "ArrowLeft", "ArrowRight",
+    "b", "a"
+  ];
 
   // Zoom effect
   useEffect(() => {
@@ -20,86 +26,86 @@ function Synthese() {
     }
   }, [zoom]);
 
-  // Konami Code
+  // Konami Code detection
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      // Get the key code
-      const keyCode = e.keyCode || e.which;
+    const onKeyDown = (e) => {
+      // Get current key
+      const key = e.key;
      
-      // Update the sequence with the new key code
-      const updatedSequence = [...konami, keyCode].slice(-konamiCode.length);
-      setKonami(updatedSequence);
+      // Update keys pressed array
+      const updatedKeys = [...keysPressed, key];
      
-      // Check if the sequence matches the Konami code
-      const isKonamiCode = updatedSequence.length === konamiCode.length &&
-        updatedSequence.every((code, index) => code === konamiCode[index]);
+      // Keep only the last 10 keys (length of Konami code)
+      if (updatedKeys.length > konamiCode.length) {
+        updatedKeys.shift();
+      }
      
-      // Activate easter egg if Konami code is entered
-      if (isKonamiCode && !easterEggActivated) {
+      setKeysPressed(updatedKeys);
+     
+      // Check if Konami code was entered
+      const isKonamiCode = JSON.stringify(updatedKeys) === JSON.stringify(konamiCode);
+     
+      if (isKonamiCode && !easterEggActive) {
         activateEasterEgg();
       }
     };
-
-    // Add key event listener
-    window.addEventListener("keydown", handleKeyDown);
    
-    // Remove event listener on cleanup
+    // Add event listener
+    window.addEventListener("keydown", onKeyDown);
+   
+    // Cleanup
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", onKeyDown);
     };
-  }, [konami, easterEggActivated]);
+  }, [keysPressed, easterEggActive]);
 
+  // Easter egg activation
   const activateEasterEgg = () => {
-    // Set state to prevent multiple activations
-    setEasterEggActivated(true);
+    // Set state to active
+    setEasterEggActive(true);
    
     // Show alert
     alert("🥚 Mode BTS SIO activé !");
    
-    // Change background of project section
-    const projectSection = document.querySelector(".project-section");
-    if (projectSection) {
-      projectSection.style.background = "linear-gradient(to right, #000428, #004e92)";
-    }
+    // Change background style
+    document.body.style.background = "linear-gradient(to right, #000428, #004e92)";
+    document.body.style.color = "#ffffff";
    
-    // Add text to heading
-    const heading = document.querySelector(".project-heading");
-    if (heading && !document.querySelector(".easter-egg-text")) {
-      const span = document.createElement("span");
-      span.className = "easter-egg-text";
-      span.style.color = "#ffd700";
-      span.style.marginLeft = "10px";
-      span.innerText = "✨ Mode BTS SIO ✨";
-      heading.appendChild(span);
-    }
+    // Add indicator
+    const easterEggIndicator = document.createElement("div");
+    easterEggIndicator.id = "easter-egg-indicator";
+    easterEggIndicator.innerHTML = "✨ Mode BTS SIO ✨";
+    easterEggIndicator.style.position = "fixed";
+    easterEggIndicator.style.bottom = "10px";
+    easterEggIndicator.style.right = "10px";
+    easterEggIndicator.style.backgroundColor = "#ffd700";
+    easterEggIndicator.style.color = "#000";
+    easterEggIndicator.style.padding = "5px 10px";
+    easterEggIndicator.style.borderRadius = "5px";
+    easterEggIndicator.style.zIndex = "9999";
+    document.body.appendChild(easterEggIndicator);
    
-    // Add a fun animation to buttons
+    // Style buttons
     const buttons = document.querySelectorAll("button");
     buttons.forEach(button => {
+      button.style.backgroundColor = "#ffd700";
+      button.style.color = "#000";
+      button.style.border = "2px solid #000";
+      button.style.transform = "scale(1.05)";
       button.style.transition = "all 0.3s ease";
-      button.addEventListener("mouseover", () => {
-        button.style.transform = "scale(1.1)";
-        button.style.boxShadow = "0 0 10px gold";
-      });
-      button.addEventListener("mouseout", () => {
-        button.style.transform = "scale(1)";
-        button.style.boxShadow = "none";
-      });
     });
    
-    // Optional: Add a small floating indicator that Easter Egg is active
-    const indicator = document.createElement("div");
-    indicator.style.position = "fixed";
-    indicator.style.bottom = "20px";
-    indicator.style.right = "20px";
-    indicator.style.background = "rgba(0,0,0,0.7)";
-    indicator.style.color = "gold";
-    indicator.style.padding = "5px 10px";
-    indicator.style.borderRadius = "5px";
-    indicator.style.zIndex = "1000";
-    indicator.style.fontWeight = "bold";
-    indicator.innerText = "🥚 Mode BTS SIO";
-    document.body.appendChild(indicator);
+    // Add gold border to iframe container
+    if (containerRef.current) {
+      containerRef.current.style.border = "3px solid #ffd700";
+    }
+  };
+
+  // Force activate easter egg (for testing)
+  const forceActivateEasterEgg = () => {
+    if (!easterEggActive) {
+      activateEasterEgg();
+    }
   };
 
   const handleFullscreen = () => {
@@ -127,23 +133,28 @@ function Synthese() {
     window.open("https://docs.google.com/spreadsheets/d/1z0Vo4pwHswU5HSVdQd7vpCfhS-O6vav7auKyD6Nnpiw/edit?usp=sharing", "_blank");
   };
 
-  // For testing purposes - Activate Easter Egg with a button (can be removed in production)
-  const testEasterEgg = () => {
-    if (!easterEggActivated) {
-      activateEasterEgg();
-    }
-  };
-
   return (
     <Container fluid className="project-section">
       <Particle />
       <Container>
         <h1 className="project-heading">
           <strong className="purple">Synthèse</strong> des projets
+          {easterEggActive && <span style={{color: "#ffd700", marginLeft: "10px"}}>✨ Mode BTS SIO ✨</span>}
         </h1>
         <p style={{ color: "white" }}>
           Voici un tableau récapitulatif de mes projets et compétences.
         </p>
+
+        {/* Force activate easter egg (development only) */}
+        <div style={{marginBottom: "15px", textAlign: "center"}}>
+          <Button
+            variant="warning"
+            onClick={forceActivateEasterEgg}
+            style={{ cursor: "pointer", zIndex: 10 }}
+          >
+            🥚 Activer Easter Egg
+          </Button>
+        </div>
 
         {/* BOUTONS DE LIENS */}
         <Row className="mb-4">
@@ -163,17 +174,6 @@ function Synthese() {
             >
               🔗 Ouvrir dans Google Sheets
             </Button>
-           
-            {/* Test button for Easter Egg - Comment or remove in production */}
-            {process.env.NODE_ENV === 'development' && (
-              <Button
-                variant="warning"
-                onClick={testEasterEgg}
-                style={{ cursor: "pointer", zIndex: 10 }}
-              >
-                🐣 Test Easter Egg
-              </Button>
-            )}
           </Col>
         </Row>
 
@@ -239,12 +239,11 @@ function Synthese() {
           </Col>
         </Row>
        
-        {/* Konami code hint - hidden unless you want to show it */}
-        {process.env.NODE_ENV === 'development' && (
-          <div style={{ marginTop: "20px", textAlign: "center", color: "white", opacity: 0.5 }}>
-            <small>Indice: essayez la séquence ↑↑↓↓←→←→BA</small>
-          </div>
-        )}
+        {/* Debug info - Key sequence display (remove in production) */}
+        <div style={{marginTop: "20px", textAlign: "center", color: "white", opacity: 0.7}}>
+          <p>Konami Code: ↑↑↓↓←→←→BA</p>
+          <p>Touches pressées: {keysPressed.join(', ')}</p>
+        </div>
       </Container>
     </Container>
   );
