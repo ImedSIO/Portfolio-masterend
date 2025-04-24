@@ -14,25 +14,25 @@ function Synthese() {
           Tableau récapitulatif de mes différents projets et compétences.
         </p>
 
-        <Row className="mb-5">
+        <Row className="mb-4">
           <Col md={12}>
             <Button 
               variant="primary" 
-              href="https://docs.google.com/spreadsheets/d/1z0Vo4pwHswU5HSVdQd7vpCfhS-O6vav7auKyD6Nnpiw/export?format=xlsx"
+              href="https://docs.google.com/spreadsheets/d/1z0Vo4pwHswU5HSVdQd7vpCfhS-O6vav7auKyD6Nnpiw/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Télécharger le fichier Excel
+              Télécharger / Ouvrir sur Google Sheets
             </Button>
           </Col>
         </Row>
 
         <Row>
-          <Col md={12} style={{ height: "600px" }}>
+          <Col md={12} style={{ height: "80vh" }}>
             <iframe
-              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQgzYKViP1rEx-bHvka_tJd36e0W3Up-0UX5lns_Acd7a6bIq9IBRWGbZkPC5ZQIw/pubhtml?widget=true&amp;headers=false"
+              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRgX8P4-r2cJpJ_TmyNlLCf6apCGJxu-M-W0NZvot-0zYBEEPT9NwGsgemvjv8xLU9yc1WuwB4cb1hf/pubhtml?widget=true&amp;headers=false"
               style={{ width: "100%", height: "100%", border: "none" }}
-              title="Tableau synthèse"
+              title="Tableau de synthèse"
               allowFullScreen
             />
           </Col>
