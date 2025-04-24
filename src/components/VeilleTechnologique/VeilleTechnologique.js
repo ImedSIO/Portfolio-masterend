@@ -1,8 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
 import Particle from "../Particle";
-// Importez le CSS (ajustez le chemin si nécessaire)
-import "../veilletechnologique.css";
+import "../../veilletechnologique.css";
 
 function VeilleTechnologique() {
   return (
