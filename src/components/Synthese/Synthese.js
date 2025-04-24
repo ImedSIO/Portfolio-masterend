@@ -7,7 +7,9 @@ function Synthese() {
   const containerRef = useRef(null);
   const iframeRef = useRef(null);
   const [konami, setKonami] = useState([]);
+  const [easterEggActivated, setEasterEggActivated] = useState(false);
 
+  // Konami Code: up, up, down, down, left, right, left, right, b, a
   const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
 
   // Zoom effect
@@ -21,25 +23,46 @@ function Synthese() {
   // Konami Code
   useEffect(() => {
     const handleKeyDown = (e) => {
-      const sequence = [...konami, e.keyCode].slice(-10);
-      setKonami(sequence);
-
-      if (sequence.length === konamiCode.length &&
-          sequence.every((v, i) => v === konamiCode[i])) {
+      // Get the key code
+      const keyCode = e.keyCode || e.which;
+     
+      // Update the sequence with the new key code
+      const updatedSequence = [...konami, keyCode].slice(-konamiCode.length);
+      setKonami(updatedSequence);
+     
+      // Check if the sequence matches the Konami code
+      const isKonamiCode = updatedSequence.length === konamiCode.length &&
+        updatedSequence.every((code, index) => code === konamiCode[index]);
+     
+      // Activate easter egg if Konami code is entered
+      if (isKonamiCode && !easterEggActivated) {
         activateEasterEgg();
       }
     };
+
+    // Add key event listener
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [konami]);
+   
+    // Remove event listener on cleanup
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [konami, easterEggActivated]);
 
   const activateEasterEgg = () => {
+    // Set state to prevent multiple activations
+    setEasterEggActivated(true);
+   
+    // Show alert
     alert("🥚 Mode BTS SIO activé !");
+   
+    // Change background of project section
     const projectSection = document.querySelector(".project-section");
     if (projectSection) {
       projectSection.style.background = "linear-gradient(to right, #000428, #004e92)";
     }
    
+    // Add text to heading
     const heading = document.querySelector(".project-heading");
     if (heading && !document.querySelector(".easter-egg-text")) {
       const span = document.createElement("span");
@@ -49,6 +72,34 @@ function Synthese() {
       span.innerText = "✨ Mode BTS SIO ✨";
       heading.appendChild(span);
     }
+   
+    // Add a fun animation to buttons
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+      button.style.transition = "all 0.3s ease";
+      button.addEventListener("mouseover", () => {
+        button.style.transform = "scale(1.1)";
+        button.style.boxShadow = "0 0 10px gold";
+      });
+      button.addEventListener("mouseout", () => {
+        button.style.transform = "scale(1)";
+        button.style.boxShadow = "none";
+      });
+    });
+   
+    // Optional: Add a small floating indicator that Easter Egg is active
+    const indicator = document.createElement("div");
+    indicator.style.position = "fixed";
+    indicator.style.bottom = "20px";
+    indicator.style.right = "20px";
+    indicator.style.background = "rgba(0,0,0,0.7)";
+    indicator.style.color = "gold";
+    indicator.style.padding = "5px 10px";
+    indicator.style.borderRadius = "5px";
+    indicator.style.zIndex = "1000";
+    indicator.style.fontWeight = "bold";
+    indicator.innerText = "🥚 Mode BTS SIO";
+    document.body.appendChild(indicator);
   };
 
   const handleFullscreen = () => {
@@ -76,6 +127,13 @@ function Synthese() {
     window.open("https://docs.google.com/spreadsheets/d/1z0Vo4pwHswU5HSVdQd7vpCfhS-O6vav7auKyD6Nnpiw/edit?usp=sharing", "_blank");
   };
 
+  // For testing purposes - Activate Easter Egg with a button (can be removed in production)
+  const testEasterEgg = () => {
+    if (!easterEggActivated) {
+      activateEasterEgg();
+    }
+  };
+
   return (
     <Container fluid className="project-section">
       <Particle />
@@ -87,7 +145,7 @@ function Synthese() {
           Voici un tableau récapitulatif de mes projets et compétences.
         </p>
 
-        {/* BOUTONS DE LIENS - Using onClick handlers instead of href for better control */}
+        {/* BOUTONS DE LIENS */}
         <Row className="mb-4">
           <Col md={12} className="d-flex flex-wrap gap-3 justify-content-center">
             <Button
@@ -105,6 +163,17 @@ function Synthese() {
             >
               🔗 Ouvrir dans Google Sheets
             </Button>
+           
+            {/* Test button for Easter Egg - Comment or remove in production */}
+            {process.env.NODE_ENV === 'development' && (
+              <Button
+                variant="warning"
+                onClick={testEasterEgg}
+                style={{ cursor: "pointer", zIndex: 10 }}
+              >
+                🐣 Test Easter Egg
+              </Button>
+            )}
           </Col>
         </Row>
 
@@ -136,7 +205,7 @@ function Synthese() {
               />
             </div>
 
-            {/* ZOOM / FULLSCREEN - Added explicit cursor and z-index properties */}
+            {/* ZOOM / FULLSCREEN */}
             <div className="d-flex justify-content-center gap-3 flex-wrap mt-3">
               <Button
                 variant="dark"
@@ -169,6 +238,13 @@ function Synthese() {
             </div>
           </Col>
         </Row>
+       
+        {/* Konami code hint - hidden unless you want to show it */}
+        {process.env.NODE_ENV === 'development' && (
+          <div style={{ marginTop: "20px", textAlign: "center", color: "white", opacity: 0.5 }}>
+            <small>Indice: essayez la séquence ↑↑↓↓←→←→BA</small>
+          </div>
+        )}
       </Container>
     </Container>
   );
