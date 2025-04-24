@@ -144,6 +144,31 @@ function VeilleTechnologique() {
     },
     padding10: {
       padding: "10px",
+    },
+    // Styles pour les images
+    imageContainer: {
+      width: "100%",
+      height: "200px",
+      marginBottom: "20px",
+      borderRadius: "10px",
+      overflow: "hidden",
+    },
+    image: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      borderRadius: "10px",
+      transition: "transform 0.3s ease",
+      "&:hover": {
+        transform: "scale(1.05)",
+      }
+    },
+    headerImageContainer: {
+      width: "100%",
+      height: "250px",
+      marginBottom: "20px",
+      borderRadius: "10px",
+      overflow: "hidden",
     }
   };
 
@@ -158,6 +183,13 @@ function VeilleTechnologique() {
         <div style={{...styles.row, ...styles.padding10}}>
           <div style={styles.veilleHeaderCard}>
             <div style={styles.veilleCardView}>
+              <div style={styles.headerImageContainer}>
+                <img 
+                  src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_blockchain_technology_and_how_does_it_work.jpg" 
+                  alt="Blockchain Technology" 
+                  style={styles.image} 
+                />
+              </div>
               <div>
                 <h3 style={styles.cardTitle}>La Blockchain : Une Révolution Technologique</h3>
                 <p style={styles.cardText}>
@@ -175,6 +207,13 @@ function VeilleTechnologique() {
         <div style={{...styles.row, ...styles.paddingBottom50}}>
           <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
+              <div style={styles.imageContainer}>
+                <img 
+                  src="https://ethereum.org/static/28214bb68eb5445dcb063a72535bc90c/9019e/hero.webp" 
+                  alt="Ethereum and Smart Contracts" 
+                  style={styles.image} 
+                />
+              </div>
               <div>
                 <h3 style={styles.cardTitle}>Ethereum et Smart Contracts</h3>
                 <p style={styles.cardText}>
@@ -197,6 +236,13 @@ function VeilleTechnologique() {
 
           <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
+              <div style={styles.imageContainer}>
+                <img 
+                  src="https://www.howtogeek.com/wp-content/uploads/2021/08/shutterstock_1902121384.jpg" 
+                  alt="NFT Digital Art" 
+                  style={styles.image} 
+                />
+              </div>
               <div>
                 <h3 style={styles.cardTitle}>NFTs (Non-Fungible Tokens)</h3>
                 <p style={styles.cardText}>
@@ -220,6 +266,13 @@ function VeilleTechnologique() {
 
           <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
+              <div style={styles.imageContainer}>
+                <img 
+                  src="https://academy.binance.com/_next/image?url=https%3A%2F%2Fimage.binance.vision%2Fuploads-original%2F0ee9d7d59d424a7c8bd7d70c86070beb.png&w=3840&q=100" 
+                  alt="Decentralized Finance" 
+                  style={styles.image} 
+                />
+              </div>
               <div>
                 <h3 style={styles.cardTitle}>Finance Décentralisée (DeFi)</h3>
                 <p style={styles.cardText}>
@@ -243,6 +296,13 @@ function VeilleTechnologique() {
 
           <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
+              <div style={styles.imageContainer}>
+                <img 
+                  src="https://www.ledgerinsights.com/wp-content/uploads/2020/10/central-bank-digital-currency-cbdc.jpg" 
+                  alt="Central Bank Digital Currencies" 
+                  style={styles.image} 
+                />
+              </div>
               <div>
                 <h3 style={styles.cardTitle}>CBDCs et Adoption Institutionnelle</h3>
                 <p style={styles.cardText}>
@@ -269,6 +329,13 @@ function VeilleTechnologique() {
         <div style={{...styles.row, ...styles.paddingBottom50}}>
           <div style={styles.column}>
             <div style={styles.veilleCardView}>
+              <div style={styles.imageContainer}>
+                <img 
+                  src="https://www.pwc.com/gx/en/issues/assets/blockchain-challenges.jpg" 
+                  alt="Blockchain Future Challenges" 
+                  style={styles.image} 
+                />
+              </div>
               <div>
                 <h3 style={styles.cardTitle}>Défis actuels et évolutions futures</h3>
                 <p style={styles.cardText}>
