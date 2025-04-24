@@ -3,7 +3,8 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import Particle from "../Particle";
 
 function VeilleTechnologique() {
-  // CSS intégré dans le composant
+  // CSS intégré dans le composant dans le burger
+    
   const styles = {
     veilleSection: {
       position: "relative",
