@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../Assets/logo.png";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
@@ -81,24 +80,24 @@ function NavBar() {
                 Projets
               </Nav.Link>
             </Nav.Item>
-            
-            {/* Dropdown pour regrouper les sections moins fréquemment visitées */}
-            <NavDropdown 
-              title={
-                <span>
-                  <BsTable style={{ marginBottom: "2px" }} /> Travaux
-                </span>
-              } 
-              id="nav-dropdown"
-            >
-              <NavDropdown.Item as={Link} to="/synthese" onClick={() => updateExpanded(false)}>
+            <Nav.Item>
+              <Nav.Link
+                as={Link}
+                to="/synthese"
+                onClick={() => updateExpanded(false)}
+              >
                 <BsTable style={{ marginBottom: "2px" }} /> Synthèse
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/veille-blockchain" onClick={() => updateExpanded(false)}>
-                <FaEthereum style={{ marginBottom: "2px" }} /> Veille Blockchain
-              </NavDropdown.Item>
-            </NavDropdown>
-            
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                as={Link}
+                to="/veille"
+                onClick={() => updateExpanded(false)}
+              >
+                <FaEthereum style={{ marginBottom: "2px" }} /> Veille
+              </Nav.Link>
+            </Nav.Item>
             <Nav.Item>
               <Nav.Link
                 as={Link}
