@@ -41,12 +41,11 @@ function Synthese() {
   }, []);
   
   return (
-    <Container fluid className={`project-section ${easterEggActivated ? 'easter-egg-mode' : ''}`}>
+    <Container fluid className={`project-section ${easterEggActivated ? 'easter-egg-mode' : ''}`} style={{ minHeight: "100vh", padding: "2rem 0" }}>
       <Particle />
       <Container>
         <h1 className="project-heading">
           <strong className="purple">Synthèse </strong> des projets
-          {/* Message secret qui apparaît uniquement quand l'œuf de Pâques est activé */}
           {easterEggActivated && <span className="easter-egg-text"> - Mode BTS SIO activé!</span>}
         </h1>
         <p style={{ color: "white" }}>
@@ -64,7 +63,6 @@ function Synthese() {
               Télécharger / Ouvrir sur Google Sheets
             </Button>
             
-            {/* Bouton secret qui apparaît uniquement quand l'œuf de Pâques est activé */}
             {easterEggActivated && (
               <Button 
                 variant="warning" 
@@ -78,46 +76,148 @@ function Synthese() {
         </Row>
         <Row>
           <Col md={12}>
-            {/* Hauteur réglée à 100vh pour afficher le tableau en entier */}
-            <div style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
+            {/* Configuration modifiée pour assurer que le tableau s'affiche entièrement */}
+            <div className="tableau-container" style={{ 
+              width: "100%", 
+              height: "calc(100vh - 250px)", // Hauteur ajustée en soustrayant l'espace pour les éléments au-dessus
+              overflow: "hidden",
+              position: "relative",
+              marginBottom: "2rem"
+            }}>
               <iframe
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRgX8P4-r2cJpJ_TmyNlLCf6apCGJxu-M-W0NZvot-0zYBEEPT9NwGsgemvjv8xLU9yc1WuwB4cb1hf/pubhtml?widget=true&amp;headers=false"
                 style={{ 
                   width: "100%", 
                   height: "100%", 
                   border: "none",
-                  // Animation lorsque l'œuf de Pâques est activé
-                  animation: easterEggActivated ? "glow 2s infinite" : "none"
+                  animation: easterEggActivated ? "glow 2s infinite" : "none",
+                  // Ajout de scale pour afficher tout le contenu
+                  transform: "scale(1)",
+                  transformOrigin: "top left"
                 }}
                 title="Tableau de synthèse"
                 allowFullScreen
               />
             </div>
+            
+            {/* Ajout de boutons pour contrôler le zoom du tableau */}
+            <div className="zoom-controls" style={{ marginBottom: "1rem" }}>
+              <Button 
+                variant="outline-light" 
+                size="sm"
+                onClick={() => {
+                  const iframe = document.querySelector('.tableau-container iframe');
+                  const currentScale = iframe.style.transform.match(/scale\(([^)]+)\)/) ? 
+                    parseFloat(iframe.style.transform.match(/scale\(([^)]+)\)/)[1]) : 1;
+                  iframe.style.transform = `scale(${currentScale + 0.1})`;
+                }}
+              >
+                Zoom +
+              </Button>
+              <Button 
+                variant="outline-light" 
+                size="sm"
+                className="ml-2"
+                onClick={() => {
+                  const iframe = document.querySelector('.tableau-container iframe');
+                  const currentScale = iframe.style.transform.match(/scale\(([^)]+)\)/) ? 
+                    parseFloat(iframe.style.transform.match(/scale\(([^)]+)\)/)[1]) : 1;
+                  iframe.style.transform = `scale(${Math.max(0.5, currentScale - 0.1)})`;
+                }}
+              >
+                Zoom -
+              </Button>
+              <Button 
+                variant="outline-light" 
+                size="sm"
+                className="ml-2"
+                onClick={() => {
+                  const iframe = document.querySelector('.tableau-container iframe');
+                  iframe.style.transform = `scale(1)`;
+                }}
+              >
+                Reset Zoom
+              </Button>
+              
+              {/* Bouton pour basculer entre le mode plein écran et normal */}
+              <Button 
+                variant="outline-light" 
+                size="sm"
+                className="ml-2"
+                onClick={() => {
+                  const container = document.querySelector('.tableau-container');
+                  
+                  if (!document.fullscreenElement) {
+                    if (container.requestFullscreen) {
+                      container.requestFullscreen();
+                    } else if (container.mozRequestFullScreen) { /* Firefox */
+                      container.mozRequestFullScreen();
+                    } else if (container.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                      container.webkitRequestFullscreen();
+                    } else if (container.msRequestFullscreen) { /* IE/Edge */
+                      container.msRequestFullscreen();
+                    }
+                  } else {
+                    if (document.exitFullscreen) {
+                      document.exitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                      document.mozCancelFullScreen();
+                    } else if (document.webkitExitFullscreen) {
+                      document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                      document.msExitFullscreen();
+                    }
+                  }
+                }}
+              >
+                Plein écran
+              </Button>
+            </div>
           </Col>
         </Row>
       </Container>
       
-      {/* CSS pour l'œuf de Pâques */}
-      {easterEggActivated && (
-        <style jsx>{`
-          @keyframes glow {
-            0% { box-shadow: 0 0 5px 2px rgba(106, 90, 205, 0.5); }
-            50% { box-shadow: 0 0 20px 10px rgba(106, 90, 205, 0.8); }
-            100% { box-shadow: 0 0 5px 2px rgba(106, 90, 205, 0.5); }
-          }
-          
-          .easter-egg-mode {
-            background: linear-gradient(to right, #000428, #004e92) !important;
-          }
-          
-          .easter-egg-text {
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-          }
-        `}</style>
-      )}
+      {/* CSS pour l'œuf de Pâques et les améliorations */}
+      <style jsx>{`
+        @keyframes glow {
+          0% { box-shadow: 0 0 5px 2px rgba(106, 90, 205, 0.5); }
+          50% { box-shadow: 0 0 20px 10px rgba(106, 90, 205, 0.8); }
+          100% { box-shadow: 0 0 5px 2px rgba(106, 90, 205, 0.5); }
+        }
+        
+        .easter-egg-mode {
+          background: linear-gradient(to right, #000428, #004e92) !important;
+        }
+        
+        .easter-egg-text {
+          color: #ffd700;
+          text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+        
+        .tableau-container {
+          background-color: #1a1a1a;
+          border-radius: 8px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+          transition: all 0.3s ease;
+        }
+        
+        .tableau-container:hover {
+          box-shadow: 0 10px 40px rgba(106, 90, 205, 0.4);
+        }
+        
+        .ml-2 {
+          margin-left: 0.5rem;
+        }
+        
+        /* Permettre au conteneur de tableau de défiler si nécessaire en mode plein écran */
+        .tableau-container:fullscreen {
+          padding: 1rem;
+          overflow: auto;
+          background-color: #2d2d2d;
+        }
+      `}</style>
       
-      {/* Commentaire caché en code que seuls les développeurs verront */}
+      {/* Commentaire caché - œuf de Pâques */}
       {/* 
         Salut développeur curieux ! 
         Tu as trouvé un commentaire secret !
