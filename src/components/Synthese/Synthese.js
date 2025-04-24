@@ -9,10 +9,7 @@ function Synthese() {
   const [konami, setKonami] = useState([]);
 
   const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
-
-  const download = () => {
-    window.open("https://docs.google.com/spreadsheets/d/e/2PACX-1vRgX8P4-r2cJpJ_TmyNlLCf6apCGJxu-M-W0NZvot-0zYBEEPT9NwGsgemvjv8xLU9yc1WuwB4cb1hf/pubhtml?widget=true&amp;headers=false");
-  }
+  
   // Zoom effect
   useEffect(() => {
     if (iframeRef.current) {
@@ -75,7 +72,7 @@ function Synthese() {
           <Col md={12} className="d-flex flex-wrap gap-3 justify-content-center">
             <Button
               variant="success"
-              onClick={download}
+              href="https://docs.google.com/spreadsheets/d/1z0Vo4pwHswU5HSVdQd7vpCfhS-O6vav7auKyD6Nnpiw/export?format=xlsx"
               target="_blank"
               rel="noopener noreferrer"
             >
