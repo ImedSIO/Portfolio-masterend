@@ -1,10 +1,8 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
 import Particle from "../Particle";
 
 function VeilleTechnologique() {
-  // CSS intégré dans le composant dans le burger
-    
+  // CSS intégré dans le composant
   const styles = {
     veilleSection: {
       position: "relative",
@@ -13,6 +11,14 @@ function VeilleTechnologique() {
       paddingTop: "5rem",
       paddingBottom: "3rem",
       minHeight: "100vh",
+      width: "100%",
+    },
+    container: {
+      width: "100%",
+      maxWidth: "1200px",
+      marginLeft: "auto",
+      marginRight: "auto",
+      padding: "0 15px",
     },
     veilleHeading: {
       fontSize: "2.5rem",
@@ -43,9 +49,24 @@ function VeilleTechnologique() {
     },
     veilleHeaderCard: {
       marginBottom: "30px",
+      width: "100%",
     },
-    veilleCard: {
+    row: {
+      display: "flex",
+      flexWrap: "wrap",
+      marginRight: "-15px",
+      marginLeft: "-15px",
+      justifyContent: "center",
+    },
+    column: {
+      padding: "0 15px",
       marginBottom: "30px",
+      width: "100%",
+    },
+    columnHalf: {
+      padding: "0 15px",
+      marginBottom: "30px",
+      width: "100%",
     },
     cardTitle: {
       fontSize: "1.3rem",
@@ -97,19 +118,36 @@ function VeilleTechnologique() {
     },
     listItem: {
       marginBottom: "8px",
+    },
+    paddingBottom50: {
+      paddingBottom: "50px",
+    },
+    paddingBottom30: {
+      paddingBottom: "30px",
+    },
+    padding10: {
+      padding: "10px",
     }
   };
+
+  // Media query en JavaScript pour les écrans de taille moyenne et plus
+  if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+    styles.columnHalf = {
+      ...styles.columnHalf,
+      width: "50%",
+    };
+  }
 
   return (
     <div style={styles.veilleSection}>
       <Particle />
-      <Container>
+      <div style={styles.container}>
         <h1 style={styles.veilleHeading}>
           Veille Technologique <strong style={styles.purple}>Blockchain</strong>
         </h1>
         
-        <Row style={{ justifyContent: "center", padding: "10px" }}>
-          <Col md={12} style={styles.veilleHeaderCard}>
+        <div style={{...styles.row, ...styles.padding10}}>
+          <div style={styles.veilleHeaderCard}>
             <div style={styles.veilleCardView}>
               <div>
                 <h3 style={styles.cardTitle}>La Blockchain : Une Révolution Technologique</h3>
@@ -120,13 +158,13 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
         <h2 style={styles.veilleSubheading}>Domaines d'application et innovations</h2>
         
-        <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-          <Col md={6} style={styles.veilleCard}>
+        <div style={{...styles.row, ...styles.paddingBottom50}}>
+          <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
               <div>
                 <h3 style={styles.cardTitle}>Ethereum et Smart Contracts</h3>
@@ -146,9 +184,9 @@ function VeilleTechnologique() {
                 </div>
               </div>
             </div>
-          </Col>
+          </div>
 
-          <Col md={6} style={styles.veilleCard}>
+          <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
               <div>
                 <h3 style={styles.cardTitle}>NFTs (Non-Fungible Tokens)</h3>
@@ -169,9 +207,9 @@ function VeilleTechnologique() {
                 </div>
               </div>
             </div>
-          </Col>
+          </div>
 
-          <Col md={6} style={styles.veilleCard}>
+          <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
               <div>
                 <h3 style={styles.cardTitle}>Finance Décentralisée (DeFi)</h3>
@@ -192,9 +230,9 @@ function VeilleTechnologique() {
                 </div>
               </div>
             </div>
-          </Col>
+          </div>
 
-          <Col md={6} style={styles.veilleCard}>
+          <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
               <div>
                 <h3 style={styles.cardTitle}>CBDCs et Adoption Institutionnelle</h3>
@@ -214,13 +252,13 @@ function VeilleTechnologique() {
                 </div>
               </div>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
         <h2 style={styles.veilleSubheading}>Enjeux et perspectives</h2>
         
-        <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-          <Col md={12}>
+        <div style={{...styles.row, ...styles.paddingBottom50}}>
+          <div style={styles.column}>
             <div style={styles.veilleCardView}>
               <div>
                 <h3 style={styles.cardTitle}>Défis actuels et évolutions futures</h3>
@@ -258,42 +296,44 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
-        <Row style={{ justifyContent: "center", paddingBottom: "30px" }}>
-          <Col md={12} style={styles.veilleSources}>
-            <h3 style={styles.sourcesHeading}>Sources et ressources</h3>
-            <ul style={styles.sourcesList}>
-              <li style={styles.sourceItem}>
-                <a href="https://ethereum.org" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
-                  Ethereum.org
-                </a> - Documentation officielle d'Ethereum
-              </li>
-              <li style={styles.sourceItem}>
-                <a href="https://defipulse.com" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
-                  DeFi Pulse
-                </a> - Suivi des protocoles DeFi
-              </li>
-              <li style={styles.sourceItem}>
-                <a href="https://www.coindesk.com" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
-                  CoinDesk
-                </a> - Actualités blockchain
-              </li>
-              <li style={styles.sourceItem}>
-                <a href="https://www.bis.org/topics/cbdc.htm" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
-                  Bank for International Settlements
-                </a> - Recherches sur les CBDCs
-              </li>
-              <li style={styles.sourceItem}>
-                <a href="https://www.ledger.com/academy" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
-                  Ledger Academy
-                </a> - Ressources éducatives
-              </li>
-            </ul>
-          </Col>
-        </Row>
-      </Container>
+        <div style={{...styles.row, ...styles.paddingBottom30}}>
+          <div style={styles.column}>
+            <div style={styles.veilleSources}>
+              <h3 style={styles.sourcesHeading}>Sources et ressources</h3>
+              <ul style={styles.sourcesList}>
+                <li style={styles.sourceItem}>
+                  <a href="https://ethereum.org" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    Ethereum.org
+                  </a> - Documentation officielle d'Ethereum
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://defipulse.com" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    DeFi Pulse
+                  </a> - Suivi des protocoles DeFi
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://www.coindesk.com" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    CoinDesk
+                  </a> - Actualités blockchain
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://www.bis.org/topics/cbdc.htm" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    Bank for International Settlements
+                  </a> - Recherches sur les CBDCs
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://www.ledger.com/academy" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    Ledger Academy
+                  </a> - Ressources éducatives
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
