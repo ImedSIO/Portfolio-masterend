@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Particle from "../Particle";
 
@@ -6,6 +6,13 @@ function Synthese() {
   // État pour suivre la séquence de touches Konami Code
   const [konamiCode, setKonamiCode] = useState([]);
   const [easterEggActivated, setEasterEggActivated] = useState(false);
+  
+  // État pour le niveau de zoom
+  const [zoomLevel, setZoomLevel] = useState(1);
+  
+  // Référence à l'iframe pour manipuler directement son style
+  const iframeRef = useRef(null);
+  const containerRef = useRef(null);
   
   // Séquence du Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A
   const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
@@ -39,6 +46,53 @@ function Synthese() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  // Mettre à jour le style de l'iframe quand le niveau de zoom change
+  useEffect(() => {
+    if (iframeRef.current) {
+      iframeRef.current.style.transform = `scale(${zoomLevel})`;
+    }
+  }, [zoomLevel]);
+
+  // Fonction pour zoomer
+  const zoomIn = () => {
+    setZoomLevel(prevZoom => Math.min(prevZoom + 0.1, 2.0));
+  };
+
+  // Fonction pour dézoomer
+  const zoomOut = () => {
+    setZoomLevel(prevZoom => Math.max(prevZoom - 0.1, 0.5));
+  };
+
+  // Fonction pour réinitialiser le zoom
+  const resetZoom = () => {
+    setZoomLevel(1);
+  };
+
+  // Fonction pour basculer en mode plein écran
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      if (containerRef.current.requestFullscreen) {
+        containerRef.current.requestFullscreen();
+      } else if (containerRef.current.mozRequestFullScreen) {
+        containerRef.current.mozRequestFullScreen();
+      } else if (containerRef.current.webkitRequestFullscreen) {
+        containerRef.current.webkitRequestFullscreen();
+      } else if (containerRef.current.msRequestFullscreen) {
+        containerRef.current.msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+  };
   
   return (
     <Container fluid className={`project-section ${easterEggActivated ? 'easter-egg-mode' : ''}`} style={{ minHeight: "100vh", padding: "2rem 0" }}>
@@ -66,7 +120,7 @@ function Synthese() {
             {easterEggActivated && (
               <Button 
                 variant="warning" 
-                className="ml-2"
+                style={{ marginLeft: "10px" }}
                 onClick={() => alert("Félicitations pour votre BTS SIO ! Imed Simaoui, vous êtes un développeur exceptionnel !")}
               >
                 Activer le mode Super SIO !
@@ -76,99 +130,60 @@ function Synthese() {
         </Row>
         <Row>
           <Col md={12}>
-            {/* Configuration modifiée pour assurer que le tableau s'affiche entièrement */}
-            <div className="tableau-container" style={{ 
-              width: "100%", 
-              height: "calc(100vh - 250px)", // Hauteur ajustée en soustrayant l'espace pour les éléments au-dessus
-              overflow: "hidden",
-              position: "relative",
-              marginBottom: "2rem"
-            }}>
+            {/* Conteneur du tableau avec référence React */}
+            <div 
+              ref={containerRef}
+              className="tableau-container" 
+              style={{ 
+                width: "100%", 
+                height: "calc(100vh - 250px)",
+                overflow: "hidden",
+                position: "relative",
+                marginBottom: "2rem",
+                background: "#fff", // Fond blanc pour le tableau
+                borderRadius: "8px",
+                boxShadow: easterEggActivated ? "0 0 20px rgba(106, 90, 205, 0.8)" : "0 8px 30px rgba(0, 0, 0, 0.3)"
+              }}
+            >
               <iframe
+                ref={iframeRef}
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRgX8P4-r2cJpJ_TmyNlLCf6apCGJxu-M-W0NZvot-0zYBEEPT9NwGsgemvjv8xLU9yc1WuwB4cb1hf/pubhtml?widget=true&amp;headers=false"
                 style={{ 
                   width: "100%", 
                   height: "100%", 
                   border: "none",
-                  animation: easterEggActivated ? "glow 2s infinite" : "none",
-                  // Ajout de scale pour afficher tout le contenu
-                  transform: "scale(1)",
-                  transformOrigin: "top left"
+                  transform: `scale(${zoomLevel})`,
+                  transformOrigin: "top left",
+                  transition: "transform 0.3s ease"
                 }}
                 title="Tableau de synthèse"
                 allowFullScreen
               />
             </div>
             
-            {/* Ajout de boutons pour contrôler le zoom du tableau */}
-            <div className="zoom-controls" style={{ marginBottom: "1rem" }}>
+            {/* Boutons de contrôle avec gestion d'événements React */}
+            <div className="zoom-controls" style={{ display: "flex", justifyContent: "center", gap: "10px", marginBottom: "1rem" }}>
               <Button 
-                variant="outline-light" 
-                size="sm"
-                onClick={() => {
-                  const iframe = document.querySelector('.tableau-container iframe');
-                  const currentScale = iframe.style.transform.match(/scale\(([^)]+)\)/) ? 
-                    parseFloat(iframe.style.transform.match(/scale\(([^)]+)\)/)[1]) : 1;
-                  iframe.style.transform = `scale(${currentScale + 0.1})`;
-                }}
+                variant="primary"
+                onClick={zoomIn}
               >
                 Zoom +
               </Button>
               <Button 
-                variant="outline-light" 
-                size="sm"
-                className="ml-2"
-                onClick={() => {
-                  const iframe = document.querySelector('.tableau-container iframe');
-                  const currentScale = iframe.style.transform.match(/scale\(([^)]+)\)/) ? 
-                    parseFloat(iframe.style.transform.match(/scale\(([^)]+)\)/)[1]) : 1;
-                  iframe.style.transform = `scale(${Math.max(0.5, currentScale - 0.1)})`;
-                }}
+                variant="primary"
+                onClick={zoomOut}
               >
                 Zoom -
               </Button>
               <Button 
-                variant="outline-light" 
-                size="sm"
-                className="ml-2"
-                onClick={() => {
-                  const iframe = document.querySelector('.tableau-container iframe');
-                  iframe.style.transform = `scale(1)`;
-                }}
+                variant="primary"
+                onClick={resetZoom}
               >
                 Reset Zoom
               </Button>
-              
-              {/* Bouton pour basculer entre le mode plein écran et normal */}
               <Button 
-                variant="outline-light" 
-                size="sm"
-                className="ml-2"
-                onClick={() => {
-                  const container = document.querySelector('.tableau-container');
-                  
-                  if (!document.fullscreenElement) {
-                    if (container.requestFullscreen) {
-                      container.requestFullscreen();
-                    } else if (container.mozRequestFullScreen) { /* Firefox */
-                      container.mozRequestFullScreen();
-                    } else if (container.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-                      container.webkitRequestFullscreen();
-                    } else if (container.msRequestFullscreen) { /* IE/Edge */
-                      container.msRequestFullscreen();
-                    }
-                  } else {
-                    if (document.exitFullscreen) {
-                      document.exitFullscreen();
-                    } else if (document.mozCancelFullScreen) {
-                      document.mozCancelFullScreen();
-                    } else if (document.webkitExitFullscreen) {
-                      document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                      document.msExitFullscreen();
-                    }
-                  }
-                }}
+                variant="primary"
+                onClick={toggleFullScreen}
               >
                 Plein écran
               </Button>
@@ -177,14 +192,8 @@ function Synthese() {
         </Row>
       </Container>
       
-      {/* CSS pour l'œuf de Pâques et les améliorations */}
+      {/* Styles CSS pour l'œuf de Pâques */}
       <style jsx>{`
-        @keyframes glow {
-          0% { box-shadow: 0 0 5px 2px rgba(106, 90, 205, 0.5); }
-          50% { box-shadow: 0 0 20px 10px rgba(106, 90, 205, 0.8); }
-          100% { box-shadow: 0 0 5px 2px rgba(106, 90, 205, 0.5); }
-        }
-        
         .easter-egg-mode {
           background: linear-gradient(to right, #000428, #004e92) !important;
         }
@@ -194,26 +203,13 @@ function Synthese() {
           text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
         }
         
-        .tableau-container {
-          background-color: #1a1a1a;
-          border-radius: 8px;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-          transition: all 0.3s ease;
-        }
-        
-        .tableau-container:hover {
-          box-shadow: 0 10px 40px rgba(106, 90, 205, 0.4);
-        }
-        
-        .ml-2 {
-          margin-left: 0.5rem;
-        }
-        
-        /* Permettre au conteneur de tableau de défiler si nécessaire en mode plein écran */
         .tableau-container:fullscreen {
           padding: 1rem;
           overflow: auto;
-          background-color: #2d2d2d;
+          background-color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       `}</style>
       
