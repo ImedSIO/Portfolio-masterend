@@ -7,8 +7,7 @@ import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
 import Synthese from "./components/Synthese/Synthese"; 
-// Modifiez cette ligne dans App.js
-import VeilleTechnologique from "./components/VeilleTechnologique/VeilleTechnologique.js"; // ✅ Import du composant VeilleTechnologique
+import VeilleTechnologique from "./components/VeilleTechnologique/VeilleTechnologique";
 
 import {
   BrowserRouter as Router,
@@ -45,7 +44,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/synthese" element={<Synthese />} />
-          <Route path="/veille" element={<VeilleTechnologique />} /> {/* ✅ Route ajoutée pour la veille technologique */}
+          <Route path="/veille" element={<VeilleTechnologique />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
