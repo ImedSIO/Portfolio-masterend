@@ -328,7 +328,7 @@ function VeilleTechnologique() {
         {/* Statistiques */}
         <div style={styles.statsContainer}>
           <div style={styles.statBox}>
-            <div style={styles.statNumber}>\$2.3T</div>
+            <div style={styles.statNumber}>$2.3T</div>
             <div style={styles.statLabel}>Capitalisation du marché crypto</div>
           </div>
           <div style={styles.statBox}>
@@ -475,4 +475,349 @@ function VeilleTechnologique() {
                 </p>
                 <div>
                   <strong style={{color: "#cd5ff8"}}>Développements significatifs:</strong>
-                  <ul style={styles.list
+                  <ul style={styles.list}>
+                    <li style={styles.listItem}>L'e-CNY (yuan numérique) en Chine avec plus de 300 millions d'utilisateurs actifs</li>
+                    <li style={styles.listItem}>Projet de l'euro numérique par la BCE en phase de déploiement</li>
+                    <li style={styles.listItem}>Adoption croissante par les banques d'investissement de solutions blockchain pour le règlement-livraison</li>
+                    <li style={styles.listItem}>Réglementations en évolution avec le MiCA en Europe et des cadres similaires aux États-Unis</li>
+                    <li style={styles.listItem}>Intégration des stablecoins régulés dans les systèmes de paiement traditionnels</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Nouvelles sections */}
+        <h2 style={styles.veilleSubheading}>Innovations émergentes</h2>
+        
+        <div style={{...styles.row, ...styles.paddingBottom50}}>
+          <div style={styles.columnThird}>
+            <div style={styles.veilleCardView}>
+              <div style={{textAlign: "center"}}>
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/6295/6295417.png" 
+                  alt="Blockchain Sustainability" 
+                  style={styles.iconImage}
+                />
+              </div>
+              <div>
+                <h3 style={styles.cardTitle}>Blockchain Verte</h3>
+                <p style={styles.cardText}>
+                  Face aux préoccupations environnementales, de nouvelles blockchains éco-responsables 
+                  émergent, utilisant des mécanismes de consensus à faible consommation énergétique 
+                  et des crédits carbone pour compenser leur empreinte.
+                </p>
+                <p style={styles.cardText}>
+                  Des projets comme Algorand et Solana ont atteint la neutralité carbone, tandis que 
+                  d'autres développent des solutions pour mesurer et réduire l'impact environnemental 
+                  des opérations blockchain.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div style={styles.columnThird}>
+            <div style={styles.veilleCardView}>
+              <div style={{textAlign: "center"}}>
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" 
+                  alt="Blockchain Interoperability" 
+                  style={styles.iconImage}
+                />
+              </div>
+              <div>
+                <h3 style={styles.cardTitle}>Interopérabilité</h3>
+                <p style={styles.cardText}>
+                  L'interopérabilité entre blockchains est devenue une priorité majeure, avec des 
+                  solutions comme Polkadot, Cosmos et les ponts cross-chain qui permettent la 
+                  communication et le transfert d'actifs entre différents réseaux.
+                </p>
+                <p style={styles.cardText}>
+                  Ces avancées créent un écosystème blockchain plus connecté et efficace, où les 
+                  utilisateurs peuvent naviguer entre différentes plateformes sans friction.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div style={styles.columnThird}>
+            <div style={styles.veilleCardView}>
+              <div style={{textAlign: "center"}}>
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/2422/2422746.png" 
+                  alt="Zero-Knowledge Proofs" 
+                  style={styles.iconImage}
+                />
+              </div>
+              <div>
+                <h3 style={styles.cardTitle}>Confidentialité et ZK-Proofs</h3>
+                <p style={styles.cardText}>
+                  Les preuves à connaissance zéro (ZK-Proofs) révolutionnent la blockchain en permettant 
+                  de vérifier des informations sans révéler les données sous-jacentes, offrant ainsi 
+                  confidentialité et scalabilité.
+                </p>
+                <p style={styles.cardText}>
+                  Cette technologie est utilisée dans les ZK-Rollups pour Ethereum, les transactions 
+                  privées, et même dans les systèmes d'identité décentralisés.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style={styles.veilleSubheading}>Enjeux et perspectives</h2>
+        
+        <div style={{...styles.row, ...styles.paddingBottom50}}>
+          <div style={styles.column}>
+            <div style={styles.veilleCardView}>
+              <div style={styles.imageContainer}>
+                <img 
+                  src="https://cdn.pixabay.com/photo/2018/01/18/07/31/bitcoin-3089728_1280.jpg" 
+                  alt="Blockchain Challenges" 
+                  style={styles.cardImage}
+                />
+              </div>
+              <div>
+                <h3 style={styles.cardTitle}>Défis actuels et évolutions futures</h3>
+                <p style={styles.cardText}>
+                  Malgré son potentiel révolutionnaire, la blockchain fait face à plusieurs défis qui 
+                  doivent être surmontés pour une adoption massive. Les solutions à ces défis façonnent 
+                  l'avenir de cette technologie et son intégration dans notre quotidien.
+                </p>
+                
+                <h5 style={styles.listHeading}>Défis techniques</h5>
+                <ul style={styles.list}>
+                  <li style={styles.listItem}><strong>Scalabilité</strong> - Augmenter le nombre de transactions par seconde pour rivaliser avec les systèmes centralisés. Les solutions Layer 2 comme les rollups et les sidechains montrent des résultats prometteurs.</li>
+                  <li style={styles.listItem}><strong>Interopérabilité</strong> - Permettre la communication entre différentes blockchains pour créer un écosystème unifié. Des projets comme Polkadot et Cosmos développent des infrastructures dédiées à cette problématique.</li>
+                  <li style={styles.listItem}><strong>Consommation énergétique</strong> - Réduire l'impact environnemental des mécanismes de consensus, avec une transition vers le Proof of Stake et d'autres alternatives plus écologiques.</li>
+                  <li style={styles.listItem}><strong>Expérience utilisateur</strong> - Simplifier l'utilisation des applications blockchain pour le grand public, avec des interfaces intuitives et des solutions de gestion de clés plus accessibles.</li>
+                </ul>
+                
+                <h5 style={styles.listHeading}>Défis réglementaires</h5>
+                <ul style={styles.list}>
+                  <li style={styles.listItem}><strong>Cadre juridique</strong> - Adaptation des lois aux spécificités de la blockchain, avec des réglementations comme MiCA en Europe qui établissent un cadre clair.</li>
+                  <li style={styles.listItem}><strong>Protection des consommateurs</strong> - Garantir la sécurité des utilisateurs face aux risques de fraude et de piratage, avec des mécanismes de gouvernance et d'audit renforcés.</li>
+                  <li style={styles.listItem}><strong>Conformité</strong> - Respect des réglementations KYC/AML tout en préservant les avantages de la décentralisation, avec des solutions d'identité vérifiable.</li>
+                  <li style={styles.listItem}><strong>Fiscalité</strong> - Clarification du traitement fiscal des actifs numériques et des revenus générés par les activités blockchain.</li>
+                </ul>
+                
+                <h5 style={styles.listHeading}>Perspectives d'avenir</h5>
+                <ul style={styles.list}>
+                  <li style={styles.listItem}><strong>Web3</strong> - Évolution vers un internet décentralisé où les utilisateurs contrôlent leurs données et leurs actifs numériques.</li>
+                  <li style={styles.listItem}><strong>DAOs</strong> - Organisations autonomes décentralisées qui redéfinissent la gouvernance d'entreprise et la collaboration à grande échelle.</li>
+                  <li style={styles.listItem}><strong>Identité souveraine</strong> - Contrôle personnel des données d'identité avec des systèmes de vérification sélective basés sur la blockchain.</li>
+                  <li style={styles.listItem}><strong>Tokenisation</strong> - Représentation d'actifs réels sur la blockchain, permettant le fractionnement et l'échange simplifié d'actifs traditionnellement illiquides.</li>
+                  <li style={styles.listItem}><strong>Finance régénérative</strong> - Utilisation de la blockchain pour financer et suivre des projets à impact environnemental et social positif.</li>
+                  <li style={styles.listItem}><strong>Métavers décentralisé</strong> - Espaces virtuels interconnectés où la propriété numérique est garantie par la blockchain.</li>
+                </ul>
+                
+                <p style={styles.cardText}>
+                  La blockchain continue d'évoluer rapidement, avec de nouvelles solutions qui émergent 
+                  pour résoudre ces défis. Cette technologie a le potentiel de transformer fondamentalement 
+                  de nombreux secteurs en introduisant transparence, désintermédiation et automatisation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Timeline section */}
+        <h2 style={styles.veilleSubheading}>Chronologie des innovations blockchain</h2>
+        
+        <div style={{...styles.row, ...styles.paddingBottom50}}>
+          <div style={styles.column}>
+            <div style={styles.veilleCardView}>
+              <div style={styles.timeline}>
+                <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                  <div style={styles.timelineContent}>
+                    <h3 style={styles.cardTitle}>2008-2009</h3>
+                    <p style={styles.cardText}>Publication du whitepaper Bitcoin par Satoshi Nakamoto et lancement du réseau Bitcoin, première application de la technologie blockchain.</p>
+                  </div>
+                </div>
+                <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                  <div style={styles.timelineContent}>
+                    <h3 style={styles.cardTitle}>2015</h3>
+                    <p style={styles.cardText}>Lancement d'Ethereum, introduisant les smart contracts et ouvrant la voie aux applications décentralisées (DApps).</p>
+                  </div>
+                </div>
+                <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                  <div style={styles.timelineContent}>
+                    <h3 style={styles.cardTitle}>2017</h3>
+                    <p style={styles.cardText}>Premier boom des ICO (Initial Coin Offerings) et popularisation des tokens ERC-20 sur Ethereum.</p>
+                  </div>
+                </div>
+                <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                  <div style={styles.timelineContent}>
+                    <h3 style={styles.cardTitle}>2020</h3>
+                    <p style={styles.cardText}>Explosion de la DeFi (Finance Décentralisée) avec des protocoles comme Uniswap, Aave et Compound.</p>
+                  </div>
+                </div>
+                <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                  <div style={styles.timelineContent}>
+                    <h3 style={styles.cardTitle}>2021</h3>
+                    <p style={styles.cardText}>Adoption massive des NFTs dans l'art, le divertissement et le sport, avec des ventes record.</p>
+                  </div>
+                </div>
+                <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                  <div style={styles.timelineContent}>
+                    <h3 style={styles.cardTitle}>2022</h3>
+                    <p style={styles.cardText}>The Merge : Ethereum passe au Proof of Stake, réduisant sa consommation énergétique de 99,95%.</p>
+                  </div>
+                </div>
+                <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                  <div style={styles.timelineContent}>
+                    <h3 style={styles.cardTitle}>2023</h3>
+                    <p style={styles.cardText}>Adoption institutionnelle accélérée et développement des CBDCs par les banques centrales.</p>
+                  </div>
+                </div>
+                <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                  <div style={styles.timelineContent}>
+                    <h3 style={styles.cardTitle}>2024-2025</h3>
+                    <p style={styles.cardText}>Maturité des solutions d'interopérabilité et intégration de la blockchain dans les infrastructures critiques.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Cas d'usage par secteur */}
+        <h2 style={styles.veilleSubheading}>Applications sectorielles</h2>
+        
+        <div style={{...styles.row, ...styles.paddingBottom50}}>
+          <div style={styles.columnThird}>
+            <div style={styles.veilleCardView}>
+              <div style={{textAlign: "center"}}>
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/2332/2332039.png" 
+                  alt="Healthcare" 
+                  style={styles.iconImage}
+                />
+              </div>
+              <div>
+                <h3 style={styles.cardTitle}>Santé</h3>
+                <p style={styles.cardText}>
+                  La blockchain révolutionne le secteur de la santé en sécurisant les dossiers médicaux, 
+                  en traçant les médicaments et en facilitant le partage sécurisé de données entre 
+                  établissements.
+                </p>
+                <ul style={styles.list}>
+                  <li style={styles.listItem}>Dossiers médicaux interopérables et contrôlés par les patients</li>
+                  <li style={styles.listItem}>Traçabilité des médicaments pour lutter contre la contrefaçon</li>
+                  <li style={styles.listItem}>Gestion des essais cliniques avec intégrité des données</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div style={styles.columnThird}>
+            <div style={styles.veilleCardView}>
+              <div style={{textAlign: "center"}}>
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/2271/2271113.png" 
+                  alt="Supply Chain" 
+                  style={styles.iconImage}
+                />
+              </div>
+              <div>
+                <h3 style={styles.cardTitle}>Chaîne d'approvisionnement</h3>
+                <p style={styles.cardText}>
+                  La traçabilité de bout en bout des produits est désormais possible grâce à la blockchain, 
+                  offrant transparence et authenticité aux consommateurs et efficacité aux entreprises.
+                </p>
+                <ul style={styles.list}>
+                  <li style={styles.listItem}>Suivi de l'origine des produits alimentaires et de luxe</li>
+                  <li style={styles.listItem}>Optimisation logistique et réduction des fraudes</li>
+                  <li style={styles.listItem}>Certification des pratiques durables et éthiques</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div style={styles.columnThird}>
+            <div style={styles.veilleCardView}>
+              <div style={{textAlign: "center"}}>
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/1728/1728946.png" 
+                  alt="Energy" 
+                  style={styles.iconImage}
+                />
+              </div>
+              <div>
+                <h3 style={styles.cardTitle}>Énergie</h3>
+                <p style={styles.cardText}>
+                  Le secteur énergétique adopte la blockchain pour créer des réseaux décentralisés, 
+                  permettant l'échange pair-à-pair d'énergie renouvelable et la certification d'origine.
+                </p>
+                <ul style={styles.list}>
+                  <li style={styles.listItem}>Microgrids avec échange direct entre producteurs et consommateurs</li>
+                  <li style={styles.listItem}>Certification et trading de crédits carbone</li>
+                  <li style={styles.listItem}>Optimisation de la distribution et réduction des pertes</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{...styles.row, ...styles.paddingBottom30}}>
+          <div style={styles.column}>
+            <div style={styles.veilleSources}>
+              <h3 style={styles.sourcesHeading}>Sources et ressources</h3>
+              <ul style={styles.sourcesList}>
+                <li style={styles.sourceItem}>
+                  <a href="https://ethereum.org" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    Ethereum.org
+                  </a> - Documentation officielle d'Ethereum et ressources sur les smart contracts
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://defipulse.com" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    DeFi Pulse
+                  </a> - Suivi des protocoles DeFi et analyses des tendances du secteur
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://www.coindesk.com" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    CoinDesk
+                  </a> - Actualités blockchain et analyses approfondies des développements récents
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://www.bis.org/topics/cbdc.htm" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    Bank for International Settlements
+                  </a> - Recherches sur les CBDCs et l'adoption institutionnelle
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://www.ledger.com/academy" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    Ledger Academy
+                  </a> - Ressources éducatives sur la blockchain et la cryptographie
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://www.chainalysis.com/reports/" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    Chainalysis Reports
+                  </a> - Études de marché et analyses des tendances blockchain
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://consensys.net/blog/" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    ConsenSys Blog
+                  </a> - Actualités et perspectives sur l'écosystème Ethereum
+                </li>
+                <li style={styles.sourceItem}>
+                  <a href="https://www.wef.org/blockchain" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
+                    World Economic Forum
+                  </a> - Études sur l'impact de la blockchain sur l'économie mondiale
+                </li>
+              </ul>
+              
+              <div style={{textAlign: "center", marginTop: "30px"}}>
+                <a href="#" style={styles.gradientButton}>
+                  Télécharger le rapport complet (PDF)
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default VeilleTechnologique;
