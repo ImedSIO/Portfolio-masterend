@@ -1,0 +1,37 @@
+.synthese-section {
+  position: relative !important;
+  padding-top: 150px !important;
+  padding-bottom: 30px !important;
+  background-image: var(--section-background-color) !important;
+  color: white !important;
+}
+
+.synthese-section .table {
+  margin-top: 20px;
+}
+
+.file-upload label {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.table-responsive {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+/* Purple highlight for certain elements */
+.purple {
+  color: var(--imp-text-color) !important;
+}
+
+@media (max-width: 767px) {
+  .text-right {
+    text-align: left !important;
+    margin-top: 10px;
+  }
+}
