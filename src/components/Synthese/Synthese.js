@@ -35,9 +35,13 @@ function Synthese() {
 
   const activateEasterEgg = () => {
     alert("🥚 Mode BTS SIO activé !");
-    document.querySelector(".project-section").style.background = "linear-gradient(to right, #000428, #004e92)";
+    const projectSection = document.querySelector(".project-section");
+    if (projectSection) {
+      projectSection.style.background = "linear-gradient(to right, #000428, #004e92)";
+    }
+   
     const heading = document.querySelector(".project-heading");
-    if (!document.querySelector(".easter-egg-text")) {
+    if (heading && !document.querySelector(".easter-egg-text")) {
       const span = document.createElement("span");
       span.className = "easter-egg-text";
       span.style.color = "#ffd700";
@@ -49,11 +53,27 @@ function Synthese() {
 
   const handleFullscreen = () => {
     const container = containerRef.current;
-    if (!document.fullscreenElement) {
-      container?.requestFullscreen();
-    } else {
-      document.exitFullscreen();
+    if (container) {
+      if (!document.fullscreenElement) {
+        container.requestFullscreen().catch(err => {
+          console.error(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen().catch(err => {
+          console.error(`Error attempting to exit fullscreen: ${err.message}`);
+        });
+      }
     }
+  };
+
+  // Download XLSX file directly
+  const handleDownload = () => {
+    window.open("https://docs.google.com/spreadsheets/d/1z0Vo4pwHswU5HSVdQd7vpCfhS-O6vav7auKyD6Nnpiw/export?format=xlsx", "_blank");
+  };
+
+  // Open Google Sheets
+  const openGoogleSheets = () => {
+    window.open("https://docs.google.com/spreadsheets/d/1z0Vo4pwHswU5HSVdQd7vpCfhS-O6vav7auKyD6Nnpiw/edit?usp=sharing", "_blank");
   };
 
   return (
@@ -67,23 +87,21 @@ function Synthese() {
           Voici un tableau récapitulatif de mes projets et compétences.
         </p>
 
-        {/* BOUTONS DE LIENS */}
+        {/* BOUTONS DE LIENS - Using onClick handlers instead of href for better control */}
         <Row className="mb-4">
           <Col md={12} className="d-flex flex-wrap gap-3 justify-content-center">
             <Button
               variant="success"
-              href="https://docs.google.com/spreadsheets/d/1z0Vo4pwHswU5HSVdQd7vpCfhS-O6vav7auKyD6Nnpiw/export?format=xlsx"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={handleDownload}
+              style={{ cursor: "pointer", zIndex: 10 }}
             >
               📅 Télécharger (.xlsx)
             </Button>
 
             <Button
               variant="primary"
-              href="https://docs.google.com/spreadsheets/d/1z0Vo4pwHswU5HSVdQd7vpCfhS-O6vav7auKyD6Nnpiw/edit?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={openGoogleSheets}
+              style={{ cursor: "pointer", zIndex: 10 }}
             >
               🔗 Ouvrir dans Google Sheets
             </Button>
@@ -118,18 +136,34 @@ function Synthese() {
               />
             </div>
 
-            {/* ZOOM / FULLSCREEN */}
-            <div className="d-flex justify-content-center gap-3 flex-wrap">
-              <Button variant="dark" onClick={() => setZoom(Math.max(0.5, zoom - 0.1))}>
+            {/* ZOOM / FULLSCREEN - Added explicit cursor and z-index properties */}
+            <div className="d-flex justify-content-center gap-3 flex-wrap mt-3">
+              <Button
+                variant="dark"
+                onClick={() => setZoom(Math.max(0.5, zoom - 0.1))}
+                style={{ cursor: "pointer", zIndex: 10 }}
+              >
                 ➖ Zoom -
               </Button>
-              <Button variant="dark" onClick={() => setZoom(1)}>
+              <Button
+                variant="dark"
+                onClick={() => setZoom(1)}
+                style={{ cursor: "pointer", zIndex: 10 }}
+              >
                 🔄 Reset Zoom
               </Button>
-              <Button variant="dark" onClick={() => setZoom(Math.min(2.0, zoom + 0.1))}>
+              <Button
+                variant="dark"
+                onClick={() => setZoom(Math.min(2.0, zoom + 0.1))}
+                style={{ cursor: "pointer", zIndex: 10 }}
+              >
                 ➕ Zoom +
               </Button>
-              <Button variant="secondary" onClick={handleFullscreen}>
+              <Button
+                variant="secondary"
+                onClick={handleFullscreen}
+                style={{ cursor: "pointer", zIndex: 10 }}
+              >
                 🖥️ Plein écran
               </Button>
             </div>
