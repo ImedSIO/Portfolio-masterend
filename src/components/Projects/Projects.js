@@ -67,20 +67,22 @@ function Projects() {
     },
     {
       imgPath: leaf,
-      title: "Eco Tracker",
-      description: "App mobile pour suivre son empreinte carbone avec suggestions IA.",
+      title: "Morpion C#",
+      description: "Morpion en C# est un jeu classique de tic-tac-toe développé en console avec le langage C#. Cette application permet à deux joueurs de s'affronter tour à tour sur une grille 3x3. Conçue avec une interface simple mais efficace, elle offre une expérience de jeu fluide et intuitive tout en mettant en œuvre les principes fondamentaux de la programmation orientée objet.",
       ghLink: "https://github.com/votre-username/eco-tracker",
       demoLink: "https://eco-tracker-app.com/",
       isBlog: false,
-      technologies: ["React Native", "Redux", "Node.js", "Google Maps API"],
+      technologies: ["C# Console Application", ".NET Framework", "Programmation orientée objet", "Structures de données (tableaux et listes)","Gestion des entrées/sorties console"],
       features: [
-        "Calcul empreinte carbone",
-        "Suggestions IA",
-        "Suivi énergie/eau",
-        "Défis écologiques",
-        "Comparaisons régionales"
+        "Interface console claire et intuitive",
+        "Personnalisation des noms des joueurs",
+        "Affichage dynamique de la grille de jeu après chaque coup",
+        "Vérification automatique des conditions de victoire",
+        "Gestion des tours alternés entre les joueurs",
+        "Validation des entrées utilisateur",
+        "Possibilité de rejouer une partie"
       ],
-      challenges: "Centralisation de données fiables issues de sources multiples et vérifiées."
+      challenges: "Implémenter un algorithme efficace de vérification des conditions de victoire tout en maintenant une structure de code claire et maintenable."
     },
     {
       imgPath: suicide,
