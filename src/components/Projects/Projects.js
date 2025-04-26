@@ -86,20 +86,22 @@ function Projects() {
     },
     {
       imgPath: suicide,
-      title: "Santé Mentale AI",
-      description: "Détection de signaux de détresse dans les messages textes avec IA.",
+      title: "Gestion d'une bibliothèque en C#",
+      description: "Bibliothèque Modern Solidarity est une application de gestion de bibliothèque développée en C# pour l'association Modern Solidarity. Cette solution complète permet de gérer l'inventaire des livres, les adhérents, les emprunts et les retours. Conçue avec une interface Windows Forms intuitive et une architecture orientée objet, l'application offre aux bénévoles de l'association un outil efficace pour la gestion quotidienne de leur bibliothèque communautaire.",
       ghLink: "https://github.com/votre-username/sante-mentale-ai",
       demoLink: "https://sante-mentale-ai.org/",
       isBlog: false,
-      technologies: ["Python", "TensorFlow", "Flask", "React"],
+      technologies: ["C# Windows Forms", "SQL Server Express", "Architecture en couches (DAL, BLL, UI)", "Entity Framework","LINQ","Crystal Reports pour les impressions"],
       features: [
-        "Analyse sentiment",
-        "Détection temps réel",
-        "Recommandations",
-        "Interface accessible",
-        "Cryptage total"
+        "Gestion complète du catalogue de livres (ajout, modification, suppression)",
+        "Enregistrement et suivi des adhérents",
+        "Système d'emprunt et de retour avec gestion des délais",
+        "Recherche multicritères (auteur, titre, genre, disponibilité)",
+        "Génération de rapports et statistiques",
+        "Gestion des retards et notifications",
+        "Sauvegarde et restauration des données"
       ],
-      challenges: "Minimisation des faux positifs via affinement avec experts en santé mentale."
+      challenges: "Concevoir une interface suffisamment intuitive pour des utilisateurs non-techniciens tout en intégrant des fonctionnalités avancées de gestion bibliothécaire."
     },
     {
       imgPath: emotion,
