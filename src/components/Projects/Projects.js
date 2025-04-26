@@ -31,37 +31,39 @@ function Projects() {
     },
     {
       imgPath: bitsOfCode,
-      title: "Blog Personnel",
-      description: "Blog technique avec Gatsby, SEO optimisé et CMS intégré.",
+      title: "France Mobilier",
+      description: "France Mobilier est un site web spécialisé dans la vente de meubles et d'ameublement d'intérieur. Développé avec PHP selon l'architecture MVC (Modèle-Vue-Contrôleur), ce site offre une interface claire et intuitive permettant aux clients de consulter facilement notre catalogue de produits. Notre plateforme met en valeur notre expertise en tant que "pros du meuble" avec une présentation soignée des différentes catégories de mobilier.",
       ghLink: "https://github.com/votre-username/blog-personnel",
-      demoLink: "https://blog-personnel.com/",
-      isBlog: true,
-      technologies: ["Gatsby.js", "React", "GraphQL", "Markdown", "Netlify CMS"],
+      demoLink: "",
+      isBlog: false,
+      technologies: ["PHP", "MySQL", "HTML/CSS", "Architecture MVC", "Programmation orientée objet"],
       features: [
-        "SEO avancé",
-        "Commentaires",
-        "Mode sombre",
-        "Temps de lecture",
-        "Partage réseaux"
+        "Navigation intuitive par catégories de produits",
+        "Affichage détaillé des produits avec photos",
+        "Consultation des prix et références",
+        "Interface responsive adaptée à tous les appareils",
+        "Système de filtrage par catégories"
       ],
-      challenges: "Maintenir des performances optimales tout en ajoutant des fonctionnalités SEO."
+      challenges: "Implémenter une architecture MVC complète pour un catalogue de meubles tout en respectant les contraintes du projet pédagogique."
     },
     {
       imgPath: editor,
-      title: "Éditeur de Code en Ligne",
-      description: "Éditeur de code avec autocomplétion, collaboration en temps réel et exécution directe.",
+      title: "SIO SHOP",
+      description: "SIO Shop est une application de gestion de magasin développée en C# avec interface Windows Forms. Cette solution complète permet de gérer l'inventaire des produits, les clients, les employés et les ventes. Conçue avec une architecture orientée objet et une connexion à une base de données MySQL, l'application offre une interface intuitive pour les opérations quotidiennes d'un commerce.",
       ghLink: "https://github.com/votre-username/code-editor",
       demoLink: "https://code-editor-demo.com/",
       isBlog: false,
-      technologies: ["React", "Monaco Editor", "WebSockets", "Firebase"],
+      technologies: ["C# Windows Forms", "MySQL", "Architecture orientée objet", ".NET Framework", "MySql.Data pour la connexion à la base de données"],
       features: [
-        "Support multi-langage",
-        "Coloration syntaxique",
-        "Autocomplétion",
-        "Code en temps réel",
-        "Exécution dans le navigateur"
+        "Gestion des produits (ajout, modification, consultation)",
+        "Gestion des clients",
+        "Système de vente avec génération de factures PDF",
+        "Authentification des employés",
+        "Filtrage des produits par marque"
+        "Suivi des stocks en temps réel"
+        "Historique des achats"
       ],
-      challenges: "Gestion des conflits et synchronisation multi-utilisateur via transformation opérationnelle."
+      challenges: "Implémenter une architecture orientée objet complète pour un système de gestion commerciale tout en respectant les contraintes du projet pédagogique."
     },
     {
       imgPath: leaf,
