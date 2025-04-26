@@ -59,8 +59,8 @@ function Projects() {
         "Gestion des clients",
         "Système de vente avec génération de factures PDF",
         "Authentification des employés",
-        "Filtrage des produits par marque"
-        "Suivi des stocks en temps réel"
+        "Filtrage des produits par marque",
+        "Suivi des stocks en temps réel",
         "Historique des achats"
       ],
       challenges: "Implémenter une architecture orientée objet complète pour un système de gestion commerciale tout en respectant les contraintes du projet pédagogique."
