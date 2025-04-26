@@ -14,20 +14,20 @@ function Projects() {
   const projectsData = [
     {
       imgPath: chatify,
-      title: "Chatify",
-      description: "Application de chat en temps réel avec interface utilisateur moderne. Développée avec React, Node.js et Socket.IO.",
+      title: "SR Developpement",
+      description: "SR Développement est une agence web spécialisée dans la création de sites internet sur mesure. Notre expertise technique et notre approche créative nous permettent de transformer vos idées en solutions web performantes et captivantes. Nous concevons des sites responsive adaptés à tous les appareils, avec une attention particulière portée à l'expérience utilisateur et au design moderne.",
       ghLink: "https://github.com/votre-username/chatify",
-      demoLink: "https://chatify-app.netlify.app/",
+      demoLink: "https://srdeveloppement.fr/",
       isBlog: false,
-      technologies: ["React.js", "Node.js", "Socket.IO", "Express", "MongoDB", "JWT"],
+      technologies: ["HTML/CSS", "Javascript/React.js", "PHP", "Node.js", "MongoDB"],
       features: [
-        "Messagerie en temps réel",
-        "Salons privés/publics",
-        "Partage de fichiers",
-        "Notifications push",
-        "Mode hors ligne"
+        "Création de sites vitrines professionnels",
+        "Développement de boutiques e-commerce",
+        "Applications web personnalisées",
+        "Refonte de sites existants",
+        "Optimisation pour les moteurs de recherche"
       ],
-      challenges: "Optimisation pour connexions simultanées via microservices et Redis."
+      challenges: "Équilibrer performance et design attrayant pour une expérience utilisateur optimale."
     },
     {
       imgPath: bitsOfCode,
