@@ -32,7 +32,7 @@ function Projects() {
     {
       imgPath: bitsOfCode,
       title: "France Mobilier",
-      description: "France Mobilier est un site web spécialisé dans la vente de meubles et d'ameublement d'intérieur. Développé avec PHP selon l'architecture MVC (Modèle-Vue-Contrôleur), ce site offre une interface claire et intuitive permettant aux clients de consulter facilement notre catalogue de produits. Notre plateforme met en valeur notre expertise en tant que "pros du meuble" avec une présentation soignée des différentes catégories de mobilier.",
+      description: "France Mobilier est un site web spécialisé dans la vente de meubles et d'ameublement d'intérieur. Développé avec PHP selon l'architecture MVC (Modèle-Vue-Contrôleur), ce site offre une interface claire et intuitive permettant aux clients de consulter facilement notre catalogue de produits. Notre plateforme met en valeur notre expertise en tant que pros du meuble avec une présentation soignée des différentes catégories de mobilier.",
       ghLink: "https://github.com/votre-username/blog-personnel",
       demoLink: "",
       isBlog: false,
