@@ -105,20 +105,20 @@ function Projects() {
     },
     {
       imgPath: emotion,
-      title: "Reconnaissance d'Émotions",
-      description: "App de reconnaissance faciale d’émotions en temps réel via ML.",
+      title: "Coach Conjugal",
+      description: "Coach Conjugal est une plateforme web professionnelle développée avec Django et React pour un spécialiste en thérapie conjugale. Ce site vitrine marchand combine élégance visuelle et fonctionnalités e-commerce pour offrir une présence en ligne complète. La plateforme met en valeur les services de coaching, facilite la prise de rendez-vous et propose des ressources éducatives, tout en permettant l'achat de programmes et consultations en ligne.",
       ghLink: "https://github.com/votre-username/emotion-recognition",
       demoLink: "https://emotion-recognition-demo.com/",
       isBlog: false,
-      technologies: ["Python", "OpenCV", "TensorFlow", "React", "Docker"],
+      technologies: ["Django (backend)", "React.js (frontend)", "PostgreSQL", "Stripe pour les paiements", "Responsive design (Bootstrap/Material UI)"],
       features: [
-        "7 émotions détectées",
-        "Temps réel mobile",
-        "Mode hors ligne",
-        "Stats utilisateurs",
-        "API intégrable"
+        "Présentation détaillée des services de coaching conjugal",
+        "Système de réservation de consultations en ligne",
+        "Boutique intégrée pour l'achat de programmes et e-books",
+        "Formulaire de contact sécurisé",
+        "Tableau de bord administrateur complet"
       ],
-      challenges: "Optimisation des modèles pour appareils faibles avec quantification/pruning."
+      challenges: "Créer une expérience utilisateur à la fois professionnelle et chaleureuse tout en intégrant des fonctionnalités e-commerce dans un domaine où la confidentialité et la confiance sont primordiales."
     }
   ];
 
