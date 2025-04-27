@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import Particle from "../Particle";
-import { motion } from "framer-motion"; // Supposons que framer-motion est installé
 
 function VeilleTechnologique() {
   // État pour gérer la largeur de l'écran
@@ -67,53 +65,6 @@ function VeilleTechnologique() {
   const handleDownloadReport = () => {
     alert("Le téléchargement du rapport commencera bientôt...");
     // Ici, vous pourriez implémenter la logique réelle de téléchargement
-  };
-
-  // Animations
-  const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-  
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-  
-  const scaleIn = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: { 
-      scale: 1, 
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
-  
-  const slideFromLeft = {
-    hidden: { x: -50, opacity: 0 },
-    visible: { 
-      x: 0, 
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
-  
-  const slideFromRight = {
-    hidden: { x: 50, opacity: 0 },
-    visible: { 
-      x: 0, 
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
   };
 
   // CSS amélioré
@@ -193,11 +144,6 @@ function VeilleTechnologique() {
       transform: "translateZ(0)",
       overflow: "hidden",
       position: "relative",
-      "&:hover": {
-        transform: "translateY(-5px)",
-        boxShadow: "0 15px 35px rgba(0, 0, 0, 0.6)",
-        border: "1px solid rgba(200, 137, 230, 0.5)",
-      },
     },
     cardGlow: {
       position: "absolute",
@@ -285,16 +231,6 @@ function VeilleTechnologique() {
       marginBottom: "15px",
       position: "relative",
       paddingLeft: "25px",
-      "&:before": {
-        content: "''",
-        position: "absolute",
-        left: "0",
-        top: "10px",
-        width: "8px",
-        height: "8px",
-        backgroundColor: "#cd5ff8",
-        borderRadius: "50%",
-      },
     },
     listHeading: {
       fontSize: "1.3rem",
@@ -312,16 +248,6 @@ function VeilleTechnologique() {
       marginBottom: "12px",
       position: "relative",
       paddingLeft: "20px",
-      "&:before": {
-        content: "''",
-        position: "absolute",
-        left: "0",
-        top: "10px",
-        width: "6px",
-        height: "6px",
-        backgroundColor: "#cd5ff8",
-        borderRadius: "50%",
-      },
     },
     paddingBottom50: {
       paddingBottom: "50px",
@@ -397,7 +323,6 @@ function VeilleTechnologique() {
       width: "100%",
       height: "100%",
       background: "radial-gradient(circle at center, rgba(205, 95, 248, 0.3) 0%, transparent 70%)",
-      animation: "pulse 2s infinite",
     },
     iconText: {
       fontSize: "2.5rem",
@@ -420,13 +345,6 @@ function VeilleTechnologique() {
       fontSize: "1.1rem",
       position: "relative",
       overflow: "hidden",
-      "&:hover": {
-        transform: "translateY(-3px)",
-        boxShadow: "0 7px 20px rgba(205, 95, 248, 0.6)",
-      },
-      "&:active": {
-        transform: "translateY(1px)",
-      },
     },
     buttonGlow: {
       position: "absolute",
@@ -435,7 +353,6 @@ function VeilleTechnologique() {
       width: "100%",
       height: "100%",
       background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)",
-      animation: "shine 3s infinite",
     },
     statsContainer: {
       display: "flex",
@@ -455,10 +372,6 @@ function VeilleTechnologique() {
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
       position: "relative",
       overflow: "hidden",
-      "&:hover": {
-        transform: "translateY(-5px)",
-        boxShadow: "0 12px 25px rgba(0, 0, 0, 0.4)",
-      },
     },
     statGlow: {
       position: "absolute",
@@ -526,10 +439,6 @@ function VeilleTechnologique() {
       border: "1px solid rgba(200, 137, 230, 0.3)",
       boxShadow: "0 5px 15px rgba(0, 0, 0, 0.3)",
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
-      "&:hover": {
-        transform: "translateY(-5px)",
-        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.4)",
-      },
     },
     timelineCircleLeft: {
       position: "absolute",
@@ -555,35 +464,6 @@ function VeilleTechnologique() {
       left: "-16px",
       boxShadow: "0 0 10px rgba(205, 95, 248, 0.8)",
     },
-    // Styles pour les animations
-    "@keyframes pulse": {
-      "0%": { opacity: 0.6 },
-      "50%": { opacity: 1 },
-      "100%": { opacity: 0.6 }
-    },
-    "@keyframes shine": {
-      "0%": { left: "-100%" },
-      "20%": { left: "100%" },
-      "100%": { left: "100%" }
-    },
-    "@keyframes float": {
-      "0%": { transform: "translateY(0px)" },
-      "50%": { transform: "translateY(-10px)" },
-      "100%": { transform: "translateY(0px)" }
-    },
-    floatingAnimation: {
-      animation: "float 4s ease-in-out infinite",
-    },
-    // Styles pour les sections
-    sectionIntro: {
-      textAlign: "center",
-      maxWidth: "800px",
-      margin: "0 auto 50px auto",
-      color: "#e0e0e0",
-      fontSize: "1.2rem",
-      lineHeight: "1.8",
-    },
-    // Styles pour la navigation
     navPills: {
       display: "flex",
       justifyContent: "center",
@@ -599,50 +479,24 @@ function VeilleTechnologique() {
       cursor: "pointer",
       transition: "all 0.3s ease",
       border: "1px solid rgba(200, 137, 230, 0.3)",
-      "&:hover": {
-        backgroundColor: "rgba(205, 95, 248, 0.2)",
-        color: "#cd5ff8",
-      },
     },
     navPillActive: {
       backgroundColor: "rgba(205, 95, 248, 0.2)",
       color: "#cd5ff8",
       border: "1px solid rgba(205, 95, 248, 0.5)",
     },
-    // Styles pour les cartes avec effet 3D
-    card3D: {
-      perspective: "1000px",
-      transformStyle: "preserve-3d",
-      transition: "transform 0.5s",
-      "&:hover": {
-        transform: "rotateY(5deg) rotateX(5deg)",
-      },
+    sectionIntro: {
+      textAlign: "center",
+      maxWidth: "800px",
+      margin: "0 auto 50px auto",
+      color: "#e0e0e0",
+      fontSize: "1.2rem",
+      lineHeight: "1.8",
     },
-  };
-
-  // Styles CSS inline pour les animations
-  const inlineStyles = {
-    "@keyframes pulse": {
-      "0%": { opacity: 0.6 },
-      "50%": { opacity: 1 },
-      "100%": { opacity: 0.6 }
-    },
-    "@keyframes shine": {
-      "0%": { left: "-100%" },
-      "20%": { left: "100%" },
-      "100%": { left: "100%" }
-    },
-    "@keyframes float": {
-      "0%": { transform: "translateY(0px)" },
-      "50%": { transform: "translateY(-10px)" },
-      "100%": { transform: "translateY(0px)" }
-    }
   };
 
   return (
     <div style={styles.veilleSection}>
-      <Particle />
-      
       {/* Styles pour les animations */}
       <style>
         {`
@@ -661,6 +515,23 @@ function VeilleTechnologique() {
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
           }
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes slideFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+          }
+          @keyframes slideFromRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+          }
+          @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+          }
+          
           .floating {
             animation: float 4s ease-in-out infinite;
           }
@@ -687,15 +558,59 @@ function VeilleTechnologique() {
           .button-hover:active {
             transform: translateY(1px);
           }
+          
+          .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+          }
+          .slide-from-left {
+            opacity: 0;
+            animation: slideFromLeft 0.5s ease-out forwards;
+          }
+          .slide-from-right {
+            opacity: 0;
+            animation: slideFromRight 0.5s ease-out forwards;
+          }
+          .scale-in {
+            opacity: 0;
+            animation: scaleIn 0.5s ease-out forwards;
+          }
+          
+          .visible .stagger-item:nth-child(1) { animation-delay: 0s; }
+          .visible .stagger-item:nth-child(2) { animation-delay: 0.1s; }
+          .visible .stagger-item:nth-child(3) { animation-delay: 0.2s; }
+          .visible .stagger-item:nth-child(4) { animation-delay: 0.3s; }
+          .visible .stagger-item:nth-child(5) { animation-delay: 0.4s; }
+          .visible .stagger-item:nth-child(6) { animation-delay: 0.5s; }
+          
+          .source-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background-color: #cd5ff8;
+            border-radius: 50%;
+          }
+          
+          .list-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background-color: #cd5ff8;
+            border-radius: 50%;
+          }
         `}
       </style>
       
       <div style={styles.container}>
-        <motion.div 
+        <div 
           ref={sectionRefs.header}
-          initial="hidden"
-          animate={visibleSections.header ? "visible" : "hidden"}
-          variants={fadeIn}
+          className={visibleSections.header ? "fade-in" : ""}
         >
           <h1 style={styles.veilleHeading}>
             Veille Technologique <strong style={styles.purple}>Blockchain</strong>
@@ -709,15 +624,12 @@ function VeilleTechnologique() {
               de la valeur dans un monde numérique en constante évolution.
             </p>
           </div>
-        </motion.div>
+        </div>
         
         <div style={{...styles.row, ...styles.padding10}}>
-          <motion.div 
+          <div 
             style={styles.veilleHeaderCard}
-            className="card-hover"
-            initial="hidden"
-            animate={visibleSections.header ? "visible" : "hidden"}
-            variants={scaleIn}
+            className={`card-hover ${visibleSections.header ? "scale-in" : ""}`}
           >
             <div style={styles.veilleCardView}>
               <div style={styles.cardGlow} className="pulse"></div>
@@ -746,73 +658,65 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Navigation par pilules */}
-        <motion.div 
+        <div 
           style={styles.navPills}
-          initial="hidden"
-          animate={visibleSections.header ? "visible" : "hidden"}
-          variants={staggerContainer}
+          className={visibleSections.header ? "visible" : ""}
         >
-          <motion.a href="#stats" style={styles.navPill} variants={fadeIn}>Statistiques</motion.a>
-          <motion.a href="#applications" style={{...styles.navPill, ...styles.navPillActive}} variants={fadeIn}>Applications</motion.a>
-          <motion.a href="#innovations" style={styles.navPill} variants={fadeIn}>Innovations</motion.a>
-          <motion.a href="#challenges" style={styles.navPill} variants={fadeIn}>Enjeux</motion.a>
-          <motion.a href="#timeline" style={styles.navPill} variants={fadeIn}>Chronologie</motion.a>
-          <motion.a href="#sectors" style={styles.navPill} variants={fadeIn}>Secteurs</motion.a>
-        </motion.div>
+          <a href="#stats" style={styles.navPill} className="stagger-item fade-in">Statistiques</a>
+          <a href="#applications" style={{...styles.navPill, ...styles.navPillActive}} className="stagger-item fade-in">Applications</a>
+          <a href="#innovations" style={styles.navPill} className="stagger-item fade-in">Innovations</a>
+          <a href="#challenges" style={styles.navPill} className="stagger-item fade-in">Enjeux</a>
+          <a href="#timeline" style={styles.navPill} className="stagger-item fade-in">Chronologie</a>
+          <a href="#sectors" style={styles.navPill} className="stagger-item fade-in">Secteurs</a>
+        </div>
 
         {/* Statistiques */}
-        <motion.div 
+        <div 
           id="stats"
           ref={sectionRefs.stats}
-          initial="hidden"
-          animate={visibleSections.stats ? "visible" : "hidden"}
-          variants={staggerContainer}
+          className={visibleSections.stats ? "visible" : ""}
           style={styles.statsContainer}
         >
-          <motion.div style={styles.statBox} className="stat-hover" variants={scaleIn}>
+          <div style={styles.statBox} className="stagger-item scale-in stat-hover">
             <div style={styles.statGlow} className="pulse"></div>
-            <div style={styles.statNumber}>\$2.3T</div>
+            <div style={styles.statNumber}>$2.3T</div>
             <div style={styles.statLabel}>Capitalisation du marché crypto</div>
-          </motion.div>
-          <motion.div style={styles.statBox} className="stat-hover" variants={scaleIn}>
+          </div>
+          <div style={styles.statBox} className="stagger-item scale-in stat-hover">
             <div style={styles.statGlow} className="pulse"></div>
             <div style={styles.statNumber}>+400%</div>
             <div style={styles.statLabel}>Croissance DeFi (2023-2025)</div>
-          </motion.div>
-          <motion.div style={styles.statBox} className="stat-hover" variants={scaleIn}>
+          </div>
+          <div style={styles.statBox} className="stagger-item scale-in stat-hover">
             <div style={styles.statGlow} className="pulse"></div>
             <div style={styles.statNumber}>114M+</div>
             <div style={styles.statLabel}>Utilisateurs de crypto</div>
-          </motion.div>
-          <motion.div style={styles.statBox} className="stat-hover" variants={scaleIn}>
+          </div>
+          <div style={styles.statBox} className="stagger-item scale-in stat-hover">
             <div style={styles.statGlow} className="pulse"></div>
             <div style={styles.statNumber}>80%</div>
             <div style={styles.statLabel}>Banques centrales explorant les CBDCs</div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        <motion.h2 
+        <h2 
           id="applications"
           ref={sectionRefs.applications}
           style={styles.veilleSubheading}
-          initial="hidden"
-          animate={visibleSections.applications ? "visible" : "hidden"}
-          variants={fadeIn}
+          className={visibleSections.applications ? "fade-in" : ""}
         >
           Domaines d'application et innovations
           <div style={styles.subheadingUnderline}></div>
-        </motion.h2>
+        </h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <motion.div 
+          <div 
             style={styles.columnHalf}
-            initial="hidden"
-            animate={visibleSections.applications ? "visible" : "hidden"}
-            variants={slideFromLeft}
+            className={visibleSections.applications ? "slide-from-left" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -841,21 +745,19 @@ function VeilleTechnologique() {
                 <div>
                   <strong style={{color: "#cd5ff8"}}>Innovations récentes:</strong>
                   <ul style={styles.list}>
-                    <li style={styles.listItem}>Déploiement progressif d'Ethereum 2.0 (The Merge, Shanghai, Cancun)</li>
-                    <li style={styles.listItem}>Solutions de Layer 2 comme Optimism et Arbitrum réduisant les frais de transaction</li>
-                    <li style={styles.listItem}>Amélioration de l'interopérabilité avec d'autres blockchains via des ponts</li>
-                    <li style={styles.listItem}>EIP-4844 (Proto-Danksharding) pour réduire les coûts des rollups</li>
+                    <li style={styles.listItem} className="list-item">Déploiement progressif d'Ethereum 2.0 (The Merge, Shanghai, Cancun)</li>
+                    <li style={styles.listItem} className="list-item">Solutions de Layer 2 comme Optimism et Arbitrum réduisant les frais de transaction</li>
+                    <li style={styles.listItem} className="list-item">Amélioration de l'interopérabilité avec d'autres blockchains via des ponts</li>
+                    <li style={styles.listItem} className="list-item">EIP-4844 (Proto-Danksharding) pour réduire les coûts des rollups</li>
                   </ul>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
+          <div 
             style={styles.columnHalf}
-            initial="hidden"
-            animate={visibleSections.applications ? "visible" : "hidden"}
-            variants={slideFromRight}
+            className={visibleSections.applications ? "slide-from-right" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -884,22 +786,20 @@ function VeilleTechnologique() {
                 <div>
                   <strong style={{color: "#cd5ff8"}}>Applications émergentes:</strong>
                   <ul style={styles.list}>
-                    <li style={styles.listItem}>Identité numérique et certification de documents</li>
-                    <li style={styles.listItem}>Billetterie et contrôle d'accès pour événements</li>
-                    <li style={styles.listItem}>Propriété intellectuelle et gestion des droits d'auteur</li>
-                    <li style={styles.listItem}>Gaming et métavers avec objets interopérables</li>
-                    <li style={styles.listItem}>Tokenisation d'actifs réels (immobilier, œuvres d'art)</li>
+                    <li style={styles.listItem} className="list-item">Identité numérique et certification de documents</li>
+                    <li style={styles.listItem} className="list-item">Billetterie et contrôle d'accès pour événements</li>
+                    <li style={styles.listItem} className="list-item">Propriété intellectuelle et gestion des droits d'auteur</li>
+                    <li style={styles.listItem} className="list-item">Gaming et métavers avec objets interopérables</li>
+                    <li style={styles.listItem} className="list-item">Tokenisation d'actifs réels (immobilier, œuvres d'art)</li>
                   </ul>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
+          <div 
             style={styles.columnHalf}
-            initial="hidden"
-            animate={visibleSections.applications ? "visible" : "hidden"}
-            variants={slideFromLeft}
+            className={visibleSections.applications ? "slide-from-left" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -928,22 +828,20 @@ function VeilleTechnologique() {
                 <div>
                   <strong style={{color: "#cd5ff8"}}>Tendances actuelles:</strong>
                   <ul style={styles.list}>
-                    <li style={styles.listItem}>Protocoles de prêt comme Aave et Compound avec des taux d'intérêt dynamiques</li>
-                    <li style={styles.listItem}>Échanges décentralisés (DEX) comme Uniswap et leur évolution vers des modèles plus efficaces</li>
-                    <li style={styles.listItem}>Stablecoins algorithmiques et adossés à des actifs diversifiés</li>
-                    <li style={styles.listItem}>Assurance décentralisée pour couvrir les risques liés aux protocoles</li>
-                    <li style={styles.listItem}>Yield farming et liquidity mining avec des stratégies d'optimisation automatisées</li>
+                    <li style={styles.listItem} className="list-item">Protocoles de prêt comme Aave et Compound avec des taux d'intérêt dynamiques</li>
+                    <li style={styles.listItem} className="list-item">Échanges décentralisés (DEX) comme Uniswap et leur évolution vers des modèles plus efficaces</li>
+                    <li style={styles.listItem} className="list-item">Stablecoins algorithmiques et adossés à des actifs diversifiés</li>
+                    <li style={styles.listItem} className="list-item">Assurance décentralisée pour couvrir les risques liés aux protocoles</li>
+                    <li style={styles.listItem} className="list-item">Yield farming et liquidity mining avec des stratégies d'optimisation automatisées</li>
                   </ul>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
+          <div 
             style={styles.columnHalf}
-            initial="hidden"
-            animate={visibleSections.applications ? "visible" : "hidden"}
-            variants={slideFromRight}
+            className={visibleSections.applications ? "slide-from-right" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -971,37 +869,33 @@ function VeilleTechnologique() {
                 <div>
                   <strong style={{color: "#cd5ff8"}}>Développements significatifs:</strong>
                   <ul style={styles.list}>
-                    <li style={styles.listItem}>L'e-CNY (yuan numérique) en Chine avec plus de 300 millions d'utilisateurs actifs</li>
-                    <li style={styles.listItem}>Projet de l'euro numérique par la BCE en phase de déploiement</li>
-                    <li style={styles.listItem}>Adoption croissante par les banques d'investissement de solutions blockchain</li>
-                    <li style={styles.listItem}>Réglementations en évolution avec le MiCA en Europe</li>
-                    <li style={styles.listItem}>Intégration des stablecoins régulés dans les systèmes de paiement traditionnels</li>
+                    <li style={styles.listItem} className="list-item">L'e-CNY (yuan numérique) en Chine avec plus de 300 millions d'utilisateurs actifs</li>
+                    <li style={styles.listItem} className="list-item">Projet de l'euro numérique par la BCE en phase de déploiement</li>
+                    <li style={styles.listItem} className="list-item">Adoption croissante par les banques d'investissement de solutions blockchain</li>
+                    <li style={styles.listItem} className="list-item">Réglementations en évolution avec le MiCA en Europe</li>
+                    <li style={styles.listItem} className="list-item">Intégration des stablecoins régulés dans les systèmes de paiement traditionnels</li>
                   </ul>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Nouvelles sections */}
-        <motion.h2 
+        <h2 
           id="innovations"
           ref={sectionRefs.innovations}
           style={styles.veilleSubheading}
-          initial="hidden"
-          animate={visibleSections.innovations ? "visible" : "hidden"}
-          variants={fadeIn}
+          className={visibleSections.innovations ? "fade-in" : ""}
         >
           Innovations émergentes
           <div style={styles.subheadingUnderline}></div>
-        </motion.h2>
+        </h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <motion.div 
+          <div 
             style={styles.columnThird}
-            initial="hidden"
-            animate={visibleSections.innovations ? "visible" : "hidden"}
-            variants={scaleIn}
+            className={visibleSections.innovations ? "scale-in" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -1028,13 +922,11 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
+          <div 
             style={styles.columnThird}
-            initial="hidden"
-            animate={visibleSections.innovations ? "visible" : "hidden"}
-            variants={scaleIn}
+            className={visibleSections.innovations ? "scale-in" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -1060,13 +952,11 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
+          <div 
             style={styles.columnThird}
-            initial="hidden"
-            animate={visibleSections.innovations ? "visible" : "hidden"}
-            variants={scaleIn}
+            className={visibleSections.innovations ? "scale-in" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -1092,27 +982,23 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.h2 
+        <h2 
           id="challenges"
           ref={sectionRefs.challenges}
           style={styles.veilleSubheading}
-          initial="hidden"
-          animate={visibleSections.challenges ? "visible" : "hidden"}
-          variants={fadeIn}
+          className={visibleSections.challenges ? "fade-in" : ""}
         >
           Enjeux et perspectives
           <div style={styles.subheadingUnderline}></div>
-        </motion.h2>
+        </h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <motion.div 
+          <div 
             style={styles.column}
-            initial="hidden"
-            animate={visibleSections.challenges ? "visible" : "hidden"}
-            variants={fadeIn}
+            className={visibleSections.challenges ? "fade-in" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -1136,52 +1022,48 @@ function VeilleTechnologique() {
                 
                 <h5 style={styles.listHeading}>Défis techniques</h5>
                 <ul style={styles.list}>
-                  <li style={styles.listItem}><strong>Scalabilité</strong> - Augmenter le nombre de transactions par seconde</li>
-                  <li style={styles.listItem}><strong>Interopérabilité</strong> - Permettre la communication entre différentes blockchains</li>
-                  <li style={styles.listItem}><strong>Consommation énergétique</strong> - Réduire l'impact environnemental</li>
-                  <li style={styles.listItem}><strong>Expérience utilisateur</strong> - Simplifier l'utilisation pour le grand public</li>
+                  <li style={styles.listItem} className="list-item"><strong>Scalabilité</strong> - Augmenter le nombre de transactions par seconde</li>
+                  <li style={styles.listItem} className="list-item"><strong>Interopérabilité</strong> - Permettre la communication entre différentes blockchains</li>
+                  <li style={styles.listItem} className="list-item"><strong>Consommation énergétique</strong> - Réduire l'impact environnemental</li>
+                  <li style={styles.listItem} className="list-item"><strong>Expérience utilisateur</strong> - Simplifier l'utilisation pour le grand public</li>
                 </ul>
                 
                 <h5 style={styles.listHeading}>Défis réglementaires</h5>
                 <ul style={styles.list}>
-                  <li style={styles.listItem}><strong>Cadre juridique</strong> - Adaptation des lois aux spécificités de la blockchain</li>
-                  <li style={styles.listItem}><strong>Protection des consommateurs</strong> - Garantir la sécurité des utilisateurs</li>
-                  <li style={styles.listItem}><strong>Conformité</strong> - Respect des réglementations KYC/AML</li>
-                  <li style={styles.listItem}><strong>Fiscalité</strong> - Clarification du traitement fiscal des actifs numériques</li>
+                  <li style={styles.listItem} className="list-item"><strong>Cadre juridique</strong> - Adaptation des lois aux spécificités de la blockchain</li>
+                  <li style={styles.listItem} className="list-item"><strong>Protection des consommateurs</strong> - Garantir la sécurité des utilisateurs</li>
+                  <li style={styles.listItem} className="list-item"><strong>Conformité</strong> - Respect des réglementations KYC/AML</li>
+                  <li style={styles.listItem} className="list-item"><strong>Fiscalité</strong> - Clarification du traitement fiscal des actifs numériques</li>
                 </ul>
                 
                 <h5 style={styles.listHeading}>Perspectives d'avenir</h5>
                 <ul style={styles.list}>
-                  <li style={styles.listItem}><strong>Web3</strong> - Évolution vers un internet décentralisé</li>
-                  <li style={styles.listItem}><strong>DAOs</strong> - Organisations autonomes décentralisées</li>
-                  <li style={styles.listItem}><strong>Identité souveraine</strong> - Contrôle personnel des données d'identité</li>
-                  <li style={styles.listItem}><strong>Tokenisation</strong> - Représentation d'actifs réels sur la blockchain</li>
-                  <li style={styles.listItem}><strong>Finance régénérative</strong> - Financement de projets à impact positif</li>
+                  <li style={styles.listItem} className="list-item"><strong>Web3</strong> - Évolution vers un internet décentralisé</li>
+                  <li style={styles.listItem} className="list-item"><strong>DAOs</strong> - Organisations autonomes décentralisées</li>
+                  <li style={styles.listItem} className="list-item"><strong>Identité souveraine</strong> - Contrôle personnel des données d'identité</li>
+                  <li style={styles.listItem} className="list-item"><strong>Tokenisation</strong> - Représentation d'actifs réels sur la blockchain</li>
+                  <li style={styles.listItem} className="list-item"><strong>Finance régénérative</strong> - Financement de projets à impact positif</li>
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Timeline section - Corrigée */}
-        <motion.h2 
+        {/* Timeline section */}
+        <h2 
           id="timeline"
           ref={sectionRefs.timeline}
           style={styles.veilleSubheading}
-          initial="hidden"
-          animate={visibleSections.timeline ? "visible" : "hidden"}
-          variants={fadeIn}
+          className={visibleSections.timeline ? "fade-in" : ""}
         >
           Chronologie des innovations blockchain
           <div style={styles.subheadingUnderline}></div>
-        </motion.h2>
+        </h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <motion.div 
+          <div 
             style={styles.column}
-            initial="hidden"
-            animate={visibleSections.timeline ? "visible" : "hidden"}
-            variants={fadeIn}
+            className={visibleSections.timeline ? "fade-in" : ""}
           >
             <div style={styles.veilleCardView}>
               <div style={styles.cardGlow}></div>
@@ -1189,11 +1071,9 @@ function VeilleTechnologique() {
                 {/* Ligne centrale visible */}
                 <div style={styles.timelineCenterLine}></div>
                 
-                <motion.div 
+                <div 
                   style={{...styles.timelineItem, ...styles.timelineLeft}}
-                  initial="hidden"
-                  animate={visibleSections.timeline ? "visible" : "hidden"}
-                  variants={slideFromLeft}
+                  className={visibleSections.timeline ? "slide-from-left" : ""}
                 >
                   <div style={styles.timelineCircleLeft}></div>
                   <div style={styles.timelineContent} className="timeline-hover">
@@ -1203,13 +1083,11 @@ function VeilleTechnologique() {
                     </h3>
                     <p style={styles.cardText}>Publication du whitepaper Bitcoin par Satoshi Nakamoto et lancement du réseau Bitcoin.</p>
                   </div>
-                </motion.div>
+                </div>
                 
-                <motion.div 
+                <div 
                   style={{...styles.timelineItem, ...styles.timelineRight}}
-                  initial="hidden"
-                  animate={visibleSections.timeline ? "visible" : "hidden"}
-                  variants={slideFromRight}
+                  className={visibleSections.timeline ? "slide-from-right" : ""}
                 >
                   <div style={styles.timelineCircleRight}></div>
                   <div style={styles.timelineContent} className="timeline-hover">
@@ -1219,13 +1097,11 @@ function VeilleTechnologique() {
                     </h3>
                     <p style={styles.cardText}>Lancement d'Ethereum, introduisant les smart contracts et les DApps.</p>
                   </div>
-                </motion.div>
+                </div>
                 
-                <motion.div 
+                <div 
                   style={{...styles.timelineItem, ...styles.timelineLeft}}
-                  initial="hidden"
-                  animate={visibleSections.timeline ? "visible" : "hidden"}
-                  variants={slideFromLeft}
+                  className={visibleSections.timeline ? "slide-from-left" : ""}
                 >
                   <div style={styles.timelineCircleLeft}></div>
                   <div style={styles.timelineContent} className="timeline-hover">
@@ -1235,13 +1111,11 @@ function VeilleTechnologique() {
                     </h3>
                     <p style={styles.cardText}>Premier boom des ICO et popularisation des tokens ERC-20 sur Ethereum.</p>
                   </div>
-                </motion.div>
+                </div>
                 
-                <motion.div 
+                <div 
                   style={{...styles.timelineItem, ...styles.timelineRight}}
-                  initial="hidden"
-                  animate={visibleSections.timeline ? "visible" : "hidden"}
-                  variants={slideFromRight}
+                  className={visibleSections.timeline ? "slide-from-right" : ""}
                 >
                   <div style={styles.timelineCircleRight}></div>
                   <div style={styles.timelineContent} className="timeline-hover">
@@ -1251,13 +1125,11 @@ function VeilleTechnologique() {
                     </h3>
                     <p style={styles.cardText}>Explosion de la DeFi avec des protocoles comme Uniswap, Aave et Compound.</p>
                   </div>
-                </motion.div>
+                </div>
                 
-                <motion.div 
+                <div 
                   style={{...styles.timelineItem, ...styles.timelineLeft}}
-                  initial="hidden"
-                  animate={visibleSections.timeline ? "visible" : "hidden"}
-                  variants={slideFromLeft}
+                  className={visibleSections.timeline ? "slide-from-left" : ""}
                 >
                   <div style={styles.timelineCircleLeft}></div>
                   <div style={styles.timelineContent} className="timeline-hover">
@@ -1267,13 +1139,11 @@ function VeilleTechnologique() {
                     </h3>
                     <p style={styles.cardText}>Adoption massive des NFTs dans l'art, le divertissement et le sport.</p>
                   </div>
-                </motion.div>
+                </div>
                 
-                <motion.div 
+                <div 
                   style={{...styles.timelineItem, ...styles.timelineRight}}
-                  initial="hidden"
-                  animate={visibleSections.timeline ? "visible" : "hidden"}
-                  variants={slideFromRight}
+                  className={visibleSections.timeline ? "slide-from-right" : ""}
                 >
                   <div style={styles.timelineCircleRight}></div>
                   <div style={styles.timelineContent} className="timeline-hover">
@@ -1283,13 +1153,11 @@ function VeilleTechnologique() {
                     </h3>
                     <p style={styles.cardText}>The Merge : Ethereum passe au Proof of Stake, réduisant sa consommation énergétique.</p>
                   </div>
-                </motion.div>
+                </div>
                 
-                <motion.div 
+                <div 
                   style={{...styles.timelineItem, ...styles.timelineLeft}}
-                  initial="hidden"
-                  animate={visibleSections.timeline ? "visible" : "hidden"}
-                  variants={slideFromLeft}
+                  className={visibleSections.timeline ? "slide-from-left" : ""}
                 >
                   <div style={styles.timelineCircleLeft}></div>
                   <div style={styles.timelineContent} className="timeline-hover">
@@ -1299,13 +1167,11 @@ function VeilleTechnologique() {
                     </h3>
                     <p style={styles.cardText}>Adoption institutionnelle accélérée et développement des CBDCs.</p>
                   </div>
-                </motion.div>
+                </div>
                 
-                <motion.div 
+                <div 
                   style={{...styles.timelineItem, ...styles.timelineRight}}
-                  initial="hidden"
-                  animate={visibleSections.timeline ? "visible" : "hidden"}
-                  variants={slideFromRight}
+                  className={visibleSections.timeline ? "slide-from-right" : ""}
                 >
                   <div style={styles.timelineCircleRight}></div>
                   <div style={styles.timelineContent} className="timeline-hover">
@@ -1315,31 +1181,27 @@ function VeilleTechnologique() {
                     </h3>
                     <p style={styles.cardText}>Maturité des solutions d'interopérabilité et intégration dans les infrastructures critiques.</p>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Cas d'usage par secteur */}
-        <motion.h2 
+        <h2 
           id="sectors"
           ref={sectionRefs.sectors}
           style={styles.veilleSubheading}
-          initial="hidden"
-          animate={visibleSections.sectors ? "visible" : "hidden"}
-          variants={fadeIn}
+          className={visibleSections.sectors ? "fade-in" : ""}
         >
           Applications sectorielles
           <div style={styles.subheadingUnderline}></div>
-        </motion.h2>
+        </h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <motion.div 
+          <div 
             style={styles.columnThird}
-            initial="hidden"
-            animate={visibleSections.sectors ? "visible" : "hidden"}
-            variants={scaleIn}
+            className={visibleSections.sectors ? "scale-in" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -1360,19 +1222,17 @@ function VeilleTechnologique() {
                   établissements.
                 </p>
                 <ul style={styles.list}>
-                  <li style={styles.listItem}>Dossiers médicaux interopérables et contrôlés par les patients</li>
-                  <li style={styles.listItem}>Traçabilité des médicaments pour lutter contre la contrefaçon</li>
-                  <li style={styles.listItem}>Gestion des essais cliniques avec intégrité des données</li>
+                  <li style={styles.listItem} className="list-item">Dossiers médicaux interopérables et contrôlés par les patients</li>
+                  <li style={styles.listItem} className="list-item">Traçabilité des médicaments pour lutter contre la contrefaçon</li>
+                  <li style={styles.listItem} className="list-item">Gestion des essais cliniques avec intégrité des données</li>
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
+          <div 
             style={styles.columnThird}
-            initial="hidden"
-            animate={visibleSections.sectors ? "visible" : "hidden"}
-            variants={scaleIn}
+            className={visibleSections.sectors ? "scale-in" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -1392,19 +1252,17 @@ function VeilleTechnologique() {
                   offrant transparence et authenticité aux consommateurs et efficacité aux entreprises.
                 </p>
                 <ul style={styles.list}>
-                  <li style={styles.listItem}>Suivi de l'origine des produits alimentaires et de luxe</li>
-                  <li style={styles.listItem}>Optimisation logistique et réduction des fraudes</li>
-                  <li style={styles.listItem}>Certification des pratiques durables et éthiques</li>
+                  <li style={styles.listItem} className="list-item">Suivi de l'origine des produits alimentaires et de luxe</li>
+                  <li style={styles.listItem} className="list-item">Optimisation logistique et réduction des fraudes</li>
+                  <li style={styles.listItem} className="list-item">Certification des pratiques durables et éthiques</li>
                 </ul>
+              </div>
             </div>
-            </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
+          <div 
             style={styles.columnThird}
-            initial="hidden"
-            animate={visibleSections.sectors ? "visible" : "hidden"}
-            variants={scaleIn}
+            className={visibleSections.sectors ? "scale-in" : ""}
           >
             <div style={styles.veilleCardView} className="card-hover">
               <div style={styles.cardGlow}></div>
@@ -1424,21 +1282,19 @@ function VeilleTechnologique() {
                   permettant l'échange pair-à-pair d'énergie renouvelable et la certification d'origine.
                 </p>
                 <ul style={styles.list}>
-                  <li style={styles.listItem}>Microgrids avec échange direct entre producteurs et consommateurs</li>
-                  <li style={styles.listItem}>Certification et trading de crédits carbone</li>
-                  <li style={styles.listItem}>Optimisation de la distribution et réduction des pertes</li>
+                  <li style={styles.listItem} className="list-item">Microgrids avec échange direct entre producteurs et consommateurs</li>
+                  <li style={styles.listItem} className="list-item">Certification et trading de crédits carbone</li>
+                  <li style={styles.listItem} className="list-item">Optimisation de la distribution et réduction des pertes</li>
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         <div style={{...styles.row, ...styles.paddingBottom30}}>
-          <motion.div 
+          <div 
             style={styles.column}
-            initial="hidden"
-            animate={visibleSections.sectors ? "visible" : "hidden"}
-            variants={fadeIn}
+            className={visibleSections.sectors ? "fade-in" : ""}
           >
             <div style={styles.veilleSources}>
               <div style={styles.cardGlow}></div>
@@ -1447,27 +1303,27 @@ function VeilleTechnologique() {
                 <div style={styles.titleUnderline}></div>
               </h3>
               <ul style={styles.sourcesList}>
-                <li style={styles.sourceItem}>
+                <li style={styles.sourceItem} className="source-item">
                   <a href="https://ethereum.org" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
                     Ethereum.org
                   </a> - Documentation officielle d'Ethereum et ressources sur les smart contracts
                 </li>
-                <li style={styles.sourceItem}>
+                <li style={styles.sourceItem} className="source-item">
                   <a href="https://defipulse.com" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
                     DeFi Pulse
                   </a> - Suivi des protocoles DeFi et analyses des tendances du secteur
                 </li>
-                <li style={styles.sourceItem}>
+                <li style={styles.sourceItem} className="source-item">
                   <a href="https://www.coindesk.com" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
                     CoinDesk
                   </a> - Actualités blockchain et analyses approfondies des développements récents
                 </li>
-                <li style={styles.sourceItem}>
+                <li style={styles.sourceItem} className="source-item">
                   <a href="https://www.bis.org/topics/cbdc.htm" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
                     Bank for International Settlements
                   </a> - Recherches sur les CBDCs et l'adoption institutionnelle
                 </li>
-                <li style={styles.sourceItem}>
+                <li style={styles.sourceItem} className="source-item">
                   <a href="https://www.ledger.com/academy" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
                     Ledger Academy
                   </a> - Ressources éducatives sur la blockchain et la cryptographie
@@ -1485,7 +1341,7 @@ function VeilleTechnologique() {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
