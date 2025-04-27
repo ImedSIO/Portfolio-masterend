@@ -164,66 +164,39 @@ function VeilleTechnologique() {
     padding10: {
       padding: "10px",
     },
-    imageContainer: {
+    colorBlock: {
+      height: "200px",
+      borderRadius: "12px",
+      marginBottom: "20px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      boxShadow: "0 8px 20px rgba(0, 0, 0, 0.4)",
+      background: "linear-gradient(45deg, #6a11cb, #2575fc)",
+      color: "white",
+      fontSize: "3rem",
+      fontWeight: "bold",
+    },
+    iconContainer: {
       display: "flex",
       justifyContent: "center",
       marginBottom: "20px",
-      overflow: "hidden",
-      borderRadius: "12px",
-      boxShadow: "0 8px 20px rgba(0, 0, 0, 0.4)",
     },
-    cardImage: {
-      width: "100%",
-      height: "auto",
-      maxHeight: "250px", // Réduire la hauteur des images
-      objectFit: "cover", // Assurer que les images couvrent bien l'espace
-      transition: "transform 0.5s ease",
-    },
-    iconImage: {
+    iconCircle: {
       width: "80px",
       height: "80px",
-      marginBottom: "15px",
-      filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))",
+      borderRadius: "50%",
+      backgroundColor: "rgba(205, 95, 248, 0.2)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+      border: "2px solid #cd5ff8",
     },
-    timeline: {
-      position: "relative",
-      maxWidth: "1200px",
-      margin: "0 auto",
-      padding: "20px 0",
-    },
-    timelineCenterLine: {
-      position: "absolute",
-      width: "6px",
-      backgroundColor: "rgba(205, 95, 248, 0.7)",
-      top: "0",
-      bottom: "0",
-      left: "50%",
-      marginLeft: "-3px",
-      borderRadius: "3px",
-      boxShadow: "0 0 10px rgba(205, 95, 248, 0.5)",
-    },
-    timelineItem: {
-      padding: "10px 40px",
-      position: "relative",
-      backgroundColor: "inherit",
-      width: "50%",
-      boxSizing: "border-box",
-      marginBottom: "30px",
-    },
-    timelineLeft: {
-      left: "0",
-    },
-    timelineRight: {
-      left: "50%",
-    },
-    timelineContent: {
-      padding: "20px 30px",
-      backgroundColor: "rgba(30, 30, 40, 0.7)",
-      position: "relative",
-      borderRadius: "15px",
-      border: "1px solid rgba(200, 137, 230, 0.3)",
-      boxShadow: "0 5px 15px rgba(0, 0, 0, 0.3)",
-      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    iconText: {
+      fontSize: "2rem",
+      color: "#cd5ff8",
+      fontWeight: "bold",
     },
     gradientButton: {
       display: "inline-block",
@@ -274,6 +247,46 @@ function VeilleTechnologique() {
       color: "#cd5ff8",
       fontWeight: "600",
     },
+    timeline: {
+      position: "relative",
+      maxWidth: "1200px",
+      margin: "0 auto",
+      padding: "20px 0",
+    },
+    timelineCenterLine: {
+      position: "absolute",
+      width: "6px",
+      backgroundColor: "rgba(205, 95, 248, 0.7)",
+      top: "0",
+      bottom: "0",
+      left: "50%",
+      marginLeft: "-3px",
+      borderRadius: "3px",
+      boxShadow: "0 0 10px rgba(205, 95, 248, 0.5)",
+    },
+    timelineItem: {
+      padding: "10px 40px",
+      position: "relative",
+      backgroundColor: "inherit",
+      width: "50%",
+      boxSizing: "border-box",
+      marginBottom: "30px",
+    },
+    timelineLeft: {
+      left: "0",
+    },
+    timelineRight: {
+      left: "50%",
+    },
+    timelineContent: {
+      padding: "20px 30px",
+      backgroundColor: "rgba(30, 30, 40, 0.7)",
+      position: "relative",
+      borderRadius: "15px",
+      border: "1px solid rgba(200, 137, 230, 0.3)",
+      boxShadow: "0 5px 15px rgba(0, 0, 0, 0.3)",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    },
     timelineCircleLeft: {
       position: "absolute",
       width: "24px",
@@ -311,12 +324,8 @@ function VeilleTechnologique() {
         <div style={{...styles.row, ...styles.padding10}}>
           <div style={styles.veilleHeaderCard}>
             <div style={styles.veilleCardView}>
-              <div style={styles.imageContainer}>
-                <img 
-                  src="https://cdn.pixabay.com/photo/2018/01/18/10/00/blockchain-3090197_1280.jpg" 
-                  alt="Blockchain Technology" 
-                  style={styles.cardImage}
-                />
+              <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #6a11cb, #2575fc)"}}>
+                <span>BLOCKCHAIN</span>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>La Blockchain : Une Révolution Technologique</h3>
@@ -361,12 +370,8 @@ function VeilleTechnologique() {
         <div style={{...styles.row, ...styles.paddingBottom50}}>
           <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
-              <div style={styles.imageContainer}>
-                <img 
-                  src="https://cdn.pixabay.com/photo/2018/05/17/21/26/cryptocurrency-3409725_1280.jpg" 
-                  alt="Ethereum" 
-                  style={styles.cardImage}
-                />
+              <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #11998e, #38ef7d)"}}>
+                <span>ETH</span>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>Ethereum et Smart Contracts</h3>
@@ -395,12 +400,8 @@ function VeilleTechnologique() {
 
           <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
-              <div style={styles.imageContainer}>
-                <img 
-                  src="https://cdn.pixabay.com/photo/2022/03/01/02/51/nft-7040435_1280.png" 
-                  alt="NFT Artwork" 
-                  style={styles.cardImage}
-                />
+              <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #FF416C, #FF4B2B)"}}>
+                <span>NFT</span>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>NFTs (Non-Fungible Tokens)</h3>
@@ -430,12 +431,8 @@ function VeilleTechnologique() {
 
           <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
-              <div style={styles.imageContainer}>
-                <img 
-                  src="https://cdn.pixabay.com/photo/2021/05/24/09/15/ethereum-6278326_1280.jpg" 
-                  alt="DeFi Concept" 
-                  style={styles.cardImage}
-                />
+              <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #8E2DE2, #4A00E0)"}}>
+                <span>DeFi</span>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>Finance Décentralisée (DeFi)</h3>
@@ -465,12 +462,8 @@ function VeilleTechnologique() {
 
           <div style={styles.columnHalf}>
             <div style={styles.veilleCardView}>
-              <div style={styles.imageContainer}>
-                <img 
-                  src="https://cdn.pixabay.com/photo/2017/12/12/12/44/bitcoin-3014614_1280.jpg" 
-                  alt="Central Bank Digital Currency" 
-                  style={styles.cardImage}
-                />
+              <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #3A1C71, #D76D77, #FFAF7B)"}}>
+                <span>CBDC</span>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>CBDCs et Adoption Institutionnelle</h3>
@@ -504,12 +497,10 @@ function VeilleTechnologique() {
         <div style={{...styles.row, ...styles.paddingBottom50}}>
           <div style={styles.columnThird}>
             <div style={styles.veilleCardView}>
-              <div style={{textAlign: "center"}}>
-                <img 
-                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBmaWxsPSIjY2Q1ZmY4Ij48cGF0aCBkPSJNMjcyIDMyYy05LjEgMC0xNi44IDYuNC0xOC42IDE1LjJMMjA4IDIwOEg5NmMtOC44IDAtMTYgNy4yLTE2IDE2czYgMTYgMTYgMTZoMTI4YzkuMSAwIDE2LjgtNi40IDE4LjYtMTUuMkwyODggOTZoMTI4YzguOCAwIDE2LTcuMiAxNi0xNnMtNy4yLTE2LTE2LTE2SDI3MnptLTY0IDMyMGMtMzUuMyAwLTY0IDI4LjctNjQgNjRzMjguNyA2NCA2NCA2NHM2NC0yOC43IDY0LTY0cy0yOC43LTY0LTY0LTY0ek0yMDggMjg4Yy04LjggMC0xNiA3LjItMTYgMTZzNy4yIDE2IDE2IDE2aDk2YzguOCAwIDE2LTcuMiAxNi0xNnMtNy4yLTE2LTE2LTE2aC05NnptMTI4IDY0Yy04LjggMC0xNiA3LjItMTYgMTZzNy4yIDE2IDE2IDE2aDk2YzguOCAwIDE2LTcuMiAxNi0xNnMtNy4yLTE2LTE2LTE2aC05NnoiLz48L3N2Zz4=" 
-                  alt="Blockchain Sustainability" 
-                  style={styles.iconImage}
-                />
+              <div style={styles.iconContainer}>
+                <div style={styles.iconCircle}>
+                  <span style={styles.iconText}>🌱</span>
+                </div>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>Blockchain Verte</h3>
@@ -529,12 +520,10 @@ function VeilleTechnologique() {
 
           <div style={styles.columnThird}>
             <div style={styles.veilleCardView}>
-              <div style={{textAlign: "center"}}>
-                <img 
-                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBmaWxsPSIjY2Q1ZmY4Ij48cGF0aCBkPSJNMTg0IDQ4SDMyOGMxMy4zIDAgMjQgMTAuNyAyNCAyNHMtMTAuNyAyNC0yNCAyNEgxODRjLTEzLjMgMC0yNC0xMC43LTI0LTI0czEwLjctMjQgMjQtMjR6bTEyOCA5NmMwLTEzLjMgMTAuNy0yNCAyNC0yNGgxMTJjMTMuMyAwIDI0IDEwLjcgMjQgMjRzLTEwLjcgMjQtMjQgMjRIMzM2Yy0xMy4zIDAtMjQtMTAuNy0yNC0yNHptLTI0IDk2aDExMmMxMy4zIDAgMjQgMTAuNyAyNCAyNHMtMTAuNyAyNC0yNCAyNEgyODhjLTEzLjMgMC0yNC0xMC43LTI0LTI0czEwLjctMjQgMjQtMjR6TTQxNiAzMzZjMC0xMy4zIDEwLjctMjQgMjQtMjRoNDhjMTMuMyAwIDI0IDEwLjcgMjQgMjRzLTEwLjcgMjQtMjQgMjRoLTQ4Yy0xMy4zIDAtMjQtMTAuNy0yNC0yNHptLTI1NiA0OGMxMy4zIDAgMjQgMTAuNyAyNCAyNHMtMTAuNyAyNC0yNCAyNEg2NGMtMTMuMyAwLTI0LTEwLjctMjQtMjRzMTAuNy0yNCAyNC0yNGg5NnpNMjI0IDMyYzAgMTcuNy0xNC4zIDMyLTMyIDMycy0zMi0xNC4zLTMyLTMyIDEzLjMtMzIgMzItMzIgMzIgMTQuMyAzMiAzMnptLTk2IDk2YzAgMTcuNy0xNC4zIDMyLTMyIDMycy0zMi0xNC4zLTMyLTMyIDEzLjMtMzIgMzItMzIgMzIgMTQuMyAzMiAzMnptLTk2IDk2YzAgMTcuNy0xNC4zIDMyLTMyIDMycy0zMi0xNC4zLTMyLTMyIDEzLjMtMzIgMzItMzIgMzIgMTQuMyAzMiAzMnptOTYgOTZjMCAxNy43LTE0LjMgMzItMzIgMzJzLTMyLTE0LjMtMzItMzIgMTMuMy0zMiAzMi0zMiAzMiAxNC4zIDMyIDMyem0yMjQtOTZjMCAxNy43LTE0LjMgMzItMzIgMzJzLTMyLTE0LjMtMzItMzIgMTMuMy0zMiAzMi0zMiAzMiAxNC4zIDMyIDMyem0tOTYtOTZjMCAxNy43LTE0LjMgMzItMzIgMzJzLTMyLTE0LjMtMzItMzIgMTMuMy0zMiAzMi0zMiAzMiAxNC4zIDMyIDMyem0yMjQgOTZjMCAxNy43LTE0LjMgMzItMzIgMzJzLTMyLTE0LjMtMzItMzIgMTMuMy0zMiAzMi0zMiAzMiAxNC4zIDMyIDMyem0tOTYtOTZjMCAxNy43LTE0LjMgMzItMzIgMzJzLTMyLTE0LjMtMzItMzIgMTMuMy0zMiAzMi0zMiAzMiAxNC4zIDMyIDMyeiIvPjwvc3ZnPg==" 
-                  alt="Blockchain Interoperability" 
-                  style={styles.iconImage}
-                />
+              <div style={styles.iconContainer}>
+                <div style={styles.iconCircle}>
+                  <span style={styles.iconText}>🔗</span>
+                </div>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>Interopérabilité</h3>
@@ -553,12 +542,10 @@ function VeilleTechnologique() {
 
           <div style={styles.columnThird}>
             <div style={styles.veilleCardView}>
-              <div style={{textAlign: "center"}}>
-                <img 
-                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBmaWxsPSIjY2Q1ZmY4Ij48cGF0aCBkPSJNMzM2IDM1MmMtMTcuNyAwLTMyIDE0LjMtMzIgMzJzMTQuMyAzMiAzMiAzMnMzMi0xNC4zIDMyLTMyLTE0LjMtMzItMzItMzJ6bS0yMDgtMjRoLS4wMmMuMDEtLjI2LjAyLS41Mi4wMi0uNzlWOTZjMC0zNS4zIDI4LjctNjQgNjQtNjRoMTYwYzM1LjMgMCA2NCAyOC43IDY0IDY0djIzMS4yYzAgLjI3LjAxLjUzLjAyLjc5aC0uMDJjMCAuMTMuMDIuMjUuMDIuMzggMCAxNy43LTE0LjMgMzItMzIgMzJIMTYwYy0xNy43IDAtMzItMTQuMy0zMi0zMiAwLS4xMy4wMi0uMjUuMDItLjM4ek0zMjAgMjI0aDY0di0zMmgtNjR2MzJ6bTAgNjRoNjR2LTMyaC02NHYzMnptLTEyOC02NGg2NHYtMzJoLTY0djMybTAgNjRoNjR2LTMyaC02NHYzMnptLTEyOC02NGg2NHYtMzJoLTY0djMybTAgNjRoNjR2LTMyaC02NHYzMnpNNTEyIDMwNGMwIDQ0LjItMzUuOCA4MC04MCA4MGgtMTAuNGMtMy0uMi01LjkgMC04LjcuNi0zNS4zIDcuOS03MC4xLTE0LjYtNzgtNDkuOWwtLjItLjljLS41LTIuNS0uOC01LjEtLjgtNy43IDAtMjEuMSAxNy4xLTM4LjMgMzguMy0zOC4zLjIgMCAuNC0uMS42LS4xSDM4NGM4LjggMCAxNi03LjIgMTYtMTZzLTcuMi0xNi0xNi0xNmgtMTAuMmMtMTMuMSAwLTI1LjgtMi4xLTM3LjgtNi4xVjk2YzAtMTcuNy0xNC4zLTMyLTMyLTMySDEyOGMtMTcuNyAwLTMyIDE0LjMtMzIgMzJ2MTUzLjljLTEyLTQtMjQuNy02LjEtMzcuOC02LjFIODhjLTguOCAwLTE2IDcuMi0xNiAxNnM3LjIgMTYgMTYgMTZoMTAuMmMuMiAwIC40LjEuNi4xIDIxLjIgMCAzOC4zIDE3LjEgMzguMyAzOC4zIDAgMi42LS4zIDUuMi0uOCA3LjdsLS4yLjljLTcuOSAzNS4zLTQyLjcgNTcuOC03OCA0OS45LTIuOC0uNi01LjctLjgtOC43LS42SDQwYy00NC4yIDAtODAtMzUuOC04MC04MHMzNS44LTgwIDgwLTgwYzguOCAwIDE2LTcuMiAxNi0xNnMtNy4yLTE2LTE2LTE2Yy02MS44IDAtMTEyIDUwLjItMTEyIDExMnM1MC4yIDExMiAxMTIgMTEyaDIyLjRjMy41IDAgNi45LjUgMTAuMiAxLjQgNTAuNiAxMS4zIDEwMS4yLTIwLjkgMTEyLjUtNzEuNiAuMy0xLjMuNS0yLjYuNy00IDEuNi0xMC4yIDEzLjEtMTUuOCAyMi4yLTkuOCAyNS41IDE2LjggNTUuNyAyNi43IDg4LjEgMjYuN2gxMC40YzYxLjggMCAxMTItNTAuMiAxMTItMTEycy01MC4yLTExMi0xMTItMTEyYy04LjggMC0xNiA3LjItMTYgMTZzNy4yIDE2IDE2IDE2YzQ0LjIgMCA4MCAzNS44IDgwIDgweiIvPjwvc3ZnPg==" 
-                  alt="Zero-Knowledge Proofs" 
-                  style={styles.iconImage}
-                />
+              <div style={styles.iconContainer}>
+                <div style={styles.iconCircle}>
+                  <span style={styles.iconText}>🔒</span>
+                </div>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>Confidentialité et ZK-Proofs</h3>
@@ -581,12 +568,8 @@ function VeilleTechnologique() {
         <div style={{...styles.row, ...styles.paddingBottom50}}>
           <div style={styles.column}>
             <div style={styles.veilleCardView}>
-              <div style={styles.imageContainer}>
-                <img 
-                  src="https://cdn.pixabay.com/photo/2018/01/28/10/08/bitcoin-3113503_1280.jpg" 
-                  alt="Blockchain Challenges" 
-                  style={styles.cardImage}
-                />
+              <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #654ea3, #eaafc8)"}}>
+                <span>DÉFIS</span>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>Défis actuels et évolutions futures</h3>
@@ -709,12 +692,10 @@ function VeilleTechnologique() {
         <div style={{...styles.row, ...styles.paddingBottom50}}>
           <div style={styles.columnThird}>
             <div style={styles.veilleCardView}>
-              <div style={{textAlign: "center"}}>
-                <img 
-                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBmaWxsPSIjY2Q1ZmY4Ij48cGF0aCBkPSJNMjU2IDk2YzAtNTMtNDMtOTYtOTYtOTZINDhjLTguOCAwLTE2IDcuMi0xNiAxNlY0MTZjMCA4LjggNy4yIDE2IDE2IDE2SDI1NmM2MS45IDAgMTEyLTUwLjEgMTEyLTExMnMtNTAuMS0xMTItMTEyLTExMkg2NFY5Nmg5NmMxNy43IDAgMzIgMTQuMyAzMiAzMnMtMTQuMyAzMi0zMiAzMkg5NmMtOC44IDAtMTYgNy4yLTE2IDE2czYgMTYgMTYgMTZoMTYwYzQ0LjIgMCA4MCAzNS44IDgwIDgwcy0zNS44IDgwLTgwIDgwSDY0VjE2MGg5NmM4LjggMCAxNi03LjIgMTYtMTZzLTcuMi0xNi0xNi0xNkg2NFY5NmgxNjB6TTIyNCAyNTZjMC0xNy43IDE0LjMtMzIgMzItMzJoNjRjMTcuNyAwIDMyIDE0LjMgMzIgMzJzLTE0LjMgMzItMzIgMzJoLTY0Yy0xNy43IDAtMzItMTQuMy0zMi0zMnptMTI4IDk2YzE3LjcgMCAzMiAxNC4zIDMyIDMycy0xNC4zIDMyLTMyIDMyaC05NmMtMTcuNyAwLTMyLTE0LjMtMzItMzJzMTQuMy0zMiAzMi0zMmg5NnoiLz48L3N2Zz4=" 
-                  alt="Healthcare" 
-                  style={styles.iconImage}
-                />
+              <div style={styles.iconContainer}>
+                <div style={styles.iconCircle}>
+                  <span style={styles.iconText}>💊</span>
+                </div>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>Santé</h3>
@@ -734,12 +715,10 @@ function VeilleTechnologique() {
 
           <div style={styles.columnThird}>
             <div style={styles.veilleCardView}>
-              <div style={{textAlign: "center"}}>
-                <img 
-                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBmaWxsPSIjY2Q1ZmY4Ij48cGF0aCBkPSJNMzIgMTI4YzAtMTcuNyAxNC4zLTMyIDMyLTMyaDI1NmMxNy43IDAgMzIgMTQuMyAzMiAzMnY2NGMwIDE3LjctMTQuMyAzMi0zMiAzMkg2NGMtMTcuNyAwLTMyLTE0LjMtMzItMzJ2LTY0em0zMiA5NmgyNTZ2NjRINjR2LTY0em0wIDEyOGgyNTZ2NjRINjR2LTY0em0zODQgMGg2NHY2NGgtNjR2LTY0em0wLTEyOGg2NHY2NGgtNjR2LTY0em0wLTEyOGg2NHY2NGgtNjR2LTY0em0wLTEyOGg2NHY2NGgtNjR2LTY0eiIvPjwvc3ZnPg==" 
-                  alt="Supply Chain" 
-                  style={styles.iconImage}
-                />
+              <div style={styles.iconContainer}>
+                <div style={styles.iconCircle}>
+                  <span style={styles.iconText}>📦</span>
+                </div>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>Chaîne d'approvisionnement</h3>
@@ -758,12 +737,10 @@ function VeilleTechnologique() {
 
           <div style={styles.columnThird}>
             <div style={styles.veilleCardView}>
-              <div style={{textAlign: "center"}}>
-                <img 
-                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBmaWxsPSIjY2Q1ZmY4Ij48cGF0aCBkPSJNMTg0LjIgMjI0LjVjLTQuNy00LjctMTIuMy00LjctMTcgMGwtNzMuNSA3My41Yy00LjcgNC43LTQuNyAxMi4zIDAgMTdzMTIuMyA0LjcgMTcgMGw3My41LTczLjVjNC43LTQuNyA0LjctMTIuMyAwLTE3ek0yNTYgMTYwYzEzLjMgMCAyNC0xMC43IDI0LTI0cy0xMC43LTI0LTI0LTI0LTI0IDEwLjctMjQgMjQgMTAuNyAyNCAyNCAyNHptMTEzLjEgMTguNmMtNC43LTQuNy0xMi4zLTQuNy0xNyAwTDIwOC41IDMyMi4xYy00LjcgNC43LTQuNyAxMi4zIDAgMTdzMTIuMyA0LjcgMTcgMEwzNjkuMSAxOTUuNmM0LjctNC43IDQuNy0xMi4zIDAtMTd6TTI1NiA0MTZjLTEzLjMgMC0yNCAxMC43LTI0IDI0czEwLjcgMjQgMjQgMjQgMjQtMTAuNyAyNC0yNC0xMC43LTI0LTI0LTI0ek00NjQgMjI0YzAtOTIuOC03NS4yLTE2OC0xNjgtMTY4SDIxNmMtOTIuOCAwLTE2OCA3NS4yLTE2OCAxNjhzNzUuMiAxNjggMTY4IDE2OGg4MGM5Mi44IDAgMTY4LTc1LjIgMTY4LTE2OHptLTMyIDBjMCA3NS4xLTYwLjkgMTM2LTEzNiAxMzZoLTgwYy03NS4xIDAtMTM2LTYwLjktMTM2LTEzNnM2MC45LTEzNiAxMzYtMTM2aDgwYzc1LjEgMCAxMzYgNjAuOSAxMzYgMTM2eiIvPjwvc3ZnPg==" 
-                  alt="Energy" 
-                  style={styles.iconImage}
-                />
+              <div style={styles.iconContainer}>
+                <div style={styles.iconCircle}>
+                  <span style={styles.iconText}>⚡</span>
+                </div>
               </div>
               <div>
                 <h3 style={styles.cardTitle}>Énergie</h3>
