@@ -1,11 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Particle from "../Particle";
+import { motion } from "framer-motion"; // Supposons que framer-motion est installé
 
 function VeilleTechnologique() {
   // État pour gérer la largeur de l'écran
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 0
   );
+  
+  // Références pour les animations au scroll
+  const sectionRefs = {
+    header: useRef(null),
+    stats: useRef(null),
+    applications: useRef(null),
+    innovations: useRef(null),
+    challenges: useRef(null),
+    timeline: useRef(null),
+    sectors: useRef(null)
+  };
+  
+  // État pour suivre les sections visibles
+  const [visibleSections, setVisibleSections] = useState({});
 
   // Effet pour mettre à jour la largeur de l'écran lors du redimensionnement
   useEffect(() => {
@@ -16,13 +31,89 @@ function VeilleTechnologique() {
     };
 
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    
+    // Observer pour les animations au scroll
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -100px 0px"
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setVisibleSections(prev => ({
+            ...prev,
+            [entry.target.dataset.section]: true
+          }));
+        }
+      });
+    }, observerOptions);
+    
+    // Observer chaque section
+    Object.entries(sectionRefs).forEach(([key, ref]) => {
+      if (ref.current) {
+        ref.current.dataset.section = key;
+        observer.observe(ref.current);
+      }
+    });
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      observer.disconnect();
+    };
   }, []);
 
   // Fonction pour gérer le téléchargement du rapport
   const handleDownloadReport = () => {
     alert("Le téléchargement du rapport commencera bientôt...");
     // Ici, vous pourriez implémenter la logique réelle de téléchargement
+  };
+
+  // Animations
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+  
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+  
+  const scaleIn = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: { 
+      scale: 1, 
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+  
+  const slideFromLeft = {
+    hidden: { x: -50, opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+  
+  const slideFromRight = {
+    hidden: { x: 50, opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
   };
 
   // CSS amélioré
@@ -45,23 +136,47 @@ function VeilleTechnologique() {
       padding: "0 15px",
     },
     veilleHeading: {
-      fontSize: "3.5rem",
+      fontSize: windowWidth >= 768 ? "4.5rem" : "3rem",
       fontWeight: "800",
       paddingBottom: "20px",
       textAlign: "center",
       marginBottom: "2rem",
       textShadow: "0 2px 10px rgba(205, 95, 248, 0.5)",
       letterSpacing: "1px",
+      background: "linear-gradient(90deg, #ffffff, #cd5ff8)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      position: "relative",
+    },
+    headingUnderline: {
+      position: "absolute",
+      bottom: "0",
+      left: "50%",
+      transform: "translateX(-50%)",
+      width: "150px",
+      height: "4px",
+      background: "linear-gradient(90deg, #cd5ff8, #a64dff)",
+      borderRadius: "2px",
     },
     veilleSubheading: {
-      fontSize: "2.2rem",
+      fontSize: windowWidth >= 768 ? "2.5rem" : "2rem",
       fontWeight: "600",
       textAlign: "center",
-      marginTop: "3rem",
-      marginBottom: "2.5rem",
+      marginTop: "4rem",
+      marginBottom: "3rem",
       color: "#e0e0e0",
       textShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
       position: "relative",
+    },
+    subheadingUnderline: {
+      position: "absolute",
+      bottom: "-10px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      width: "100px",
+      height: "3px",
+      background: "linear-gradient(90deg, #cd5ff8, #a64dff)",
+      borderRadius: "2px",
     },
     purple: {
       color: "#cd5ff8",
@@ -76,6 +191,22 @@ function VeilleTechnologique() {
       height: "100%",
       backdropFilter: "blur(5px)",
       transform: "translateZ(0)",
+      overflow: "hidden",
+      position: "relative",
+      "&:hover": {
+        transform: "translateY(-5px)",
+        boxShadow: "0 15px 35px rgba(0, 0, 0, 0.6)",
+        border: "1px solid rgba(200, 137, 230, 0.5)",
+      },
+    },
+    cardGlow: {
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      background: "radial-gradient(circle at 50% 0%, rgba(205, 95, 248, 0.2), transparent 70%)",
+      pointerEvents: "none",
     },
     veilleHeaderCard: {
       marginBottom: "30px",
@@ -108,6 +239,17 @@ function VeilleTechnologique() {
       fontWeight: "600",
       color: "#cd5ff8",
       marginBottom: "20px",
+      position: "relative",
+      display: "inline-block",
+    },
+    titleUnderline: {
+      position: "absolute",
+      bottom: "-5px",
+      left: "0",
+      width: "40px",
+      height: "2px",
+      background: "#cd5ff8",
+      borderRadius: "1px",
     },
     cardText: {
       fontSize: "1.05rem",
@@ -126,20 +268,33 @@ function VeilleTechnologique() {
       fontWeight: "600",
       marginBottom: "20px",
       color: "#cd5ff8",
+      position: "relative",
+      display: "inline-block",
     },
     sourcesList: {
       listStyleType: "none",
       paddingLeft: "15px",
     },
     sourceLink: {
-      color: "#e0e0e0",
+      color: "#cd5ff8",
       textDecoration: "none",
       transition: "color 0.3s",
+      fontWeight: "500",
     },
     sourceItem: {
       marginBottom: "15px",
       position: "relative",
       paddingLeft: "25px",
+      "&:before": {
+        content: "''",
+        position: "absolute",
+        left: "0",
+        top: "10px",
+        width: "8px",
+        height: "8px",
+        backgroundColor: "#cd5ff8",
+        borderRadius: "50%",
+      },
     },
     listHeading: {
       fontSize: "1.3rem",
@@ -151,9 +306,22 @@ function VeilleTechnologique() {
     list: {
       paddingLeft: "25px",
       color: "#d0d0d0",
+      listStyleType: "none",
     },
     listItem: {
       marginBottom: "12px",
+      position: "relative",
+      paddingLeft: "20px",
+      "&:before": {
+        content: "''",
+        position: "absolute",
+        left: "0",
+        top: "10px",
+        width: "6px",
+        height: "6px",
+        backgroundColor: "#cd5ff8",
+        borderRadius: "50%",
+      },
     },
     paddingBottom50: {
       paddingBottom: "50px",
@@ -176,6 +344,33 @@ function VeilleTechnologique() {
       color: "white",
       fontSize: "3rem",
       fontWeight: "bold",
+      position: "relative",
+      overflow: "hidden",
+    },
+    blockOverlay: {
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      background: "radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%)",
+    },
+    blockContent: {
+      position: "relative",
+      zIndex: "2",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    blockIcon: {
+      fontSize: "4rem",
+      marginBottom: "10px",
+    },
+    blockText: {
+      fontSize: "2rem",
+      fontWeight: "bold",
+      letterSpacing: "2px",
     },
     iconContainer: {
       display: "flex",
@@ -183,24 +378,35 @@ function VeilleTechnologique() {
       marginBottom: "20px",
     },
     iconCircle: {
-      width: "80px",
-      height: "80px",
+      width: "90px",
+      height: "90px",
       borderRadius: "50%",
-      backgroundColor: "rgba(205, 95, 248, 0.2)",
+      backgroundColor: "rgba(205, 95, 248, 0.15)",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
-      border: "2px solid #cd5ff8",
+      boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(205, 95, 248, 0.3)",
+      border: "2px solid rgba(205, 95, 248, 0.5)",
+      position: "relative",
+      overflow: "hidden",
+    },
+    iconGlow: {
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      background: "radial-gradient(circle at center, rgba(205, 95, 248, 0.3) 0%, transparent 70%)",
+      animation: "pulse 2s infinite",
     },
     iconText: {
-      fontSize: "2rem",
-      color: "#cd5ff8",
-      fontWeight: "bold",
+      fontSize: "2.5rem",
+      position: "relative",
+      zIndex: "2",
     },
     gradientButton: {
       display: "inline-block",
-      padding: "14px 28px",
+      padding: "16px 32px",
       background: "linear-gradient(90deg, #cd5ff8, #a64dff)",
       color: "white",
       borderRadius: "30px",
@@ -212,6 +418,24 @@ function VeilleTechnologique() {
       cursor: "pointer",
       marginTop: "20px",
       fontSize: "1.1rem",
+      position: "relative",
+      overflow: "hidden",
+      "&:hover": {
+        transform: "translateY(-3px)",
+        boxShadow: "0 7px 20px rgba(205, 95, 248, 0.6)",
+      },
+      "&:active": {
+        transform: "translateY(1px)",
+      },
+    },
+    buttonGlow: {
+      position: "absolute",
+      top: "0",
+      left: "-100%",
+      width: "100%",
+      height: "100%",
+      background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)",
+      animation: "shine 3s infinite",
     },
     statsContainer: {
       display: "flex",
@@ -229,6 +453,21 @@ function VeilleTechnologique() {
       width: windowWidth >= 768 ? "calc(25% - 20px)" : "calc(50% - 20px)",
       boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
+      position: "relative",
+      overflow: "hidden",
+      "&:hover": {
+        transform: "translateY(-5px)",
+        boxShadow: "0 12px 25px rgba(0, 0, 0, 0.4)",
+      },
+    },
+    statGlow: {
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      background: "radial-gradient(circle at top, rgba(205, 95, 248, 0.2), transparent 70%)",
+      pointerEvents: "none",
     },
     statNumber: {
       fontSize: "2.5rem",
@@ -237,6 +476,7 @@ function VeilleTechnologique() {
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       marginBottom: "10px",
+      position: "relative",
     },
     statLabel: {
       fontSize: "1.1rem",
@@ -286,6 +526,10 @@ function VeilleTechnologique() {
       border: "1px solid rgba(200, 137, 230, 0.3)",
       boxShadow: "0 5px 15px rgba(0, 0, 0, 0.3)",
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
+      "&:hover": {
+        transform: "translateY(-5px)",
+        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.4)",
+      },
     },
     timelineCircleLeft: {
       position: "absolute",
@@ -311,24 +555,184 @@ function VeilleTechnologique() {
       left: "-16px",
       boxShadow: "0 0 10px rgba(205, 95, 248, 0.8)",
     },
+    // Styles pour les animations
+    "@keyframes pulse": {
+      "0%": { opacity: 0.6 },
+      "50%": { opacity: 1 },
+      "100%": { opacity: 0.6 }
+    },
+    "@keyframes shine": {
+      "0%": { left: "-100%" },
+      "20%": { left: "100%" },
+      "100%": { left: "100%" }
+    },
+    "@keyframes float": {
+      "0%": { transform: "translateY(0px)" },
+      "50%": { transform: "translateY(-10px)" },
+      "100%": { transform: "translateY(0px)" }
+    },
+    floatingAnimation: {
+      animation: "float 4s ease-in-out infinite",
+    },
+    // Styles pour les sections
+    sectionIntro: {
+      textAlign: "center",
+      maxWidth: "800px",
+      margin: "0 auto 50px auto",
+      color: "#e0e0e0",
+      fontSize: "1.2rem",
+      lineHeight: "1.8",
+    },
+    // Styles pour la navigation
+    navPills: {
+      display: "flex",
+      justifyContent: "center",
+      flexWrap: "wrap",
+      marginBottom: "40px",
+      gap: "10px",
+    },
+    navPill: {
+      padding: "10px 20px",
+      backgroundColor: "rgba(30, 30, 40, 0.7)",
+      borderRadius: "30px",
+      color: "#e0e0e0",
+      cursor: "pointer",
+      transition: "all 0.3s ease",
+      border: "1px solid rgba(200, 137, 230, 0.3)",
+      "&:hover": {
+        backgroundColor: "rgba(205, 95, 248, 0.2)",
+        color: "#cd5ff8",
+      },
+    },
+    navPillActive: {
+      backgroundColor: "rgba(205, 95, 248, 0.2)",
+      color: "#cd5ff8",
+      border: "1px solid rgba(205, 95, 248, 0.5)",
+    },
+    // Styles pour les cartes avec effet 3D
+    card3D: {
+      perspective: "1000px",
+      transformStyle: "preserve-3d",
+      transition: "transform 0.5s",
+      "&:hover": {
+        transform: "rotateY(5deg) rotateX(5deg)",
+      },
+    },
+  };
+
+  // Styles CSS inline pour les animations
+  const inlineStyles = {
+    "@keyframes pulse": {
+      "0%": { opacity: 0.6 },
+      "50%": { opacity: 1 },
+      "100%": { opacity: 0.6 }
+    },
+    "@keyframes shine": {
+      "0%": { left: "-100%" },
+      "20%": { left: "100%" },
+      "100%": { left: "100%" }
+    },
+    "@keyframes float": {
+      "0%": { transform: "translateY(0px)" },
+      "50%": { transform: "translateY(-10px)" },
+      "100%": { transform: "translateY(0px)" }
+    }
   };
 
   return (
     <div style={styles.veilleSection}>
       <Particle />
+      
+      {/* Styles pour les animations */}
+      <style>
+        {`
+          @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+          }
+          @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+          }
+          @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+          }
+          .floating {
+            animation: float 4s ease-in-out infinite;
+          }
+          .pulse {
+            animation: pulse 2s infinite;
+          }
+          .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(200, 137, 230, 0.5);
+          }
+          .stat-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+          }
+          .timeline-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+          }
+          .button-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(205, 95, 248, 0.6);
+          }
+          .button-hover:active {
+            transform: translateY(1px);
+          }
+        `}
+      </style>
+      
       <div style={styles.container}>
-        <h1 style={styles.veilleHeading}>
-          Veille Technologique <strong style={styles.purple}>Blockchain</strong>
-        </h1>
+        <motion.div 
+          ref={sectionRefs.header}
+          initial="hidden"
+          animate={visibleSections.header ? "visible" : "hidden"}
+          variants={fadeIn}
+        >
+          <h1 style={styles.veilleHeading}>
+            Veille Technologique <strong style={styles.purple}>Blockchain</strong>
+            <div style={styles.headingUnderline}></div>
+          </h1>
+          
+          <div style={styles.sectionIntro}>
+            <p>
+              Exploration des dernières avancées et applications de la technologie blockchain, 
+              une innovation qui transforme les industries et redéfinit notre façon d'échanger 
+              de la valeur dans un monde numérique en constante évolution.
+            </p>
+          </div>
+        </motion.div>
         
         <div style={{...styles.row, ...styles.padding10}}>
-          <div style={styles.veilleHeaderCard}>
+          <motion.div 
+            style={styles.veilleHeaderCard}
+            className="card-hover"
+            initial="hidden"
+            animate={visibleSections.header ? "visible" : "hidden"}
+            variants={scaleIn}
+          >
             <div style={styles.veilleCardView}>
+              <div style={styles.cardGlow} className="pulse"></div>
               <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #6a11cb, #2575fc)"}}>
-                <span>BLOCKCHAIN</span>
+                <div style={styles.blockOverlay}></div>
+                <div style={styles.blockContent} className="floating">
+                  <div style={styles.blockIcon}>🔗</div>
+                  <div style={styles.blockText}>BLOCKCHAIN</div>
+                </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>La Blockchain : Une Révolution Technologique</h3>
+                <h3 style={styles.cardTitle}>
+                  La Blockchain : Une Révolution Technologique
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   La blockchain est une technologie de stockage et de transmission d'informations transparente, 
                   sécurisée et fonctionnant sans organe central de contrôle. Cette veille technologique explore 
@@ -342,39 +746,88 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
+
+        {/* Navigation par pilules */}
+        <motion.div 
+          style={styles.navPills}
+          initial="hidden"
+          animate={visibleSections.header ? "visible" : "hidden"}
+          variants={staggerContainer}
+        >
+          <motion.a href="#stats" style={styles.navPill} variants={fadeIn}>Statistiques</motion.a>
+          <motion.a href="#applications" style={{...styles.navPill, ...styles.navPillActive}} variants={fadeIn}>Applications</motion.a>
+          <motion.a href="#innovations" style={styles.navPill} variants={fadeIn}>Innovations</motion.a>
+          <motion.a href="#challenges" style={styles.navPill} variants={fadeIn}>Enjeux</motion.a>
+          <motion.a href="#timeline" style={styles.navPill} variants={fadeIn}>Chronologie</motion.a>
+          <motion.a href="#sectors" style={styles.navPill} variants={fadeIn}>Secteurs</motion.a>
+        </motion.div>
 
         {/* Statistiques */}
-        <div style={styles.statsContainer}>
-          <div style={styles.statBox}>
-            <div style={styles.statNumber}>$2.3T</div>
+        <motion.div 
+          id="stats"
+          ref={sectionRefs.stats}
+          initial="hidden"
+          animate={visibleSections.stats ? "visible" : "hidden"}
+          variants={staggerContainer}
+          style={styles.statsContainer}
+        >
+          <motion.div style={styles.statBox} className="stat-hover" variants={scaleIn}>
+            <div style={styles.statGlow} className="pulse"></div>
+            <div style={styles.statNumber}>\$2.3T</div>
             <div style={styles.statLabel}>Capitalisation du marché crypto</div>
-          </div>
-          <div style={styles.statBox}>
+          </motion.div>
+          <motion.div style={styles.statBox} className="stat-hover" variants={scaleIn}>
+            <div style={styles.statGlow} className="pulse"></div>
             <div style={styles.statNumber}>+400%</div>
             <div style={styles.statLabel}>Croissance DeFi (2023-2025)</div>
-          </div>
-          <div style={styles.statBox}>
+          </motion.div>
+          <motion.div style={styles.statBox} className="stat-hover" variants={scaleIn}>
+            <div style={styles.statGlow} className="pulse"></div>
             <div style={styles.statNumber}>114M+</div>
             <div style={styles.statLabel}>Utilisateurs de crypto</div>
-          </div>
-          <div style={styles.statBox}>
+          </motion.div>
+          <motion.div style={styles.statBox} className="stat-hover" variants={scaleIn}>
+            <div style={styles.statGlow} className="pulse"></div>
             <div style={styles.statNumber}>80%</div>
             <div style={styles.statLabel}>Banques centrales explorant les CBDCs</div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <h2 style={styles.veilleSubheading}>Domaines d'application et innovations</h2>
+        <motion.h2 
+          id="applications"
+          ref={sectionRefs.applications}
+          style={styles.veilleSubheading}
+          initial="hidden"
+          animate={visibleSections.applications ? "visible" : "hidden"}
+          variants={fadeIn}
+        >
+          Domaines d'application et innovations
+          <div style={styles.subheadingUnderline}></div>
+        </motion.h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <div style={styles.columnHalf}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnHalf}
+            initial="hidden"
+            animate={visibleSections.applications ? "visible" : "hidden"}
+            variants={slideFromLeft}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #11998e, #38ef7d)"}}>
-                <span>ETH</span>
+                <div style={styles.blockOverlay}></div>
+                <div style={styles.blockContent} className="floating">
+                  <div style={styles.blockIcon}>⚡</div>
+                  <div style={styles.blockText}>ETHEREUM</div>
+                </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>Ethereum et Smart Contracts</h3>
+                <h3 style={styles.cardTitle}>
+                  Ethereum et Smart Contracts
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   Ethereum est une plateforme décentralisée qui permet la création de smart contracts et 
                   d'applications décentralisées (DApps). La mise à jour Ethereum 2.0 marque une transition 
@@ -396,15 +849,28 @@ function VeilleTechnologique() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div style={styles.columnHalf}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnHalf}
+            initial="hidden"
+            animate={visibleSections.applications ? "visible" : "hidden"}
+            variants={slideFromRight}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #FF416C, #FF4B2B)"}}>
-                <span>NFT</span>
+                <div style={styles.blockOverlay}></div>
+                <div style={styles.blockContent} className="floating">
+                  <div style={styles.blockIcon}>🖼️</div>
+                  <div style={styles.blockText}>NFT</div>
+                </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>NFTs (Non-Fungible Tokens)</h3>
+                <h3 style={styles.cardTitle}>
+                  NFTs (Non-Fungible Tokens)
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   Les NFTs représentent des actifs numériques uniques et non interchangeables. Ils ont 
                   révolutionné les industries de l'art, du divertissement et du gaming en permettant 
@@ -427,15 +893,28 @@ function VeilleTechnologique() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div style={styles.columnHalf}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnHalf}
+            initial="hidden"
+            animate={visibleSections.applications ? "visible" : "hidden"}
+            variants={slideFromLeft}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #8E2DE2, #4A00E0)"}}>
-                <span>DeFi</span>
+                <div style={styles.blockOverlay}></div>
+                <div style={styles.blockContent} className="floating">
+                  <div style={styles.blockIcon}>💰</div>
+                  <div style={styles.blockText}>DeFi</div>
+                </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>Finance Décentralisée (DeFi)</h3>
+                <h3 style={styles.cardTitle}>
+                  Finance Décentralisée (DeFi)
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   La DeFi vise à recréer le système financier traditionnel de manière décentralisée, 
                   sans intermédiaires. Les protocoles DeFi permettent le prêt, l'emprunt, l'échange et 
@@ -458,15 +937,28 @@ function VeilleTechnologique() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div style={styles.columnHalf}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnHalf}
+            initial="hidden"
+            animate={visibleSections.applications ? "visible" : "hidden"}
+            variants={slideFromRight}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #3A1C71, #D76D77, #FFAF7B)"}}>
-                <span>CBDC</span>
+                <div style={styles.blockOverlay}></div>
+                <div style={styles.blockContent} className="floating">
+                  <div style={styles.blockIcon}>🏦</div>
+                  <div style={styles.blockText}>CBDC</div>
+                </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>CBDCs et Adoption Institutionnelle</h3>
+                <h3 style={styles.cardTitle}>
+                  CBDCs et Adoption Institutionnelle
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   Les banques centrales du monde entier explorent activement les monnaies numériques 
                   de banque centrale (CBDC). Parallèlement, les institutions financières traditionnelles 
@@ -488,22 +980,42 @@ function VeilleTechnologique() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Nouvelles sections */}
-        <h2 style={styles.veilleSubheading}>Innovations émergentes</h2>
+        <motion.h2 
+          id="innovations"
+          ref={sectionRefs.innovations}
+          style={styles.veilleSubheading}
+          initial="hidden"
+          animate={visibleSections.innovations ? "visible" : "hidden"}
+          variants={fadeIn}
+        >
+          Innovations émergentes
+          <div style={styles.subheadingUnderline}></div>
+        </motion.h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <div style={styles.columnThird}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnThird}
+            initial="hidden"
+            animate={visibleSections.innovations ? "visible" : "hidden"}
+            variants={scaleIn}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={styles.iconContainer}>
                 <div style={styles.iconCircle}>
+                  <div style={styles.iconGlow} className="pulse"></div>
                   <span style={styles.iconText}>🌱</span>
                 </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>Blockchain Verte</h3>
+                <h3 style={styles.cardTitle}>
+                  Blockchain Verte
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   Face aux préoccupations environnementales, de nouvelles blockchains éco-responsables 
                   émergent, utilisant des mécanismes de consensus à faible consommation énergétique 
@@ -516,17 +1028,27 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div style={styles.columnThird}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnThird}
+            initial="hidden"
+            animate={visibleSections.innovations ? "visible" : "hidden"}
+            variants={scaleIn}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={styles.iconContainer}>
                 <div style={styles.iconCircle}>
+                  <div style={styles.iconGlow} className="pulse"></div>
                   <span style={styles.iconText}>🔗</span>
                 </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>Interopérabilité</h3>
+                <h3 style={styles.cardTitle}>
+                  Interopérabilité
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   L'interopérabilité entre blockchains est devenue une priorité majeure, avec des 
                   solutions comme <span style={styles.highlight}>Polkadot</span>, <span style={styles.highlight}>Cosmos</span> et les ponts cross-chain qui permettent la 
@@ -538,17 +1060,27 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div style={styles.columnThird}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnThird}
+            initial="hidden"
+            animate={visibleSections.innovations ? "visible" : "hidden"}
+            variants={scaleIn}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={styles.iconContainer}>
                 <div style={styles.iconCircle}>
+                  <div style={styles.iconGlow} className="pulse"></div>
                   <span style={styles.iconText}>🔒</span>
                 </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>Confidentialité et ZK-Proofs</h3>
+                <h3 style={styles.cardTitle}>
+                  Confidentialité et ZK-Proofs
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   Les preuves à connaissance zéro (ZK-Proofs) révolutionnent la blockchain en permettant 
                   de vérifier des informations sans révéler les données sous-jacentes, offrant ainsi 
@@ -560,19 +1092,42 @@ function VeilleTechnologique() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <h2 style={styles.veilleSubheading}>Enjeux et perspectives</h2>
+        <motion.h2 
+          id="challenges"
+          ref={sectionRefs.challenges}
+          style={styles.veilleSubheading}
+          initial="hidden"
+          animate={visibleSections.challenges ? "visible" : "hidden"}
+          variants={fadeIn}
+        >
+          Enjeux et perspectives
+          <div style={styles.subheadingUnderline}></div>
+        </motion.h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <div style={styles.column}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.column}
+            initial="hidden"
+            animate={visibleSections.challenges ? "visible" : "hidden"}
+            variants={fadeIn}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={{...styles.colorBlock, background: "linear-gradient(45deg, #654ea3, #eaafc8)"}}>
-                <span>DÉFIS</span>
+                <div style={styles.blockOverlay}></div>
+                <div style={styles.blockContent} className="floating">
+                  <div style={styles.blockIcon}>🔍</div>
+                  <div style={styles.blockText}>DÉFIS</div>
+                </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>Défis actuels et évolutions futures</h3>
+                <h3 style={styles.cardTitle}>
+                  Défis actuels et évolutions futures
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   Malgré son potentiel révolutionnaire, la blockchain fait face à plusieurs défis qui 
                   doivent être surmontés pour une adoption massive. Les solutions à ces défis façonnent 
@@ -605,100 +1160,200 @@ function VeilleTechnologique() {
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Timeline section - Corrigée */}
-        <h2 style={styles.veilleSubheading}>Chronologie des innovations blockchain</h2>
+        <motion.h2 
+          id="timeline"
+          ref={sectionRefs.timeline}
+          style={styles.veilleSubheading}
+          initial="hidden"
+          animate={visibleSections.timeline ? "visible" : "hidden"}
+          variants={fadeIn}
+        >
+          Chronologie des innovations blockchain
+          <div style={styles.subheadingUnderline}></div>
+        </motion.h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <div style={styles.column}>
+          <motion.div 
+            style={styles.column}
+            initial="hidden"
+            animate={visibleSections.timeline ? "visible" : "hidden"}
+            variants={fadeIn}
+          >
             <div style={styles.veilleCardView}>
+              <div style={styles.cardGlow}></div>
               <div style={styles.timeline}>
                 {/* Ligne centrale visible */}
                 <div style={styles.timelineCenterLine}></div>
                 
-                <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                <motion.div 
+                  style={{...styles.timelineItem, ...styles.timelineLeft}}
+                  initial="hidden"
+                  animate={visibleSections.timeline ? "visible" : "hidden"}
+                  variants={slideFromLeft}
+                >
                   <div style={styles.timelineCircleLeft}></div>
-                  <div style={styles.timelineContent}>
-                    <h3 style={styles.cardTitle}>2008-2009</h3>
+                  <div style={styles.timelineContent} className="timeline-hover">
+                    <h3 style={styles.cardTitle}>
+                      2008-2009
+                      <div style={styles.titleUnderline}></div>
+                    </h3>
                     <p style={styles.cardText}>Publication du whitepaper Bitcoin par Satoshi Nakamoto et lancement du réseau Bitcoin.</p>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                <motion.div 
+                  style={{...styles.timelineItem, ...styles.timelineRight}}
+                  initial="hidden"
+                  animate={visibleSections.timeline ? "visible" : "hidden"}
+                  variants={slideFromRight}
+                >
                   <div style={styles.timelineCircleRight}></div>
-                  <div style={styles.timelineContent}>
-                    <h3 style={styles.cardTitle}>2015</h3>
+                  <div style={styles.timelineContent} className="timeline-hover">
+                    <h3 style={styles.cardTitle}>
+                      2015
+                      <div style={styles.titleUnderline}></div>
+                    </h3>
                     <p style={styles.cardText}>Lancement d'Ethereum, introduisant les smart contracts et les DApps.</p>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                <motion.div 
+                  style={{...styles.timelineItem, ...styles.timelineLeft}}
+                  initial="hidden"
+                  animate={visibleSections.timeline ? "visible" : "hidden"}
+                  variants={slideFromLeft}
+                >
                   <div style={styles.timelineCircleLeft}></div>
-                  <div style={styles.timelineContent}>
-                    <h3 style={styles.cardTitle}>2017</h3>
+                  <div style={styles.timelineContent} className="timeline-hover">
+                    <h3 style={styles.cardTitle}>
+                      2017
+                      <div style={styles.titleUnderline}></div>
+                    </h3>
                     <p style={styles.cardText}>Premier boom des ICO et popularisation des tokens ERC-20 sur Ethereum.</p>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                <motion.div 
+                  style={{...styles.timelineItem, ...styles.timelineRight}}
+                  initial="hidden"
+                  animate={visibleSections.timeline ? "visible" : "hidden"}
+                  variants={slideFromRight}
+                >
                   <div style={styles.timelineCircleRight}></div>
-                  <div style={styles.timelineContent}>
-                    <h3 style={styles.cardTitle}>2020</h3>
+                  <div style={styles.timelineContent} className="timeline-hover">
+                    <h3 style={styles.cardTitle}>
+                      2020
+                      <div style={styles.titleUnderline}></div>
+                    </h3>
                     <p style={styles.cardText}>Explosion de la DeFi avec des protocoles comme Uniswap, Aave et Compound.</p>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                <motion.div 
+                  style={{...styles.timelineItem, ...styles.timelineLeft}}
+                  initial="hidden"
+                  animate={visibleSections.timeline ? "visible" : "hidden"}
+                  variants={slideFromLeft}
+                >
                   <div style={styles.timelineCircleLeft}></div>
-                  <div style={styles.timelineContent}>
-                    <h3 style={styles.cardTitle}>2021</h3>
+                  <div style={styles.timelineContent} className="timeline-hover">
+                    <h3 style={styles.cardTitle}>
+                      2021
+                      <div style={styles.titleUnderline}></div>
+                    </h3>
                     <p style={styles.cardText}>Adoption massive des NFTs dans l'art, le divertissement et le sport.</p>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                <motion.div 
+                  style={{...styles.timelineItem, ...styles.timelineRight}}
+                  initial="hidden"
+                  animate={visibleSections.timeline ? "visible" : "hidden"}
+                  variants={slideFromRight}
+                >
                   <div style={styles.timelineCircleRight}></div>
-                  <div style={styles.timelineContent}>
-                    <h3 style={styles.cardTitle}>2022</h3>
+                  <div style={styles.timelineContent} className="timeline-hover">
+                    <h3 style={styles.cardTitle}>
+                      2022
+                      <div style={styles.titleUnderline}></div>
+                    </h3>
                     <p style={styles.cardText}>The Merge : Ethereum passe au Proof of Stake, réduisant sa consommation énergétique.</p>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div style={{...styles.timelineItem, ...styles.timelineLeft}}>
+                <motion.div 
+                  style={{...styles.timelineItem, ...styles.timelineLeft}}
+                  initial="hidden"
+                  animate={visibleSections.timeline ? "visible" : "hidden"}
+                  variants={slideFromLeft}
+                >
                   <div style={styles.timelineCircleLeft}></div>
-                  <div style={styles.timelineContent}>
-                    <h3 style={styles.cardTitle}>2023</h3>
+                  <div style={styles.timelineContent} className="timeline-hover">
+                    <h3 style={styles.cardTitle}>
+                      2023
+                      <div style={styles.titleUnderline}></div>
+                    </h3>
                     <p style={styles.cardText}>Adoption institutionnelle accélérée et développement des CBDCs.</p>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div style={{...styles.timelineItem, ...styles.timelineRight}}>
+                <motion.div 
+                  style={{...styles.timelineItem, ...styles.timelineRight}}
+                  initial="hidden"
+                  animate={visibleSections.timeline ? "visible" : "hidden"}
+                  variants={slideFromRight}
+                >
                   <div style={styles.timelineCircleRight}></div>
-                  <div style={styles.timelineContent}>
-                    <h3 style={styles.cardTitle}>2024-2025</h3>
+                  <div style={styles.timelineContent} className="timeline-hover">
+                    <h3 style={styles.cardTitle}>
+                      2024-2025
+                      <div style={styles.titleUnderline}></div>
+                    </h3>
                     <p style={styles.cardText}>Maturité des solutions d'interopérabilité et intégration dans les infrastructures critiques.</p>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Cas d'usage par secteur */}
-        <h2 style={styles.veilleSubheading}>Applications sectorielles</h2>
+        <motion.h2 
+          id="sectors"
+          ref={sectionRefs.sectors}
+          style={styles.veilleSubheading}
+          initial="hidden"
+          animate={visibleSections.sectors ? "visible" : "hidden"}
+          variants={fadeIn}
+        >
+          Applications sectorielles
+          <div style={styles.subheadingUnderline}></div>
+        </motion.h2>
         
         <div style={{...styles.row, ...styles.paddingBottom50}}>
-          <div style={styles.columnThird}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnThird}
+            initial="hidden"
+            animate={visibleSections.sectors ? "visible" : "hidden"}
+            variants={scaleIn}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={styles.iconContainer}>
                 <div style={styles.iconCircle}>
+                  <div style={styles.iconGlow} className="pulse"></div>
                   <span style={styles.iconText}>💊</span>
                 </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>Santé</h3>
+                <h3 style={styles.cardTitle}>
+                  Santé
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   La blockchain révolutionne le secteur de la santé en sécurisant les dossiers médicaux, 
                   en traçant les médicaments et en facilitant le partage sécurisé de données entre 
@@ -711,17 +1366,27 @@ function VeilleTechnologique() {
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div style={styles.columnThird}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnThird}
+            initial="hidden"
+            animate={visibleSections.sectors ? "visible" : "hidden"}
+            variants={scaleIn}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={styles.iconContainer}>
                 <div style={styles.iconCircle}>
+                  <div style={styles.iconGlow} className="pulse"></div>
                   <span style={styles.iconText}>📦</span>
                 </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>Chaîne d'approvisionnement</h3>
+                <h3 style={styles.cardTitle}>
+                  Chaîne d'approvisionnement
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   La traçabilité de bout en bout des produits est désormais possible grâce à la blockchain, 
                   offrant transparence et authenticité aux consommateurs et efficacité aux entreprises.
@@ -731,19 +1396,29 @@ function VeilleTechnologique() {
                   <li style={styles.listItem}>Optimisation logistique et réduction des fraudes</li>
                   <li style={styles.listItem}>Certification des pratiques durables et éthiques</li>
                 </ul>
-              </div>
             </div>
-          </div>
+            </div>
+          </motion.div>
 
-          <div style={styles.columnThird}>
-            <div style={styles.veilleCardView}>
+          <motion.div 
+            style={styles.columnThird}
+            initial="hidden"
+            animate={visibleSections.sectors ? "visible" : "hidden"}
+            variants={scaleIn}
+          >
+            <div style={styles.veilleCardView} className="card-hover">
+              <div style={styles.cardGlow}></div>
               <div style={styles.iconContainer}>
                 <div style={styles.iconCircle}>
+                  <div style={styles.iconGlow} className="pulse"></div>
                   <span style={styles.iconText}>⚡</span>
                 </div>
               </div>
               <div>
-                <h3 style={styles.cardTitle}>Énergie</h3>
+                <h3 style={styles.cardTitle}>
+                  Énergie
+                  <div style={styles.titleUnderline}></div>
+                </h3>
                 <p style={styles.cardText}>
                   Le secteur énergétique adopte la blockchain pour créer des réseaux décentralisés, 
                   permettant l'échange pair-à-pair d'énergie renouvelable et la certification d'origine.
@@ -755,13 +1430,22 @@ function VeilleTechnologique() {
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         <div style={{...styles.row, ...styles.paddingBottom30}}>
-          <div style={styles.column}>
+          <motion.div 
+            style={styles.column}
+            initial="hidden"
+            animate={visibleSections.sectors ? "visible" : "hidden"}
+            variants={fadeIn}
+          >
             <div style={styles.veilleSources}>
-              <h3 style={styles.sourcesHeading}>Sources et ressources</h3>
+              <div style={styles.cardGlow}></div>
+              <h3 style={styles.sourcesHeading}>
+                Sources et ressources
+                <div style={styles.titleUnderline}></div>
+              </h3>
               <ul style={styles.sourcesList}>
                 <li style={styles.sourceItem}>
                   <a href="https://ethereum.org" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
@@ -794,12 +1478,14 @@ function VeilleTechnologique() {
                 <button 
                   onClick={handleDownloadReport} 
                   style={styles.gradientButton}
+                  className="button-hover"
                 >
+                  <div style={styles.buttonGlow}></div>
                   Télécharger le rapport complet (PDF)
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
