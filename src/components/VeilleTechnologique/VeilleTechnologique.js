@@ -175,6 +175,8 @@ function VeilleTechnologique() {
     cardImage: {
       width: "100%",
       height: "auto",
+      maxHeight: "250px", // Réduire la hauteur des images
+      objectFit: "cover", // Assurer que les images couvrent bien l'espace
       transition: "transform 0.5s ease",
     },
     iconImage: {
@@ -311,7 +313,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" 
+                  src="https://cdn.pixabay.com/photo/2018/01/18/10/00/blockchain-3090197_1280.jpg" 
                   alt="Blockchain Technology" 
                   style={styles.cardImage}
                 />
@@ -361,7 +363,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                  src="https://cdn.pixabay.com/photo/2018/05/17/21/26/cryptocurrency-3409725_1280.jpg" 
                   alt="Ethereum" 
                   style={styles.cardImage}
                 />
@@ -395,7 +397,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80" 
+                  src="https://cdn.pixabay.com/photo/2022/03/01/02/51/nft-7040435_1280.png" 
                   alt="NFT Artwork" 
                   style={styles.cardImage}
                 />
@@ -430,7 +432,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1802&q=80" 
+                  src="https://cdn.pixabay.com/photo/2021/05/24/09/15/ethereum-6278326_1280.jpg" 
                   alt="DeFi Concept" 
                   style={styles.cardImage}
                 />
@@ -455,7 +457,6 @@ function VeilleTechnologique() {
                     <li style={styles.listItem}>Stablecoins algorithmiques et adossés à des actifs diversifiés</li>
                     <li style={styles.listItem}>Assurance décentralisée pour couvrir les risques liés aux protocoles</li>
                     <li style={styles.listItem}>Yield farming et liquidity mining avec des stratégies d'optimisation automatisées</li>
-                    <li style={styles.listItem}>Dérivés financiers décentralisés et marchés prédictifs</li>
                   </ul>
                 </div>
               </div>
@@ -466,7 +467,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://images.unsplash.com/photo-1634704784915-aacf363b021f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
+                  src="https://cdn.pixabay.com/photo/2017/12/12/12/44/bitcoin-3014614_1280.jpg" 
                   alt="Central Bank Digital Currency" 
                   style={styles.cardImage}
                 />
@@ -487,8 +488,8 @@ function VeilleTechnologique() {
                   <ul style={styles.list}>
                     <li style={styles.listItem}>L'e-CNY (yuan numérique) en Chine avec plus de 300 millions d'utilisateurs actifs</li>
                     <li style={styles.listItem}>Projet de l'euro numérique par la BCE en phase de déploiement</li>
-                    <li style={styles.listItem}>Adoption croissante par les banques d'investissement de solutions blockchain pour le règlement-livraison</li>
-                    <li style={styles.listItem}>Réglementations en évolution avec le MiCA en Europe et des cadres similaires aux États-Unis</li>
+                    <li style={styles.listItem}>Adoption croissante par les banques d'investissement de solutions blockchain</li>
+                    <li style={styles.listItem}>Réglementations en évolution avec le MiCA en Europe</li>
                     <li style={styles.listItem}>Intégration des stablecoins régulés dans les systèmes de paiement traditionnels</li>
                   </ul>
                 </div>
@@ -582,7 +583,7 @@ function VeilleTechnologique() {
             <div style={styles.veilleCardView}>
               <div style={styles.imageContainer}>
                 <img 
-                  src="https://images.unsplash.com/photo-1642052502780-8ee67c2c714c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
+                  src="https://cdn.pixabay.com/photo/2018/01/28/10/08/bitcoin-3113503_1280.jpg" 
                   alt="Blockchain Challenges" 
                   style={styles.cardImage}
                 />
@@ -597,35 +598,28 @@ function VeilleTechnologique() {
                 
                 <h5 style={styles.listHeading}>Défis techniques</h5>
                 <ul style={styles.list}>
-                  <li style={styles.listItem}><strong>Scalabilité</strong> - Augmenter le nombre de transactions par seconde pour rivaliser avec les systèmes centralisés. Les solutions Layer 2 comme les rollups et les sidechains montrent des résultats prometteurs.</li>
-                  <li style={styles.listItem}><strong>Interopérabilité</strong> - Permettre la communication entre différentes blockchains pour créer un écosystème unifié. Des projets comme Polkadot et Cosmos développent des infrastructures dédiées à cette problématique.</li>
-                  <li style={styles.listItem}><strong>Consommation énergétique</strong> - Réduire l'impact environnemental des mécanismes de consensus, avec une transition vers le Proof of Stake et d'autres alternatives plus écologiques.</li>
-                  <li style={styles.listItem}><strong>Expérience utilisateur</strong> - Simplifier l'utilisation des applications blockchain pour le grand public, avec des interfaces intuitives et des solutions de gestion de clés plus accessibles.</li>
+                  <li style={styles.listItem}><strong>Scalabilité</strong> - Augmenter le nombre de transactions par seconde</li>
+                  <li style={styles.listItem}><strong>Interopérabilité</strong> - Permettre la communication entre différentes blockchains</li>
+                  <li style={styles.listItem}><strong>Consommation énergétique</strong> - Réduire l'impact environnemental</li>
+                  <li style={styles.listItem}><strong>Expérience utilisateur</strong> - Simplifier l'utilisation pour le grand public</li>
                 </ul>
                 
                 <h5 style={styles.listHeading}>Défis réglementaires</h5>
                 <ul style={styles.list}>
-                  <li style={styles.listItem}><strong>Cadre juridique</strong> - Adaptation des lois aux spécificités de la blockchain, avec des réglementations comme MiCA en Europe qui établissent un cadre clair.</li>
-                  <li style={styles.listItem}><strong>Protection des consommateurs</strong> - Garantir la sécurité des utilisateurs face aux risques de fraude et de piratage, avec des mécanismes de gouvernance et d'audit renforcés.</li>
-                  <li style={styles.listItem}><strong>Conformité</strong> - Respect des réglementations KYC/AML tout en préservant les avantages de la décentralisation, avec des solutions d'identité vérifiable.</li>
-                  <li style={styles.listItem}><strong>Fiscalité</strong> - Clarification du traitement fiscal des actifs numériques et des revenus générés par les activités blockchain.</li>
+                  <li style={styles.listItem}><strong>Cadre juridique</strong> - Adaptation des lois aux spécificités de la blockchain</li>
+                  <li style={styles.listItem}><strong>Protection des consommateurs</strong> - Garantir la sécurité des utilisateurs</li>
+                  <li style={styles.listItem}><strong>Conformité</strong> - Respect des réglementations KYC/AML</li>
+                  <li style={styles.listItem}><strong>Fiscalité</strong> - Clarification du traitement fiscal des actifs numériques</li>
                 </ul>
                 
                 <h5 style={styles.listHeading}>Perspectives d'avenir</h5>
                 <ul style={styles.list}>
-                  <li style={styles.listItem}><strong>Web3</strong> - Évolution vers un internet décentralisé où les utilisateurs contrôlent leurs données et leurs actifs numériques.</li>
-                  <li style={styles.listItem}><strong>DAOs</strong> - Organisations autonomes décentralisées qui redéfinissent la gouvernance d'entreprise et la collaboration à grande échelle.</li>
-                  <li style={styles.listItem}><strong>Identité souveraine</strong> - Contrôle personnel des données d'identité avec des systèmes de vérification sélective basés sur la blockchain.</li>
-                  <li style={styles.listItem}><strong>Tokenisation</strong> - Représentation d'actifs réels sur la blockchain, permettant le fractionnement et l'échange simplifié d'actifs traditionnellement illiquides.</li>
-                  <li style={styles.listItem}><strong>Finance régénérative</strong> - Utilisation de la blockchain pour financer et suivre des projets à impact environnemental et social positif.</li>
-                  <li style={styles.listItem}><strong>Métavers décentralisé</strong> - Espaces virtuels interconnectés où la propriété numérique est garantie par la blockchain.</li>
+                  <li style={styles.listItem}><strong>Web3</strong> - Évolution vers un internet décentralisé</li>
+                  <li style={styles.listItem}><strong>DAOs</strong> - Organisations autonomes décentralisées</li>
+                  <li style={styles.listItem}><strong>Identité souveraine</strong> - Contrôle personnel des données d'identité</li>
+                  <li style={styles.listItem}><strong>Tokenisation</strong> - Représentation d'actifs réels sur la blockchain</li>
+                  <li style={styles.listItem}><strong>Finance régénérative</strong> - Financement de projets à impact positif</li>
                 </ul>
-                
-                <p style={styles.cardText}>
-                  La blockchain continue d'évoluer rapidement, avec de nouvelles solutions qui émergent 
-                  pour résoudre ces défis. Cette technologie a le potentiel de transformer fondamentalement 
-                  de nombreux secteurs en introduisant transparence, désintermédiation et automatisation.
-                </p>
               </div>
             </div>
           </div>
@@ -645,7 +639,7 @@ function VeilleTechnologique() {
                   <div style={styles.timelineCircleLeft}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2008-2009</h3>
-                    <p style={styles.cardText}>Publication du whitepaper Bitcoin par Satoshi Nakamoto et lancement du réseau Bitcoin, première application de la technologie blockchain.</p>
+                    <p style={styles.cardText}>Publication du whitepaper Bitcoin par Satoshi Nakamoto et lancement du réseau Bitcoin.</p>
                   </div>
                 </div>
                 
@@ -653,7 +647,7 @@ function VeilleTechnologique() {
                   <div style={styles.timelineCircleRight}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2015</h3>
-                    <p style={styles.cardText}>Lancement d'Ethereum, introduisant les smart contracts et ouvrant la voie aux applications décentralisées (DApps).</p>
+                    <p style={styles.cardText}>Lancement d'Ethereum, introduisant les smart contracts et les DApps.</p>
                   </div>
                 </div>
                 
@@ -661,7 +655,7 @@ function VeilleTechnologique() {
                   <div style={styles.timelineCircleLeft}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2017</h3>
-                    <p style={styles.cardText}>Premier boom des ICO (Initial Coin Offerings) et popularisation des tokens ERC-20 sur Ethereum.</p>
+                    <p style={styles.cardText}>Premier boom des ICO et popularisation des tokens ERC-20 sur Ethereum.</p>
                   </div>
                 </div>
                 
@@ -669,7 +663,7 @@ function VeilleTechnologique() {
                   <div style={styles.timelineCircleRight}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2020</h3>
-                    <p style={styles.cardText}>Explosion de la DeFi (Finance Décentralisée) avec des protocoles comme Uniswap, Aave et Compound.</p>
+                    <p style={styles.cardText}>Explosion de la DeFi avec des protocoles comme Uniswap, Aave et Compound.</p>
                   </div>
                 </div>
                 
@@ -677,7 +671,7 @@ function VeilleTechnologique() {
                   <div style={styles.timelineCircleLeft}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2021</h3>
-                    <p style={styles.cardText}>Adoption massive des NFTs dans l'art, le divertissement et le sport, avec des ventes record.</p>
+                    <p style={styles.cardText}>Adoption massive des NFTs dans l'art, le divertissement et le sport.</p>
                   </div>
                 </div>
                 
@@ -685,7 +679,7 @@ function VeilleTechnologique() {
                   <div style={styles.timelineCircleRight}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2022</h3>
-                    <p style={styles.cardText}>The Merge : Ethereum passe au Proof of Stake, réduisant sa consommation énergétique de 99,95%.</p>
+                    <p style={styles.cardText}>The Merge : Ethereum passe au Proof of Stake, réduisant sa consommation énergétique.</p>
                   </div>
                 </div>
                 
@@ -693,7 +687,7 @@ function VeilleTechnologique() {
                   <div style={styles.timelineCircleLeft}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2023</h3>
-                    <p style={styles.cardText}>Adoption institutionnelle accélérée et développement des CBDCs par les banques centrales.</p>
+                    <p style={styles.cardText}>Adoption institutionnelle accélérée et développement des CBDCs.</p>
                   </div>
                 </div>
                 
@@ -701,7 +695,7 @@ function VeilleTechnologique() {
                   <div style={styles.timelineCircleRight}></div>
                   <div style={styles.timelineContent}>
                     <h3 style={styles.cardTitle}>2024-2025</h3>
-                    <p style={styles.cardText}>Maturité des solutions d'interopérabilité et intégration de la blockchain dans les infrastructures critiques.</p>
+                    <p style={styles.cardText}>Maturité des solutions d'interopérabilité et intégration dans les infrastructures critiques.</p>
                   </div>
                 </div>
               </div>
@@ -816,21 +810,6 @@ function VeilleTechnologique() {
                   <a href="https://www.ledger.com/academy" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
                     Ledger Academy
                   </a> - Ressources éducatives sur la blockchain et la cryptographie
-                </li>
-                <li style={styles.sourceItem}>
-                  <a href="https://www.chainalysis.com/reports/" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
-                    Chainalysis Reports
-                  </a> - Études de marché et analyses des tendances blockchain
-                </li>
-                <li style={styles.sourceItem}>
-                  <a href="https://consensys.net/blog/" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
-                    ConsenSys Blog
-                  </a> - Actualités et perspectives sur l'écosystème Ethereum
-                </li>
-                <li style={styles.sourceItem}>
-                  <a href="https://www.wef.org/blockchain" target="_blank" rel="noopener noreferrer" style={styles.sourceLink}>
-                    World Economic Forum
-                  </a> - Études sur l'impact de la blockchain sur l'économie mondiale
                 </li>
               </ul>
               
